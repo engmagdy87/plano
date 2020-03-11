@@ -1,0 +1,16 @@
+@import '../theme/color-palette.scss';
+
+.avatar-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $light-primary;
+  color: $dark-text;
+  font-size: 14px;
+  display: none;
+  @media (max-width: 992px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

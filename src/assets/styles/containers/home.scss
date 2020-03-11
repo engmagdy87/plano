@@ -1,0 +1,37 @@
+@import '../theme/color-palette.scss';
+
+.home-wrapper {
+  height: calc(100vh - 56px);
+  max-width: 80% !important;
+  &__content {
+    height: 100%;
+  }
+  &__text {
+    display: block;
+    margin: auto;
+    h1 {
+      font-family: 'Montserrat SemiBold';
+      font-size: 43px;
+      line-height: 60px;
+    }
+    h4 {
+      font-family: 'Montserrat Regular';
+    }
+    button {
+      color: black !important;
+      font-weight: bolder;
+      border-color: $yellow-background;
+      padding: 14px 37px;
+      &:hover {
+        background-color: $yellow-background !important;
+        border-color: $yellow-background;
+      }
+    }
+  }
+  &__hero-image {
+    background-color: $light-primary;
+    @media (max-width: 992px) {
+      display: none !important;
+    }
+  }
+}

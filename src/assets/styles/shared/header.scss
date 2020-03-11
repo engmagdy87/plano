@@ -1,0 +1,67 @@
+@import '../theme/color-palette.scss';
+
+$header-margin-left: 60px;
+$header-margin-right: 20px;
+
+.header-wrapper {
+  @media (max-width: 992px) {
+    box-shadow: 0 4px 2px -2px $light-gray;
+  }
+  > button {
+    color: $dark-text;
+    font-family: 'Cairo Bold';
+    display: none;
+    @media (max-width: 992px) {
+      display: block;
+    }
+  }
+  &__logo {
+    width: 80.6px;
+    height: 26.1px;
+    object-fit: contain;
+    margin-left: $header-margin-left;
+    margin-left: 120px;
+    @media (max-width: 992px) {
+      margin-left: 40px;
+    }
+  }
+  &__left-buttons {
+    font-family: 'Montserrat SemiBold';
+    @media (max-width: 992px) {
+      display: none !important;
+    }
+    button:nth-child(1) {
+      color: $dark-text;
+      margin-right: $header-margin-right;
+      font-family: 'Cairo Bold';
+    }
+    button:nth-child(2) {
+      color: $light-text;
+      background-color: $black-background;
+      border-color: $black-background;
+      margin-right: $header-margin-right;
+      padding: 11px 15px;
+    }
+    button:nth-child(3) {
+      color: $dark-text;
+      background-color: $yellow-background;
+      border-color: $yellow-background;
+      margin-right: $header-margin-right;
+      padding: 11px 21px;
+    }
+  }
+  &__nav {
+    margin-left: $header-margin-left;
+    @media (max-width: 992px) {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  &__link {
+    font-family: 'Montserrat SemiBold';
+    color: black !important;
+    @media (max-width: 992px) {
+      margin-top: 20px;
+    }
+  }
+}
