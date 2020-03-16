@@ -1,0 +1,72 @@
+$top-value: 26%;
+
+.sortable-item-wrapper {
+  list-style: none;
+  .input-group {
+    cursor: pointer;
+    border: 2px solid transparent;
+    label {
+      pointer-events: none;
+      padding: 20px 60px;
+      width: 100%;
+      display: block;
+      text-align: left;
+      color: #3c454c;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      margin-bottom: 0;
+      &__task-finished {
+        text-decoration: line-through;
+      }
+      &:after {
+        pointer-events: all;
+        width: 32px;
+        height: 32px;
+        content: '';
+        border: 2px solid #d1d7dc;
+        background-color: #fff;
+        border-radius: 50%;
+        z-index: 2;
+        position: absolute;
+        left: 10px;
+        top: $top-value;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    }
+    input:checked ~ label {
+      &:after {
+        background-color: #e9ebf2;
+        border-color: #e9ebf2;
+        background-image: url('../../images/check-mark.svg');
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+    input {
+      width: 32px;
+      height: 32px;
+      order: 1;
+      z-index: 2;
+      position: absolute;
+      left: 0;
+      top: $top-value;
+      visibility: hidden;
+    }
+    span {
+      position: absolute;
+      left: -5%;
+      top: 30%;
+      color: #94a1c1;
+    }
+    &__active {
+      border: 2px solid #ae95c4;
+    }
+    &__stripe-text {
+      text-decoration: line-through;
+      color: #94a1c1 !important;
+    }
+  }
+}

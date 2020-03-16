@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import Avatar from '../shared/Avatar';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/logo.jpeg';
 import '../../assets/styles/shared/header.scss';
 export default function Header() {
   return (
@@ -16,7 +16,7 @@ export default function Header() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto header-wrapper__nav">
-          <Nav.Link href="/wedding" className="header-wrapper__link">
+          <Nav.Link href="/home" className="header-wrapper__link">
             Wedding Checklist
           </Nav.Link>
         </Nav>

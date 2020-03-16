@@ -19,6 +19,10 @@
   src: url('../fonts/Montserrat-SemiBold.ttf');
 }
 @font-face {
+  font-family: 'Montserrat Bold';
+  src: url('../fonts/Montserrat-Bold.ttf');
+}
+@font-face {
   font-family: 'Cairo Bold';
   src: url('../fonts/Cairo-Bold.ttf');
 }
@@ -29,4 +33,5 @@ body {
   height: 100%;
   font-family: 'Roboto', sans-serif !important;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }

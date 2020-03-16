@@ -1,0 +1,72 @@
+@import '../theme/color-palette.scss';
+
+.selected-task-wrapper {
+  display: block !important;
+  div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    img {
+      margin: 10px;
+      cursor: pointer;
+    }
+    button {
+      color: #c7cedf;
+      margin: 10px;
+    }
+  }
+  h3 {
+    color: $primary;
+    font-family: 'Montserrat Bold';
+    font-size: 1.5rem;
+    margin-left: 30px;
+  }
+  &__tag {
+    padding: 10px;
+    background-color: white;
+    width: fit-content;
+    font-family: 'Montserrat SemiBold';
+    margin-left: 30px;
+  }
+  &__cost,
+  &__due-date {
+    margin: 0 !important;
+    display: flex;
+    width: 70%;
+    div:nth-child(1) {
+      display: flex;
+      justify-content: flex-start;
+      width: 30%;
+      margin-left: 20px;
+      img {
+        width: 45%;
+        height: auto;
+      }
+    }
+    div:nth-child(2) {
+      width: 70%;
+      display: block;
+      p {
+        font-size: 1.3rem;
+        margin-bottom: 0;
+        &:nth-child(1) {
+          color: #94a1c1;
+          font-family: 'Montserrat Medium';
+        }
+        &:nth-child(2) {
+          color: black;
+          font-family: 'Montserrat SemiBold';
+        }
+      }
+    }
+  }
+  &__due-date {
+    div:nth-child(1) {
+      img {
+        width: 40%;
+        height: auto;
+      }
+    }
+  }
+}

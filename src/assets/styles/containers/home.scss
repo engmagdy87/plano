@@ -1,37 +1,86 @@
 @import '../theme/color-palette.scss';
 
 .home-wrapper {
-  height: calc(100vh - 56px);
-  max-width: 80% !important;
+  $header-height: 56px;
+  height: calc(100vh - #{$header-height});
+  max-width: 100% !important;
+  padding-top: calc(#{$header-height} + 30px);
+
   &__content {
     height: 100%;
-  }
-  &__text {
-    display: block;
-    margin: auto;
-    h1 {
-      font-family: 'Montserrat SemiBold';
-      font-size: 43px;
-      line-height: 60px;
-    }
-    h4 {
-      font-family: 'Montserrat Regular';
-    }
-    button {
-      color: black !important;
-      font-weight: bolder;
-      border-color: $yellow-background;
-      padding: 14px 37px;
-      &:hover {
-        background-color: $yellow-background !important;
-        border-color: $yellow-background;
+    &__menu {
+      ul {
+        list-style-type: none;
+      }
+      li {
+        cursor: pointer;
+        margin-bottom: 10px;
+        color: $menu-item;
+      }
+      li.active {
+        color: $menu-item-active;
+        font-family: 'Montserrat SemiBold';
+        font-weight: bold;
       }
     }
-  }
-  &__hero-image {
-    background-color: $light-primary;
-    @media (max-width: 992px) {
-      display: none !important;
+    &__tasks {
+      h4 {
+        color: $dark-text;
+        font-family: 'Montserrat Medium';
+      }
+      button {
+        font-family: 'Montserrat SemiBold';
+        font-size: 14px;
+        font-weight: bold;
+        color: $dark-text;
+        background-color: $yellow-background;
+        border-color: $yellow-background;
+        padding: 8px 24px;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $yellow-background !important;
+          border-color: $yellow-background !important;
+          color: $dark-text !important;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+      h6 {
+        color: $menu-item;
+      }
+      &__details {
+        margin-top: 3vh;
+        height: 70vh;
+        border-left: 1px solid rgba($color: #94a1c1, $alpha: 0.5);
+        padding-left: 5%;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        &::-webkit-scrollbar {
+          width: 5px !important;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba($color: #94a1c1, $alpha: 0.7);
+          border-radius: 4px !important;
+        }
+        h3 {
+          color: $primary;
+          font-family: 'Montserrat Bold';
+        }
+      }
+    }
+    &__operations {
+      height: 100%;
+      background-color: #f1f3f7;
+    }
+    &__placeholder {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      h2 {
+        color: #94a1c1;
+      }
     }
   }
 }
