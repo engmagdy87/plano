@@ -2,7 +2,7 @@
 
 .home-wrapper {
   $header-height: 56px;
-  height: 100vh;
+  height: calc(100vh - $header-height - 30px);
   max-width: 100% !important;
   padding-top: 30px;
   @media (max-width: 992px) {
@@ -95,7 +95,6 @@
       }
     }
     &__operations {
-      height: 100%;
       background-color: #f1f3f7;
       @media (max-width: 992px) {
         display: none;
