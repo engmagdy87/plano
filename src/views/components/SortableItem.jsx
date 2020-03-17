@@ -17,20 +17,10 @@ const SortableItem = SortableElement(({ data }) => {
     )
       setIsTaskClicked(true);
     else setIsTaskClicked(false);
-  }, [checklistId, state.selectedTask, taskId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.selectedTask.data]);
   return (
-    <li
-      className="sortable-item-wrapper"
-      onClick={() => {
-        dispatch({
-          type: types.checklist.SET_SELECTED_TASK,
-          payload: {
-            selectedChecklistId: checklistId,
-            selectedTaskId: taskId
-          }
-        });
-      }}
-    >
+    <li className="sortable-item-wrapper">
       <div
         className={`input-group ${isTaskClicked ? 'input-group__active' : ''}`}
       >
@@ -41,21 +31,32 @@ const SortableItem = SortableElement(({ data }) => {
           name={`${checklistId}${taskId}`}
           onChange={() => {
             dispatch({
-              type: types.checklist.SET_COMPLETED_FOR_A_TASK,
+              type: types.checklist.SET_REMOVED_TASK,
               payload: {
-                checklistId,
-                taskId
+                removedChecklistId: checklistId,
+                removedTaskId: taskId
               }
             });
             setIsTaskCompleted(!isTaskCompleted);
           }}
         />
-        <label
-          htmlFor={`${checklistId}${taskId}`}
-          className={`${isTaskCompleted ? 'input-group__stripe-text' : ''}`}
+        <label htmlFor={`${checklistId}${taskId}`}></label>
+        <div
+          className={`input-group__text ${
+            isTaskCompleted ? 'input-group__stripe-text' : ''
+          }`}
+          onClick={() => {
+            dispatch({
+              type: types.checklist.SET_SELECTED_TASK,
+              payload: {
+                selectedChecklistId: checklistId,
+                selectedTaskId: taskId
+              }
+            });
+          }}
         >
           {task.text}
-        </label>
+        </div>
       </div>
       <hr />
     </li>

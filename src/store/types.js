@@ -5,8 +5,9 @@ const user = {
 
 const checklist = {
     'SET_CHECKLIST_DATA': 'checklist/SET_CHECKLIST_DATA',
-    'SET_COMPLETED_FOR_A_TASK': 'checklist/SET_COMPLETED_FOR_A_TASK',
-    'SET_SELECTED_TASK': 'checklist/SET_SELECTED_TASK'
+    // 'SET_COMPLETED_FOR_A_TASK': 'checklist/SET_COMPLETED_FOR_A_TASK',
+    'SET_SELECTED_TASK': 'checklist/SET_SELECTED_TASK',
+    'SET_REMOVED_TASK': 'checklist/SET_REMOVED_TASK'
 }
 
 export default {

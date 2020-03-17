@@ -1,6 +1,7 @@
 const checklistState = {
     checklistData: [],
-    selectedTask: {}
+    selectedTask: {},
+    removedTask: {}
 }
 
 export default checklistState

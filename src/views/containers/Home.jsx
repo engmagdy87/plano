@@ -42,6 +42,8 @@ export default function Home() {
     setSelectedTask(state.selectedTask);
   }, [state.selectedTask]);
 
+  const phoneAndTablet = window.matchMedia('(max-width:992px)');
+
   return (
     <Fragment>
       <Header activePath="home" />
@@ -137,7 +139,7 @@ export default function Home() {
           </Col>
         </Row>
       </Container>
-      <TaskDetailsModal />
+      {phoneAndTablet.matches ? <TaskDetailsModal /> : null}
     </Fragment>
   );
 }

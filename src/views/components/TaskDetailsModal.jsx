@@ -9,14 +9,16 @@ export default function TaskDetailsModal() {
 
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
 
   useEffect(() => {
     if (Object.keys(state.selectedTask).length !== 0) {
       setShow(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedTask]);
-
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>

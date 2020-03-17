@@ -5,10 +5,9 @@ $top-value: 26%;
   .input-group {
     cursor: pointer;
     border: 2px solid transparent;
-    label {
-      pointer-events: none;
-      padding: 20px 60px;
-      width: 100%;
+    &__text {
+      padding: 20px;
+      width: 92%;
       display: block;
       text-align: left;
       color: #3c454c;
@@ -16,13 +15,17 @@ $top-value: 26%;
       z-index: 2;
       overflow: hidden;
       margin-bottom: 0;
+      margin-left: auto;
       @media (max-width: 992px) {
+        width: 85%;
         padding-right: 20px !important;
         font-size: 0.95rem;
       }
       &__task-finished {
         text-decoration: line-through;
       }
+    }
+    label {
       &:after {
         pointer-events: all;
         width: 32px;
