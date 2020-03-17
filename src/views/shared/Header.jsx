@@ -3,7 +3,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import Avatar from '../shared/Avatar';
 import logo from '../../assets/images/logo.jpeg';
 import '../../assets/styles/shared/header.scss';
-export default function Header() {
+export default function Header({ activePath }) {
   return (
     <Navbar collapseOnSelect expand="lg" className="header-wrapper">
       <Navbar.Brand href="/">
@@ -16,7 +16,12 @@ export default function Header() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto header-wrapper__nav">
-          <Nav.Link href="/home" className="header-wrapper__link">
+          <Nav.Link
+            href="/home"
+            className={`header-wrapper__link ${
+              activePath === 'home' ? 'header-wrapper__link--active' : ''
+            }`}
+          >
             Wedding Checklist
           </Nav.Link>
         </Nav>

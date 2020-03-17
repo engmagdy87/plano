@@ -11,7 +11,10 @@ export default function SelectedTask({ selectedTask }) {
   return (
     <div className="selected-task-wrapper">
       <div>
-        <Button variant="light">PREMIUM</Button>
+        <Button variant="outline-dark" disabled>
+          PREMIUM
+        </Button>
+        {/* <Button variant="light">PREMIUM</Button> */}
         <img src={DeleteIcon} alt="delete" />
         <img src={EditIcon} alt="edit" />
       </div>

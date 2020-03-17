@@ -1,9 +1,18 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
+import {
+  Container,
+  Row,
+  Col,
+  ProgressBar,
+  Button,
+  Breadcrumb
+} from 'react-bootstrap';
+import Header from '../shared/Header';
 import { Store } from '../../store/store';
 import arrayMove from 'array-move';
 import SortableList from '../components/SortableList';
 import SelectedTask from '../components/SelectedTask';
+import TaskDetailsModal from '../components/TaskDetailsModal';
 import { checklistAction } from '../../store/actions';
 import '../../assets/styles/containers/home.scss';
 
@@ -35,6 +44,18 @@ export default function Home() {
 
   return (
     <Fragment>
+      <Header activePath="home" />
+      <hr />
+      <div>
+        <div className="breadcrumb-wrapper">
+          <Breadcrumb>
+            <Breadcrumb.Item href="/">Checklist</Breadcrumb.Item>
+            <Breadcrumb.Item active>Ceremony</Breadcrumb.Item>
+          </Breadcrumb>
+          <p>By category</p>
+        </div>
+        <hr />
+      </div>
       <Container className="home-wrapper">
         <Row className="home-wrapper__content">
           <Col
@@ -61,9 +82,9 @@ export default function Home() {
           <Col
             sm={12}
             md={6}
-            className="pl-5 pr-5 home-wrapper__content__tasks"
+            className="pl-md-5 pr-md-5 home-wrapper__content__tasks"
           >
-            <Row className="mb-5">
+            <Row className="mb-4 mb-md-5">
               <Col>
                 <h4>Wedding Ceremony</h4>
               </Col>
@@ -116,6 +137,7 @@ export default function Home() {
           </Col>
         </Row>
       </Container>
+      <TaskDetailsModal />
     </Fragment>
   );
 }

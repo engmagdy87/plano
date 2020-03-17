@@ -7,13 +7,26 @@
     justify-content: flex-end;
     margin-top: 30px;
     margin-bottom: 30px;
+    @media (max-width: 992px) {
+      margin-top: 5px;
+    }
     img {
       margin: 10px;
       cursor: pointer;
     }
     button {
-      color: #c7cedf;
+      color: #343a40;
       margin: 10px;
+    }
+    .btn-outline-dark {
+      border-color: #343a40;
+    }
+    .btn-outline-dark:disabled {
+      border-color: #c7cedf;
+    }
+    .btn-outline-dark.disabled,
+    .btn-outline-dark:disabled {
+      color: #c7cedf;
     }
   }
   h3 {
@@ -21,6 +34,9 @@
     font-family: 'Montserrat Bold';
     font-size: 1.5rem;
     margin-left: 30px;
+    @media (max-width: 992px) {
+      font-size: 1.2rem;
+    }
   }
   &__tag {
     padding: 10px;
@@ -28,6 +44,10 @@
     width: fit-content;
     font-family: 'Montserrat SemiBold';
     margin-left: 30px;
+    @media (max-width: 992px) {
+      font-size: 1rem;
+      padding: 5px 0;
+    }
   }
   &__cost,
   &__due-date {
@@ -50,6 +70,9 @@
       p {
         font-size: 1.3rem;
         margin-bottom: 0;
+        @media (max-width: 992px) {
+          font-size: 1rem;
+        }
         &:nth-child(1) {
           color: #94a1c1;
           font-family: 'Montserrat Medium';

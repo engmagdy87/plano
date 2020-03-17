@@ -57,6 +57,7 @@ const SortableItem = SortableElement(({ data }) => {
           {task.text}
         </label>
       </div>
+      <hr />
     </li>
   );
 });

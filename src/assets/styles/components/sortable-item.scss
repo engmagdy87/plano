@@ -16,6 +16,10 @@ $top-value: 26%;
       z-index: 2;
       overflow: hidden;
       margin-bottom: 0;
+      @media (max-width: 992px) {
+        padding-right: 20px !important;
+        font-size: 0.95rem;
+      }
       &__task-finished {
         text-decoration: line-through;
       }
@@ -33,6 +37,10 @@ $top-value: 26%;
         top: $top-value;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        @media (max-width: 992px) {
+          width: 28px;
+          height: 28px;
+        }
       }
     }
     input:checked ~ label {
@@ -54,6 +62,10 @@ $top-value: 26%;
       left: 0;
       top: $top-value;
       visibility: hidden;
+      @media (max-width: 992px) {
+        width: 28px;
+        height: 28px;
+      }
     }
     span {
       position: absolute;
@@ -68,5 +80,18 @@ $top-value: 26%;
       text-decoration: line-through;
       color: #94a1c1 !important;
     }
+  }
+}
+
+.progress {
+  @media (max-width: 992px) {
+    height: 8px !important;
+  }
+}
+
+hr {
+  display: none;
+  @media (max-width: 992px) {
+    display: block;
   }
 }
