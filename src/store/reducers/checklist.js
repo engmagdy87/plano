@@ -19,13 +19,21 @@ export default function checklistReducer(state, action) {
                 }
             };
 
-        case types.checklist.SET_REMOVED_TASK:
-            const { removedChecklistId, removedTaskId } = action.payload
+        case types.checklist.RESET_SELECTED_TASK:
             return {
-                ...state, removedTask: {
-                    removedChecklistId, removedTaskId,
-                    data: state.checklistData[removedChecklistId].checklist[removedTaskId]
+                ...state, selectedTask: {
                 }
+            };
+
+        case types.checklist.SET_OPEN_TASK_FORM:
+            const { flag, operation } = action.payload
+            return {
+                ...state, taskForm: { flag, operation }
+            };
+
+        case types.checklist.SET_TOAST_DATA:
+            return {
+                ...state, toastData: action.payload
             };
 
         default:

@@ -3,14 +3,20 @@ import { Modal } from 'react-bootstrap';
 import { Store } from '../../store/store';
 import SelectedTask from '../components/SelectedTask';
 import '../../assets/styles/components/task-details-modal.scss';
+import types from '../../store/types';
 
 export default function TaskDetailsModal() {
-  const { state } = useContext(Store);
-
+  const { state, dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
     setShow(false);
+    const phoneAndTablet = window.matchMedia('(max-width:992px)');
+    if (phoneAndTablet.matches) {
+      dispatch({
+        type: types.checklist.RESET_SELECTED_TASK
+      });
+    }
   };
 
   useEffect(() => {

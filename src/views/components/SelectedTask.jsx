@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { formatDate } from '../../helpers/DatesHelper';
+import { Store } from '../../store/store';
 import DeleteIcon from '../../assets/images/delete.svg';
 import EditIcon from '../../assets/images/edit.svg';
 import MoneyBagIcon from '../../assets/images/money-bag.svg';
 import CalendarIcon from '../../assets/images/calendar.png';
+import types from '../../store/types';
 import '../../assets/styles/components/selected-task.scss';
 
 export default function SelectedTask({ selectedTask }) {
+  const { dispatch } = useContext(Store);
+
+  const openSideDrawer = function() {
+    dispatch({
+      type: types.checklist.SET_OPEN_TASK_FORM,
+      payload: {
+        flag: true,
+        operation: 'edit'
+      }
+    });
+  };
+  if (Object.keys(selectedTask).length === 0) return null;
   return (
     <div className="selected-task-wrapper">
       <div>
         <Button variant="outline-dark" disabled>
           PREMIUM
         </Button>
-        {/* <Button variant="light">PREMIUM</Button> */}
-        <img src={DeleteIcon} alt="delete" />
-        <img src={EditIcon} alt="edit" />
+        <img
+          src={DeleteIcon}
+          alt="delete"
+          onClick={() => {
+            console.log('DELETE');
+          }}
+        />
+        <img src={EditIcon} alt="edit" onClick={() => openSideDrawer('edit')} />
       </div>
       <h3>{selectedTask.data.text}</h3>
       <div className="selected-task-wrapper__tag">{selectedTask.data.tag}</div>

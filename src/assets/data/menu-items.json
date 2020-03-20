@@ -6,35 +6,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Planning",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "Sat Mar 14 2020 21:09:56 GMT+0200 (Eastern European Standard Time)",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Planning",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Planning",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "Sat Mar 14 2020 21:09:56 GMT+0200 (Eastern European Standard Time)",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Planning",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Planning",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "Sat Mar 14 2020 21:09:56 GMT+0200 (Eastern European Standard Time)",
         "completed": false
       }
@@ -47,35 +47,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Healthcare",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Healthcare",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "Sat Mar 14 2020 21:09:56 GMT+0200 (Eastern European Standard Time)",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Healthcare",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Healthcare",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "Sat Mar 14 2020 21:09:56 GMT+0200 (Eastern European Standard Time)",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Healthcare",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -88,35 +88,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Venue",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Venue",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Venue",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Venue",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Venue",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -129,35 +129,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "The dress and the suit",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "The dress and the suit",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "The dress and the suit",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "The dress and the suit",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "The dress and the suit",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -170,35 +170,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Photography & Video",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Photography & Video",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Photography & Video",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Photography & Video",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Photography & Video",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -211,35 +211,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Entertainment & Decor",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Entertainment & Decor",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Entertainment & Decor",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Entertainment & Decor",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Entertainment & Decor",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -252,35 +252,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Caterer",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Caterer",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Caterer",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Caterer",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Caterer",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -293,35 +293,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Guests & Stationary",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Guests & Stationary",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Guests & Stationary",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Guests & Stationary",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Guests & Stationary",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -334,35 +334,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Beauty",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Beauty",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Beauty",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Beauty",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Beauty",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -375,35 +375,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Honeymoon",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Honeymoon",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Honeymoon",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Honeymoon",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Honeymoon",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }
@@ -416,35 +416,35 @@
       {
         "text": "Set Wedding Budget",
         "tag": "Others",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Choose A Date (Or Up To 3 So You Can Be Flexible)",
         "tag": "Others",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Select The Person To Be Officiant At Your Ceremony Select The Person To Be Officiant At Your Ceremony",
         "tag": "Others",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Interview/ Hire Wedding Planner",
         "tag": "Others",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       },
       {
         "text": "Set Wedding Day Timeline",
         "tag": "Others",
-        "cost": "20,000",
+        "cost": 20000,
         "due_date": "",
         "completed": false
       }

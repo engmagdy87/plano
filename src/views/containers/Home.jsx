@@ -13,14 +13,18 @@ import arrayMove from 'array-move';
 import SortableList from '../components/SortableList';
 import SelectedTask from '../components/SelectedTask';
 import TaskDetailsModal from '../components/TaskDetailsModal';
+import Toast from '../shared/Toast';
 import { checklistAction } from '../../store/actions';
 import '../../assets/styles/containers/home.scss';
+import SideDrawer from '../shared/SideDrawer';
+import types from '../../store/types';
 
 export default function Home() {
   const { state, dispatch } = useContext(Store);
   const [activeMenuItem, setActiveMenuItem] = useState(0);
   const [items, setItems] = useState(state.checklistData);
   const [selectedTask, setSelectedTask] = useState(state.selectedTask);
+  const [toastData, setToastData] = useState(state.selectedTask);
 
   const onSortEnd = ({ data, targetId, oldIndex, newIndex }) => {
     items[targetId].checklist = arrayMove(data, oldIndex, newIndex);
@@ -38,11 +42,26 @@ export default function Home() {
   useEffect(() => {
     setItems(state.checklistData);
   }, [state.checklistData]);
+
   useEffect(() => {
     setSelectedTask(state.selectedTask);
   }, [state.selectedTask]);
 
+  useEffect(() => {
+    setToastData(state.toastData);
+  }, [state.toastData]);
+
   const phoneAndTablet = window.matchMedia('(max-width:992px)');
+
+  const openTaskDrawer = function() {
+    dispatch({
+      type: types.checklist.SET_OPEN_TASK_FORM,
+      payload: {
+        flag: true,
+        operation: 'create'
+      }
+    });
+  };
 
   return (
     <Fragment>
@@ -91,7 +110,9 @@ export default function Home() {
                 <h4>Wedding Ceremony</h4>
               </Col>
               <Col>
-                <Button className="d-block ml-auto">New Task</Button>
+                <Button className="d-block ml-auto" onClick={openTaskDrawer}>
+                  New Task
+                </Button>
               </Col>
             </Row>
             <Row>
@@ -140,6 +161,8 @@ export default function Home() {
         </Row>
       </Container>
       {phoneAndTablet.matches ? <TaskDetailsModal /> : null}
+      <SideDrawer />
+      <Toast {...toastData} />
     </Fragment>
   );
 }

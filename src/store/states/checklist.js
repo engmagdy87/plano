@@ -1,7 +1,8 @@
 const checklistState = {
     checklistData: [],
     selectedTask: {},
-    removedTask: {}
+    taskForm: { flag: false, operation: "" },
+    toastData: { show: false, text: '' }
 }
 
 export default checklistState
