@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import Avatar from '../shared/Avatar';
 import logo from '../../assets/images/logo.jpeg';
 import '../../assets/styles/shared/header.scss';
+import { Store } from '../../store/store';
+import types from '../../store/types';
+import AuthenticationForm from '../components/AuthenticationForm';
 export default function Header({ activePath }) {
+  const { dispatch } = useContext(Store);
+  const showLogin = function() {
+    dispatch({
+      type: types.user.SET_IS_USER_AUTH_FORM,
+      payload: { show: true, authType: 'login' }
+    });
+  };
+  const showSignUp = function() {
+    dispatch({
+      type: types.user.SET_IS_USER_AUTH_FORM,
+      payload: { show: true, authType: 'signup' }
+    });
+  };
   return (
     <Navbar collapseOnSelect expand="lg" className="header-wrapper">
       <Navbar.Brand href="/">
@@ -27,10 +43,11 @@ export default function Header({ activePath }) {
         </Nav>
         <Nav className="mr-sm-5 header-wrapper__left-buttons">
           <Button variant="link">عربى</Button>
-          <Button>Login</Button>
-          <Button>Free Sign Up</Button>
+          <Button onClick={showLogin}>Login</Button>
+          <Button onClick={showSignUp}>Free Sign Up</Button>
         </Nav>
       </Navbar.Collapse>
+      <AuthenticationForm />
     </Navbar>
   );
 }

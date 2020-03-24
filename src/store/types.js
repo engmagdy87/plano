@@ -1,6 +1,7 @@
 const user = {
     'SET_USER_PERSONA': 'user/SET_USER_PERSONA',
-    'SET_IS_USER_LOGGED_IN': 'user/SET_IS_USER_LOGGED_IN'
+    'SET_IS_USER_LOGGED_IN': 'user/SET_IS_USER_LOGGED_IN',
+    'SET_IS_USER_AUTH_FORM': 'user/SET_IS_USER_AUTH_FORM'
 }
 
 const checklist = {

@@ -1,6 +1,7 @@
 const userState = {
     userPersona: {},
-    isUserLoggedIn: false
+    isUserLoggedIn: false,
+    userAuthenticationForm: { show: false, authType: '' }
 }
 
 export default userState
