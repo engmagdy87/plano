@@ -67,7 +67,7 @@ $header-height: 56px;
       &__details {
         margin-top: 3vh;
         height: 70vh;
-        border-left: 1px solid rgba($color: #94a1c1, $alpha: 0.5);
+        border-left: 1px solid rgba($color: $menu-item, $alpha: 0.5);
         padding-left: 5%;
         overflow-y: auto;
         scroll-behavior: smooth;
@@ -75,7 +75,7 @@ $header-height: 56px;
           width: 5px !important;
         }
         &::-webkit-scrollbar-thumb {
-          background-color: rgba($color: #94a1c1, $alpha: 0.7);
+          background-color: rgba($color: $menu-item, $alpha: 0.7);
           border-radius: 4px !important;
         }
         h3 {
@@ -107,7 +107,7 @@ $header-height: 56px;
       align-items: center;
       height: 100%;
       h2 {
-        color: #94a1c1;
+        color: $menu-item;
       }
     }
   }
@@ -139,14 +139,14 @@ hr {
 }
 
 .breadcrumb-item {
-  color: #94a1c1 !important;
+  color: $menu-item !important;
   font-family: 'Montserrat Medium';
   a {
-    color: #94a1c1 !important;
+    color: $menu-item !important;
   }
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
   content: '>' !important;
-  color: #94a1c1 !important;
+  color: $menu-item !important;
 }

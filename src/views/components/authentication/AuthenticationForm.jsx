@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
-import { Store } from '../../store/store';
-import SocialMediaAuthentication from './SocialMediaAuthentication';
-import SignUpForm from './authentication/SignUpForm';
-import LoginForm from './authentication/LoginForm';
-import types from '../../store/types';
-import '../../assets/styles/components/authentication-form.scss';
+import { Store } from '../../../store/store';
+import SocialMediaAuthentication from '../SocialMediaAuthentication';
+import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
+import types from '../../../store/types';
+import '../../../assets/styles/components/authentication-form.scss';
 
 export default function AuthenticationForm() {
   const { state, dispatch } = useContext(Store);

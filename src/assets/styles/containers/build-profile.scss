@@ -1,0 +1,57 @@
+@import '../theme/color-palette.scss';
+
+$header-height: 56px;
+
+.build-profile-wrapper {
+  height: calc(100vh - #{$header-height} - 5vh);
+  padding-top: 5vh;
+  .row {
+    width: 70%;
+    margin-left: 15%;
+    @media (max-width: 992px) {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+  &__progress {
+    height: 50px;
+    span:nth-child(1) {
+      font-size: 1.5rem;
+      font-family: 'Montserrat SemiBold';
+    }
+    span:nth-child(2) {
+      float: right !important;
+      margin-top: 25px;
+      font-family: 'Montserrat Medium';
+      color: $menu-item;
+    }
+  }
+  &__back-button {
+    &--show {
+      font-size: 1rem !important;
+      padding: 10px 30px !important;
+      color: $menu-item !important;
+      border-color: $menu-item !important;
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      &:hover {
+        background-color: transparent !important;
+        border-color: $menu-item !important;
+      }
+      @media (max-width: 992px) {
+        // width: 100% !important;
+      }
+    }
+    &--hide {
+      display: none !important;
+    }
+  }
+}
+
+.progress {
+  height: 5px !important;
+}
+.progress-bar {
+  background-color: $primary !important;
+}

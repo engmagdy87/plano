@@ -1,0 +1,104 @@
+@import '../theme/color-palette.scss';
+
+.when-special-day-wrapper {
+  &__title {
+    margin-top: 8%;
+    div:nth-child(1) {
+      img {
+        width: 50px;
+      }
+    }
+    div:nth-child(2) {
+      margin-top: 20px;
+      p:nth-child(1) {
+        font-size: 1.3rem;
+        font-family: 'Montserrat Regular';
+      }
+      p:nth-child(2) {
+        font-size: 1.5rem;
+        font-family: 'Montserrat SemiBold';
+      }
+    }
+  }
+  &__form {
+    width: 50% !important;
+    margin-left: 25% !important;
+    @media (max-width: 992px) {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    &__form-action {
+      margin-top: 60px !important;
+      font-family: 'Helvetica Neue Bold';
+      @media (max-width: 992px) {
+        margin-top: 40px !important;
+        margin-bottom: 80px !important;
+      }
+
+      button {
+        float: right;
+        color: black !important;
+        border-color: $yellow-background !important;
+        background-color: $yellow-background !important;
+        padding: 10px 30px;
+        font-size: 1rem;
+        &:hover {
+          background-color: $yellow-background !important;
+          border-color: $yellow-background;
+        }
+      }
+    }
+  }
+}
+
+.form-check {
+  label {
+    margin-left: 8px;
+    margin-top: 15px;
+    color: #94a1c1;
+    font-family: 'Montserrat Regular';
+    cursor: pointer;
+    @media (max-width: 992px) {
+      width: 100% !important;
+      margin-left: 15px;
+    }
+    &:after {
+      pointer-events: all;
+      width: 20px;
+      height: 20px;
+      content: '';
+      border: 2px solid #d1d7dc;
+      background-color: #fff;
+      border-radius: 20%;
+      z-index: 2;
+      position: absolute;
+      left: 0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      @media (max-width: 992px) {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+  input:checked ~ label {
+    &:after {
+      background-color: #e9ebf2;
+      border-color: #e9ebf2;
+      background-image: url('../../images/check-mark.svg');
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  input {
+    width: 20px;
+    height: 20px;
+    order: 1;
+    visibility: hidden;
+    @media (max-width: 992px) {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

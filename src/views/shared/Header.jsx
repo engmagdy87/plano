@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.jpeg';
 import '../../assets/styles/shared/header.scss';
 import { Store } from '../../store/store';
 import types from '../../store/types';
-import AuthenticationForm from '../components/AuthenticationForm';
+import AuthenticationForm from '../components/authentication/AuthenticationForm';
 export default function Header({ activePath }) {
   const { dispatch } = useContext(Store);
   const showLogin = function() {
@@ -28,7 +28,7 @@ export default function Header({ activePath }) {
       <Button variant="link" className=" ml-auto mr-3">
         عربى
       </Button>
-      <Avatar></Avatar>
+      <Avatar />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto header-wrapper__nav">
@@ -42,9 +42,17 @@ export default function Header({ activePath }) {
           </Nav.Link>
         </Nav>
         <Nav className="mr-sm-5 header-wrapper__left-buttons">
-          <Button variant="link">عربى</Button>
-          <Button onClick={showLogin}>Login</Button>
-          <Button onClick={showSignUp}>Free Sign Up</Button>
+          <Nav.Link href="#">
+            <Button variant="link" className="d-none d-md-block">
+              عربى
+            </Button>
+          </Nav.Link>
+          <Nav.Link href="#">
+            <Button onClick={showLogin}>Login</Button>
+          </Nav.Link>
+          <Nav.Link href="#">
+            <Button onClick={showSignUp}>Free Sign Up</Button>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <AuthenticationForm />

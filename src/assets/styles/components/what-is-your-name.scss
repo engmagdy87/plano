@@ -1,0 +1,46 @@
+@import '../theme/color-palette.scss';
+
+.what-is-your-name-wrapper {
+  &__title {
+    margin-top: 8%;
+    div:nth-child(1) {
+      img {
+        width: 50px;
+      }
+    }
+    div:nth-child(2) {
+      margin-top: 20px;
+      span {
+        font-size: 1.5rem;
+        font-family: 'Montserrat SemiBold';
+      }
+    }
+  }
+  &__form {
+    width: 50% !important;
+    margin-left: 25% !important;
+    @media (max-width: 992px) {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    &__form-action {
+      margin-top: 60px !important;
+      font-family: 'Helvetica Neue Bold';
+      @media (max-width: 992px) {
+        margin-bottom: 80px !important;
+      }
+      button {
+        float: right;
+        color: black !important;
+        border-color: $yellow-background !important;
+        background-color: $yellow-background !important;
+        padding: 10px 30px;
+        font-size: 1rem;
+        &:hover {
+          background-color: $yellow-background !important;
+          border-color: $yellow-background;
+        }
+      }
+    }
+  }
+}

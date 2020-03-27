@@ -1,0 +1,58 @@
+@import '../theme/color-palette.scss';
+
+$header-height: 56px;
+
+.sections-wrapper {
+  height: 70vh;
+  width: 80% !important;
+  margin-left: 10%;
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 992px) {
+    padding-top: 10%;
+    width: 100% !important;
+    display: block;
+  }
+  &__choice {
+    width: 220px;
+    height: 220px;
+    padding: 20px;
+    margin: 30px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: 'Montserrat Regular';
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    &:hover {
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 992px) {
+      width: 120px;
+      height: 120px;
+      padding: 10px;
+      margin: 15px;
+    }
+
+    img {
+      height: 70%;
+      width: 100%;
+      margin-bottom: 30px;
+      @media (max-width: 992px) {
+        height: 50%;
+        margin-bottom: 15px;
+      }
+    }
+    span {
+      color: $menu-item;
+      @media (max-width: 992px) {
+        font-size: 12px;
+      }
+    }
+  }
+}

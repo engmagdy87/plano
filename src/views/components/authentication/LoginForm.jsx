@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
+import { Store } from '../../../store/store';
+import types from '../../../store/types';
 
 export default function LoginForm() {
+  const { dispatch } = useContext(Store);
+  const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
-
   const togglePasswordIcon = function() {
     setShowPassword(!showPassword);
   };
-
+  const loginValidation = function() {
+    history.push('/build-profile');
+    dispatch({
+      type: types.user.SET_IS_USER_AUTH_FORM,
+      payload: { show: false, authType: '' }
+    });
+  };
   return (
     <Form>
       <Form.Group controlId="name">
@@ -49,7 +59,7 @@ export default function LoginForm() {
       </span>
       <Container>
         <Row className="auth-form-action">
-          <Button size="lg" block>
+          <Button size="lg" block onClick={loginValidation}>
             LOGIN
           </Button>
         </Row>

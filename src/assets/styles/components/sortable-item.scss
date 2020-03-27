@@ -1,3 +1,5 @@
+@import '../theme/color-palette.scss';
+
 $top-value: 26%;
 
 .sortable-item-wrapper {
@@ -74,14 +76,14 @@ $top-value: 26%;
       position: absolute;
       left: -5%;
       top: 30%;
-      color: #94a1c1;
+      color: $menu-item;
     }
     &__active {
       border: 2px solid #ae95c4;
     }
     &__stripe-text {
       text-decoration: line-through;
-      color: #94a1c1 !important;
+      color: $menu-item !important;
     }
   }
 }

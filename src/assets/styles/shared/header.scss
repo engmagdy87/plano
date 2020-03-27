@@ -28,27 +28,60 @@ $header-margin-right: 20px;
   &__left-buttons {
     font-family: 'Montserrat SemiBold';
     margin-bottom: 8px !important;
-    @media (max-width: 992px) {
-      display: none !important;
+    .nav-link:nth-child(1) {
+      button {
+        width: 100%;
+        color: $dark-text;
+        margin-right: $header-margin-right;
+        font-family: 'Cairo Bold';
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $black-background !important;
+          border-color: $black-background !important;
+          outline: none !important;
+          box-shadow: none !important;
+          color: $dark-text;
+        }
+      }
     }
-    button:nth-child(1) {
-      color: $dark-text;
-      margin-right: $header-margin-right;
-      font-family: 'Cairo Bold';
+    .nav-link:nth-child(2) {
+      button {
+        width: 100%;
+        color: $light-text;
+        background-color: $black-background;
+        border-color: $black-background;
+        margin-right: $header-margin-right;
+        padding: 11px 15px;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $black-background !important;
+          border-color: $black-background !important;
+          outline: none !important;
+          box-shadow: none !important;
+          color: $light-text;
+        }
+      }
     }
-    button:nth-child(2) {
-      color: $light-text;
-      background-color: $black-background;
-      border-color: $black-background;
-      margin-right: $header-margin-right;
-      padding: 11px 15px;
-    }
-    button:nth-child(3) {
-      color: $dark-text;
-      background-color: $yellow-background;
-      border-color: $yellow-background;
-      margin-right: $header-margin-right;
-      padding: 11px 21px;
+    .nav-link:nth-child(3) {
+      button {
+        width: 100%;
+        color: $dark-text;
+        background-color: $yellow-background;
+        border-color: $yellow-background;
+        margin-right: $header-margin-right;
+        padding: 11px 21px;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $yellow-background !important;
+          border-color: $yellow-background !important;
+          outline: none !important;
+          box-shadow: none !important;
+          color: $dark-text;
+        }
+      }
     }
   }
   &__nav {

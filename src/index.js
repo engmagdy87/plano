@@ -8,6 +8,8 @@ import {
 import { StoreProvider } from './store/store';
 import Landing from './views/containers/Landing';
 import Home from './views/containers/Home';
+import BuildProfile from './views/containers/BuildProfile';
+import Sections from './views/containers/Sections';
 import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,6 +24,12 @@ ReactDOM.render(
                 </Route>
                 <Route path="/home">
                     <Home />
+                </Route>
+                <Route path="/build-profile">
+                    <BuildProfile />
+                </Route>
+                <Route path="/sections">
+                    <Sections />
                 </Route>
             </Switch>
         </Router>

@@ -15,6 +15,11 @@
     cursor: pointer;
     font-family: 'Helvetica Neue Medium';
     font-size: 18px;
+    @media (max-width: 992px) {
+      max-width: 80% !important;
+      margin-left: 10%;
+      margin-bottom: 8px;
+    }
     &--facebook {
       background-color: #3b5998;
       &:hover {
@@ -56,19 +61,19 @@
   }
   &__forgot-password {
     font-size: 14px;
-    color: #94a1c1;
+    color: $menu-item;
     text-align: right;
     display: block;
   }
   &__terms {
     font-size: 12px;
-    color: #94a1c1;
+    color: $menu-item;
     text-align: center;
     display: block;
   }
   &__account {
     font-size: 12px;
-    color: #94a1c1;
+    color: $menu-item;
     text-align: center;
     display: block;
     button {
@@ -81,7 +86,7 @@
 
 .auth-form-label {
   margin: 10px 0 !important;
-  color: #94a1c1 !important;
+  color: $menu-item !important;
   font-family: 'Montserrat Medium' !important;
   font-size: 1rem;
 }
