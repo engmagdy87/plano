@@ -37,8 +37,8 @@ $header-margin-right: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: $black-background !important;
-          border-color: $black-background !important;
+          background-color: transparent !important;
+          border-color: transparent !important;
           outline: none !important;
           box-shadow: none !important;
           color: $dark-text;
