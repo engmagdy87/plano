@@ -6,7 +6,7 @@ import GoogleLogo from '../../assets/images/google-plus.png';
 export default function SocialMediaAuthentication() {
   return (
     <Row>
-      <Col sm={12}>
+      <Col sm={12} md={6}>
         <div className="authentication-form-wrapper__social-media authentication-form-wrapper__social-media--facebook">
           <div>
             <img src={FacebookLogo} alt="facebook logo" />
@@ -14,7 +14,7 @@ export default function SocialMediaAuthentication() {
           <span>Facebook</span>
         </div>
       </Col>
-      <Col sm={12}>
+      <Col sm={12} md={6}>
         <div className="authentication-form-wrapper__social-media authentication-form-wrapper__social-media--google">
           <div>
             <img src={GoogleLogo} alt="google logo" />
