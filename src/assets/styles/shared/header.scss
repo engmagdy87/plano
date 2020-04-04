@@ -55,6 +55,15 @@ $header-margin-right: 20px;
           background-color: transparent !important;
           border-color: transparent !important;
           padding-left: 28px !important;
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: transparent !important;
+            border-color: transparent !important;
+            outline: none !important;
+            box-shadow: none !important;
+            color: $dark-text;
+          }
         }
       }
     }
