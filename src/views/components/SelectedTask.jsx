@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { formatDate } from '../../helpers/DatesHelper';
 import { Store } from '../../store/store';
+import CustomTooltip from '../shared/CustomTooltip';
 import DeleteIcon from '../../assets/images/delete.svg';
 import EditIcon from '../../assets/images/edit.svg';
 import MoneyBagIcon from '../../assets/images/money-bag.svg';
@@ -21,6 +22,7 @@ export default function SelectedTask({ selectedTask }) {
       }
     });
   };
+
   if (Object.keys(selectedTask).length === 0) return null;
   return (
     <div className="selected-task-wrapper">
@@ -28,14 +30,22 @@ export default function SelectedTask({ selectedTask }) {
         <Button variant="outline-dark" disabled>
           PREMIUM
         </Button>
-        <img
-          src={DeleteIcon}
-          alt="delete"
-          onClick={() => {
-            console.log('DELETE');
-          }}
-        />
-        <img src={EditIcon} alt="edit" onClick={() => openSideDrawer('edit')} />
+        <CustomTooltip operation="Delete">
+          <img
+            src={DeleteIcon}
+            alt="delete"
+            onClick={() => {
+              console.log('DELETE');
+            }}
+          />
+        </CustomTooltip>
+        <CustomTooltip operation="Edit">
+          <img
+            src={EditIcon}
+            alt="edit"
+            onClick={() => openSideDrawer('edit')}
+          />
+        </CustomTooltip>
       </div>
       <h3>{selectedTask.data.text}</h3>
       <div className="selected-task-wrapper__tag">{selectedTask.data.tag}</div>

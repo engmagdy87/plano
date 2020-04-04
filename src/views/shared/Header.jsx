@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import Avatar from '../shared/Avatar';
-import logo from '../../assets/images/logo.jpeg';
-import '../../assets/styles/shared/header.scss';
 import { Store } from '../../store/store';
-import types from '../../store/types';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
+import Avatar from '../shared/Avatar';
+import LogoIcon from '../../assets/images/logo.jpeg';
+import EgyptFlagIcon from '../../assets/images/egypt.png';
+import types from '../../store/types';
+import '../../assets/styles/shared/header.scss';
 export default function Header({ activePath }) {
   const { dispatch } = useContext(Store);
   const showLogin = function() {
@@ -23,11 +24,13 @@ export default function Header({ activePath }) {
   return (
     <Navbar collapseOnSelect expand="lg" className="header-wrapper">
       <Navbar.Brand href="/">
-        <img src={logo} alt="plano logo" className="header-wrapper__logo" />
+        <img src={LogoIcon} alt="plano logo" className="header-wrapper__logo" />
       </Navbar.Brand>
-      <Button variant="link" className=" ml-auto mr-3">
-        عربى
-      </Button>
+      <img
+        className="ml-auto mr-3 header-wrapper__flag"
+        src={EgyptFlagIcon}
+        alt="egypt flag"
+      />
       <Avatar />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -40,18 +43,21 @@ export default function Header({ activePath }) {
           >
             Wedding Checklist
           </Nav.Link>
+          <Nav.Link href="#" className="header-wrapper__link">
+            Blog
+          </Nav.Link>
         </Nav>
         <Nav className="mr-sm-5 header-wrapper__left-buttons">
           <Nav.Link href="#">
-            <Button variant="link" className="d-none d-md-block">
-              عربى
+            <Button onClick={showSignUp}>Free Sign Up</Button>
+          </Nav.Link>
+          <Nav.Link href="#">
+            <Button variant="link" onClick={showLogin}>
+              Login
             </Button>
           </Nav.Link>
-          <Nav.Link href="#">
-            <Button onClick={showLogin}>Login</Button>
-          </Nav.Link>
-          <Nav.Link href="#">
-            <Button onClick={showSignUp}>Free Sign Up</Button>
+          <Nav.Link href="#" className="d-none d-md-block">
+            <img src={EgyptFlagIcon} alt="egypt flag" />
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

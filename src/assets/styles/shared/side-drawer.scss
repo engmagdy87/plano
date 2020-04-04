@@ -3,7 +3,7 @@
 .side-drawer-wrapper {
   height: 100vh;
   background-color: rgba($color: #000000, $alpha: 0.25);
-  z-index: 90;
+  z-index: 100;
   position: absolute;
   top: 0;
   right: 0;
@@ -54,6 +54,21 @@
     }
     &__header {
       margin: 10px 0;
+      &__premium {
+        height: 20px !important;
+        padding-top: 1px !important;
+        padding-bottom: 1px !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        background-color: #fff;
+        color: #94a1c1 !important;
+        border-color: #94a1c1 !important;
+        border-radius: 3px !important;
+      }
+    }
+    &__header-title {
+      font-size: 16px;
+      font-weight: 500;
     }
   }
 
@@ -71,7 +86,7 @@
     width: 92%;
     height: 1px;
     margin-left: 4%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     background-color: $menu-item;
     @media (max-width: 992px) {
       margin-bottom: 10px;
@@ -79,17 +94,26 @@
   }
 }
 
-.form-label {
-  margin: 15px 0;
+.form-control {
+  font-size: 13px !important;
 }
-
 .form-label {
   color: $menu-item !important;
   font-family: 'Montserrat Medium' !important;
-  font-size: 1rem;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+.input-group-text {
+  font-size: 13px !important;
+}
+
+input::placeholder {
+  font-size: 13px !important;
 }
 
 .form-label-name {
+  margin-top: 0;
   &:after {
     content: '*';
     color: red;
@@ -118,11 +142,12 @@
       margin-bottom: 20px;
     }
     button {
-      color: black !important;
+      color: #94a1c1 !important;
       border-color: $yellow-background !important;
       background-color: transparent !important;
       padding: 10px 30px;
       font-size: 1rem;
+      font-weight: 500;
       &:hover:not([disabled]) {
         background-color: $yellow-background !important;
         border-color: $yellow-background;
@@ -140,7 +165,7 @@
 
     button {
       font-size: 1rem;
-      padding: 10px 30px;
+      padding: 8px 15px;
       color: $dark-text;
       background-color: $yellow-background;
       border-color: $yellow-background;

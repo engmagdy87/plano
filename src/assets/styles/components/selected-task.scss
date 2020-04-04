@@ -2,11 +2,10 @@
 
 .selected-task-wrapper {
   display: block !important;
+  background-color: transparent;
   div {
     display: flex;
     justify-content: flex-end;
-    margin-top: 30px;
-    margin-bottom: 30px;
     @media (max-width: 992px) {
       margin-top: 5px;
     }
@@ -15,8 +14,15 @@
       cursor: pointer;
     }
     button {
-      color: #343a40;
+      height: 20px !important;
+      padding-top: 1px;
+      padding-bottom: 1px;
       margin: 10px;
+      font-size: 10px;
+      font-weight: 600 !important;
+      background-color: #fff;
+      color: #94a1c1;
+      border-radius: 3px !important;
     }
     .btn-outline-dark {
       border-color: #343a40;
@@ -32,7 +38,8 @@
   h3 {
     color: $primary;
     font-family: 'Montserrat Bold';
-    font-size: 1.5rem;
+    font-size: 18px;
+    margin-top: 37px;
     margin-left: 30px;
     @media (max-width: 992px) {
       font-size: 1.2rem;
@@ -40,27 +47,28 @@
   }
   &__tag {
     padding: 10px;
-    background-color: white;
+    background-color: #f0ebf4;
+    color: #94a1c1;
     width: fit-content;
     font-family: 'Montserrat SemiBold';
-    margin-left: 30px;
+    margin: 25px 0 25px 30px;
+    font-size: 12px;
     @media (max-width: 992px) {
-      font-size: 1rem;
-      padding: 5px 0;
+      padding: 5px;
     }
   }
   &__cost,
   &__due-date {
-    margin: 0 !important;
+    margin: 40px 0 25px 0;
     display: flex;
     width: 70%;
     div:nth-child(1) {
       display: flex;
       justify-content: flex-start;
-      width: 30%;
+      width: 20%;
       margin-left: 20px;
       img {
-        width: 45%;
+        width: 25px;
         height: auto;
       }
     }
@@ -68,18 +76,19 @@
       width: 70%;
       display: block;
       p {
-        font-size: 1.3rem;
-        margin-bottom: 0;
         @media (max-width: 992px) {
           font-size: 1rem;
         }
         &:nth-child(1) {
           color: $menu-item;
           font-family: 'Montserrat Medium';
+          font-size: 12px;
+          margin-bottom: 5px;
         }
         &:nth-child(2) {
           color: black;
           font-family: 'Montserrat SemiBold';
+          font-size: 14px;
         }
       }
     }
@@ -87,7 +96,7 @@
   &__due-date {
     div:nth-child(1) {
       img {
-        width: 40%;
+        width: 25px;
         height: auto;
       }
     }

@@ -22,7 +22,7 @@ export default function LoginForm() {
   };
   return (
     <Form>
-      <Form.Group controlId="name">
+      <Form.Group controlId="name" className="auth-form-input">
         <Form.Label className="auth-form-label">
           Email or Phone number
         </Form.Label>
@@ -32,7 +32,7 @@ export default function LoginForm() {
           onChange={() => {}}
         />
       </Form.Group>
-      <Form.Group controlId="login-password">
+      <Form.Group controlId="login-password" className="auth-form-input">
         <Form.Label className="auth-form-label">Password</Form.Label>
         <InputGroup>
           <Form.Control

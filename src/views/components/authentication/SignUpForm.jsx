@@ -17,7 +17,7 @@ export default function SignUpForm() {
 
   return (
     <Form>
-      <Form.Group controlId="name">
+      <Form.Group controlId="name" className="auth-form-input">
         <Form.Label className="auth-form-label">
           Email or Phone number
         </Form.Label>
@@ -27,7 +27,7 @@ export default function SignUpForm() {
           onChange={() => {}}
         />
       </Form.Group>
-      <Form.Group controlId="signup-password">
+      <Form.Group controlId="signup-password" className="auth-form-input">
         <Form.Label className="auth-form-label">Password</Form.Label>
         <InputGroup>
           <Form.Control
@@ -49,7 +49,7 @@ export default function SignUpForm() {
           </InputGroup.Prepend>
         </InputGroup>
       </Form.Group>
-      <Form.Group controlId="password">
+      <Form.Group controlId="password" className="auth-form-input">
         <Form.Label className="auth-form-label">
           <Form.Label className="auth-form-label">Re-type Password</Form.Label>
         </Form.Label>

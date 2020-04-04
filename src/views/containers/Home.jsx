@@ -83,6 +83,7 @@ export default function Home() {
             md={2}
             className="home-wrapper__content__menu d-sm-none d-md-block"
           >
+            <h4>Wedding Ceremony Categories</h4>
             <ul>
               {items.map(item => (
                 <li
@@ -100,12 +101,8 @@ export default function Home() {
               ))}
             </ul>
           </Col>
-          <Col
-            sm={12}
-            md={6}
-            className="pl-md-5 pr-md-5 home-wrapper__content__tasks"
-          >
-            <Row className="mb-4 mb-md-5">
+          <Col sm={12} md={6} className="home-wrapper__content__tasks">
+            <Row className="home-wrapper__content__tasks__header">
               <Col>
                 <h4>Wedding Ceremony</h4>
               </Col>
@@ -115,7 +112,7 @@ export default function Home() {
                 </Button>
               </Col>
             </Row>
-            <Row>
+            <Row className="home-wrapper__content__tasks__progress">
               <Col>
                 <h6>Progress</h6>
               </Col>
@@ -124,13 +121,14 @@ export default function Home() {
               </Col>
             </Row>
             <ProgressBar now={0} />
+            <div className="home-wrapper__content__tasks__divider"></div>
             <div
               id="myContainer"
               className="home-wrapper__content__tasks__details"
             >
               {items.map(item => (
                 <div key={item.id}>
-                  <h3 id={item.text.replace(/ |&/g, '_')}>{item.text}</h3>
+                  <h4 id={item.text.replace(/ |&/g, '_')}>{item.text}</h4>
                   <SortableList
                     distance={1}
                     item={item}

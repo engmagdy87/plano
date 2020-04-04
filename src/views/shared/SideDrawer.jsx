@@ -103,7 +103,7 @@ export default function SideDrawer() {
         >
           <Row className="side-drawer-wrapper__content__header">
             <Col
-              className="d-flex justify-content-center align-items-center"
+              className="d-flex justify-content-center align-items-center side-drawer-wrapper__content__header-title"
               sm={{ span: 3, offset: 1 }}
               xs={5}
             >
@@ -114,7 +114,11 @@ export default function SideDrawer() {
               sm={2}
               xs={4}
             >
-              <Button variant="outline-dark" disabled size="sm">
+              <Button
+                variant="outline-dark"
+                disabled
+                className="side-drawer-wrapper__content__header__premium"
+              >
                 PREMIUM
               </Button>
             </Col>
@@ -164,7 +168,7 @@ export default function SideDrawer() {
                 </InputGroup.Prepend>
               </InputGroup>
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group style={{ marginBottom: '8px' }}>
               <Form.Label>Due Date</Form.Label>
               <DatePicker
                 dateFormat="dd/MM/yyyy"
