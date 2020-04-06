@@ -1,3 +1,5 @@
+@import './theme/color-palette.scss';
+
 @font-face {
   font-family: 'Helvetica Neue Bold';
   src: url('../fonts/HelveticaNeueBold.ttf');
@@ -39,4 +41,27 @@ body {
   font-family: 'Roboto', sans-serif !important;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+input {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #ced4da !important;
+  transition: all 0.2s ease;
+  border-radius: 0 !important;
+  &:focus,
+  &:active {
+    transition: all 0.2s ease;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid $primary !important;
+  }
+}
+
+.input-group-text {
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
 }

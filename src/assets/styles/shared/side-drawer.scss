@@ -69,6 +69,7 @@
     &__header-title {
       font-size: 16px;
       font-weight: 500;
+      margin-left: 3% !important;
     }
   }
 
@@ -96,6 +97,9 @@
 
 .form-control {
   font-size: 13px !important;
+  &:focus {
+    box-shadow: none !important;
+  }
 }
 .form-label {
   color: $menu-item !important;
@@ -143,7 +147,7 @@ input::placeholder {
     }
     button {
       color: #94a1c1 !important;
-      border-color: $yellow-background !important;
+      border-color: transparent !important;
       background-color: transparent !important;
       padding: 10px 30px;
       font-size: 1rem;

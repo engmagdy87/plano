@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useState,
   useContext,
-  useRef
+  useRef,
 } from 'react';
 import '../../assets/styles/shared/side-drawer.scss';
 import { Store } from '../../store/store';
@@ -21,23 +21,23 @@ export default function SideDrawer() {
     tag: '',
     cost: undefined,
     due_date: '',
-    completed: false
+    completed: false,
   });
   const [startDate, setStartDate] = useState('');
   let sideDrawerWrapper = useRef();
 
-  const closeTaskDrawer = function() {
+  const closeTaskDrawer = function () {
     dispatch({
       type: types.checklist.SET_OPEN_TASK_FORM,
       payload: {
         flag: false,
-        operation: state.taskForm.operation
-      }
+        operation: state.taskForm.operation,
+      },
     });
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (!phoneAndTablet.matches) {
       dispatch({
-        type: types.checklist.RESET_SELECTED_TASK
+        type: types.checklist.RESET_SELECTED_TASK,
       });
       setStartDate('');
       setTaskDrawer({ flag: false, operation: '' });
@@ -46,12 +46,12 @@ export default function SideDrawer() {
         tag: '',
         cost: undefined,
         due_date: '',
-        completed: false
+        completed: false,
       });
     }
     sideDrawerWrapper.current.scrollTop = 0;
   };
-  const saveData = function() {
+  const saveData = function () {
     const { operation } = taskDrawer;
     closeTaskDrawer();
 
@@ -59,8 +59,8 @@ export default function SideDrawer() {
       type: types.checklist.SET_OPEN_TASK_FORM,
       payload: {
         flag: false,
-        operation: state.taskForm.operation
-      }
+        operation: state.taskForm.operation,
+      },
     });
     dispatch({
       type: types.checklist.SET_TOAST_DATA,
@@ -69,8 +69,8 @@ export default function SideDrawer() {
         text:
           operation === 'edit'
             ? 'This task has Updated successfully'
-            : 'This task has created successfully'
-      }
+            : 'This task has created successfully',
+      },
     });
   };
 
@@ -103,7 +103,7 @@ export default function SideDrawer() {
         >
           <Row className="side-drawer-wrapper__content__header">
             <Col
-              className="d-flex justify-content-center align-items-center side-drawer-wrapper__content__header-title"
+              className="d-flex justify-content-left align-items-center side-drawer-wrapper__content__header-title"
               sm={{ span: 3, offset: 1 }}
               xs={5}
             >
@@ -149,7 +149,7 @@ export default function SideDrawer() {
               <Form.Label className="form-label-category">Category</Form.Label>
               <Form.Control as="select">
                 <option key="-1">--select category</option>
-                {MENU_ITEMS.map(item => (
+                {MENU_ITEMS.map((item) => (
                   <option key={item.id}>{item.text}</option>
                 ))}
               </Form.Control>
@@ -173,7 +173,7 @@ export default function SideDrawer() {
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={startDate}
-                onChange={date => setStartDate(date)}
+                onChange={(date) => setStartDate(date)}
                 className="bootstrap-border"
                 placeholderText="Choose Due Date"
                 minDate={new Date()}

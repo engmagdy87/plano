@@ -3,6 +3,7 @@
 .selected-task-wrapper {
   display: block !important;
   background-color: transparent;
+  padding-top: 30px;
   div {
     display: flex;
     justify-content: flex-end;
@@ -46,12 +47,13 @@
     }
   }
   &__tag {
-    padding: 10px;
+    border-radius: 3px;
+    padding: 6px 10px;
     background-color: #f0ebf4;
     color: #94a1c1;
     width: fit-content;
     font-family: 'Montserrat SemiBold';
-    margin: 25px 0 25px 30px;
+    margin: 15px 0 30px 30px;
     font-size: 12px;
     @media (max-width: 992px) {
       padding: 5px;
@@ -59,21 +61,20 @@
   }
   &__cost,
   &__due-date {
-    margin: 40px 0 25px 0;
+    margin: 15px 0 15px;
     display: flex;
-    width: 70%;
+    justify-content: flex-start !important;
+    width: 50%;
+    margin-left: 25px;
     div:nth-child(1) {
       display: flex;
-      justify-content: flex-start;
-      width: 20%;
-      margin-left: 20px;
       img {
         width: 25px;
-        height: auto;
+        height: fit-content;
+        margin-right: 15px;
       }
     }
     div:nth-child(2) {
-      width: 70%;
       display: block;
       p {
         @media (max-width: 992px) {
@@ -97,7 +98,7 @@
     div:nth-child(1) {
       img {
         width: 25px;
-        height: auto;
+        height: fit-content;
       }
     }
   }

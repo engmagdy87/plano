@@ -5,7 +5,7 @@ import {
   Col,
   ProgressBar,
   Button,
-  Breadcrumb
+  Breadcrumb,
 } from 'react-bootstrap';
 import Header from '../shared/Header';
 import { Store } from '../../store/store';
@@ -41,6 +41,14 @@ export default function Home() {
 
   useEffect(() => {
     setItems(state.checklistData);
+    dispatch({
+      type: types.checklist.SET_SELECTED_TASK,
+      payload: {
+        selectedChecklistId: 0,
+        selectedTaskId: 0,
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.checklistData]);
 
   useEffect(() => {
@@ -53,13 +61,13 @@ export default function Home() {
 
   const phoneAndTablet = window.matchMedia('(max-width:992px)');
 
-  const openTaskDrawer = function() {
+  const openTaskDrawer = function () {
     dispatch({
       type: types.checklist.SET_OPEN_TASK_FORM,
       payload: {
         flag: true,
-        operation: 'create'
-      }
+        operation: 'create',
+      },
     });
   };
 
@@ -83,9 +91,9 @@ export default function Home() {
             md={2}
             className="home-wrapper__content__menu d-sm-none d-md-block"
           >
-            <h4>Wedding Ceremony Categories</h4>
+            <h4>Tasks Categories</h4>
             <ul>
-              {items.map(item => (
+              {items.map((item) => (
                 <li
                   key={item.id}
                   onClick={() => {
@@ -126,17 +134,17 @@ export default function Home() {
               id="myContainer"
               className="home-wrapper__content__tasks__details"
             >
-              {items.map(item => (
+              {items.map((item) => (
                 <div key={item.id}>
                   <h4 id={item.text.replace(/ |&/g, '_')}>{item.text}</h4>
                   <SortableList
                     distance={1}
                     item={item}
-                    onSortEnd={props =>
+                    onSortEnd={(props) =>
                       onSortEnd({
                         ...props,
                         data: item.checklist,
-                        targetId: item.id
+                        targetId: item.id,
                       })
                     }
                   />

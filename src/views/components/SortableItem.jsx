@@ -34,8 +34,8 @@ const SortableItem = SortableElement(({ data }) => {
               type: types.checklist.SET_REMOVED_TASK,
               payload: {
                 removedChecklistId: checklistId,
-                removedTaskId: taskId
-              }
+                removedTaskId: taskId,
+              },
             });
             setIsTaskCompleted(!isTaskCompleted);
           }}
@@ -50,8 +50,8 @@ const SortableItem = SortableElement(({ data }) => {
               type: types.checklist.SET_SELECTED_TASK,
               payload: {
                 selectedChecklistId: checklistId,
-                selectedTaskId: taskId
-              }
+                selectedTaskId: taskId,
+              },
             });
           }}
         >
