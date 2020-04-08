@@ -16,7 +16,7 @@ $header-height: 56px;
   &__progress {
     height: 50px;
     span:nth-child(1) {
-      font-size: 1.5rem;
+      font-size: 18px;
       font-family: 'Montserrat SemiBold';
     }
     span:nth-child(2) {
@@ -29,15 +29,19 @@ $header-height: 56px;
   &__back-button {
     &--show {
       font-size: 1rem !important;
+      font-weight: 500;
       padding: 10px 30px !important;
-      color: $menu-item !important;
-      border-color: $menu-item !important;
+      color: #94a1c1 !important;
+      border-color: transparent !important;
       position: absolute;
       bottom: 5%;
       left: 5%;
-      &:hover {
+      &:hover,
+      &:focus,
+      &:active {
         background-color: transparent !important;
-        border-color: $menu-item !important;
+        outline: none !important;
+        box-shadow: none !important;
       }
       @media (max-width: 992px) {
         // width: 100% !important;

@@ -116,7 +116,7 @@ export default function Home() {
               </Col>
               <Col>
                 <Button className="d-block ml-auto" onClick={openTaskDrawer}>
-                  New Task
+                  Add Task
                 </Button>
               </Col>
             </Row>
@@ -129,7 +129,6 @@ export default function Home() {
               </Col>
             </Row>
             <ProgressBar now={0} />
-            <div className="home-wrapper__content__tasks__divider"></div>
             <div
               id="myContainer"
               className="home-wrapper__content__tasks__details"

@@ -4,8 +4,24 @@
   &__span-text {
     text-align: center;
     font-family: 'Helvetica Neue Medium';
-    margin: 10px;
     color: #5c5c69;
+    p {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    h6 {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid #ced4da;
+      line-height: 0.1em;
+      margin: 15px 0;
+    }
+
+    h6 span {
+      background: #fff;
+      padding: 0 10px;
+      font-size: 16px;
+    }
   }
   &__social-media {
     max-width: 200px !important;
@@ -22,14 +38,17 @@
     }
     &--facebook {
       background-color: #3b5998;
+      border-radius: 3px;
       &:hover {
         background-color: #2e4679;
       }
       div {
         width: 25%;
-        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         img {
-          height: 70%;
+          height: 20px;
           margin-top: 10%;
         }
       }
@@ -37,18 +56,22 @@
         width: 60%;
         text-align: center;
         margin: auto;
+        font-size: 13px;
       }
     }
     &--google {
       background-color: #dd4b39;
+      border-radius: 3px;
       &:hover {
         background-color: #b63c2c;
       }
       div {
         width: 30%;
-        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         img {
-          height: 70%;
+          height: 20px;
           margin-top: 8%;
         }
       }
@@ -56,6 +79,7 @@
         width: 60%;
         text-align: center;
         margin: auto;
+        font-size: 13px;
       }
     }
   }
@@ -104,7 +128,7 @@
 
   button {
     font-size: 1rem;
-    padding: 10px 30px;
+    padding: 6px 30px;
     color: $dark-text !important;
     background-color: $yellow-background !important;
     border-color: $yellow-background !important;
@@ -135,4 +159,9 @@
 .modal-title.h4 {
   font-size: 18px !important;
   font-weight: 500 !important;
+}
+
+.modal-header {
+  border-bottom: none !important;
+  padding: 16px 30px !important;
 }

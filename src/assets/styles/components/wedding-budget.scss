@@ -46,7 +46,8 @@
       text-align: center;
       transition: all 0.2s ease;
       &:hover {
-        box-shadow: 0 0 6px 0 #ae95c4;
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+        transform: scale(1.02);
       }
       @media (max-width: 992px) {
         width: 150px;

@@ -17,7 +17,7 @@ export default function AuthenticationForm() {
     setShow(false);
     dispatch({
       type: types.user.SET_IS_USER_AUTH_FORM,
-      payload: { show: false, authType: '' }
+      payload: { show: false, authType: '' },
     });
   };
 
@@ -26,20 +26,20 @@ export default function AuthenticationForm() {
     setAuthType(state.userAuthenticationForm.authType);
   }, [state.userAuthenticationForm]);
 
-  const changeToLoginOrSignUp = function() {
+  const changeToLoginOrSignUp = function () {
     if (authType === 'signup')
       dispatch({
         type: types.user.SET_IS_USER_AUTH_FORM,
-        payload: { show: true, authType: 'login' }
+        payload: { show: true, authType: 'login' },
       });
     if (authType === 'login')
       dispatch({
         type: types.user.SET_IS_USER_AUTH_FORM,
-        payload: { show: true, authType: 'signup' }
+        payload: { show: true, authType: 'signup' },
       });
   };
 
-  const buildForm = function() {
+  const buildForm = function () {
     if (authType === 'signup')
       return (
         <div>
@@ -81,12 +81,16 @@ export default function AuthenticationForm() {
             <Container>
               <Row>
                 <Col className="authentication-form-wrapper__span-text">
-                  Connect Via
+                  <p>Connect Via</p>
                 </Col>
               </Row>
               <SocialMediaAuthentication />
               <Row>
-                <Col className="authentication-form-wrapper__span-text">OR</Col>
+                <Col className="authentication-form-wrapper__span-text">
+                  <h6>
+                    <span>OR</span>
+                  </h6>
+                </Col>
               </Row>
               <LoginForm />
               <span className="authentication-form-wrapper__account">

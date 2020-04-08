@@ -36,9 +36,9 @@ export default function SideDrawer() {
     });
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (!phoneAndTablet.matches) {
-      dispatch({
-        type: types.checklist.RESET_SELECTED_TASK,
-      });
+      // dispatch({
+      //   type: types.checklist.RESET_SELECTED_TASK,
+      // });
       setStartDate('');
       setTaskDrawer({ flag: false, operation: '' });
       setSelectedTask({
