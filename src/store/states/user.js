@@ -1,6 +1,14 @@
 const userState = {
-    userPersona: {},
-    isUserLoggedIn: false,
+    userPersona: {
+        identifier: '',
+        password: '',
+        confirmPassword: '',
+        gender: '',
+        marriageDate: "",
+        name: '',
+        spouseName: '',
+        prepCost: 0,
+    },
     userAuthenticationForm: { show: false, authType: '' }
 }
 

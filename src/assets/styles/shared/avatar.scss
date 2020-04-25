@@ -1,16 +1,44 @@
 @import '../theme/color-palette.scss';
 
 .avatar-wrapper {
+  position: relative;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: $light-primary;
   color: $dark-text;
   font-size: 14px;
-  display: none;
-  @media (max-width: 992px) {
+  &--hide {
+    display: none !important;
+  }
+  &--mobile {
+    display: none;
+    @media (max-width: 992px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &--desktop {
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+  &__menu {
+    position: absolute;
+    padding: 10px 20px;
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid rgba($color: #000000, $alpha: 0.1);
+    border-radius: 5%;
+    &--show {
+      display: block;
+    }
+    &--hide {
+      display: none;
+    }
   }
 }

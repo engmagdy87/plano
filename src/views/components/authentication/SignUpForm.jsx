@@ -1,31 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { isIdentifierExists } from '../../../helpers/APIsHelper';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
+import { Store } from '../../../store/store';
+import types from '../../../store/types';
 
 export default function SignUpForm() {
+  const history = useHistory();
+  const { dispatch } = useContext(Store);
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [isIdentifierExistsFlag, setIsIdentifierExistsFlag] = useState(false);
 
-  const togglePasswordIcon = function() {
+  const togglePasswordIcon = function () {
     setShowPassword(!showPassword);
   };
 
-  const toggleRePasswordIcon = function() {
+  const toggleRePasswordIcon = function () {
     setShowRePassword(!showRePassword);
   };
 
+  const validateIdentifier = function (value) {
+    setIsIdentifierExistsFlag(false);
+
+    const emailRegEx = /^([a-zA-Z0-9])(([a-zA-Z0-9])*([\._\+-])*([a-zA-Z0-9]))*@(([a-zA-Z0-9\-])+(\.))+([a-zA-Z]{2,4})+$/;
+    const mobileRegEx = /^\d{11}$/;
+    return emailRegEx.test(value) || mobileRegEx.test(value);
+  };
+
+  const { register, handleSubmit, errors, watch } = useForm();
+  const onSubmit = async (data) => {
+    const result = await isIdentifierExists(data.identifier);
+
+    if (result) setIsIdentifierExistsFlag(true);
+    else {
+      setIsIdentifierExistsFlag(false);
+      dispatch({
+        type: types.user.SET_USER_SIGN_UP_FORM,
+        payload: {
+          ...data,
+        },
+      });
+      dispatch({
+        type: types.user.SET_IS_USER_AUTH_FORM,
+        payload: { show: false, authType: '' },
+      });
+      history.push('/build-profile');
+    }
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group controlId="name" className="auth-form-input">
         <Form.Label className="auth-form-label">
           Email or Phone number
         </Form.Label>
         <Form.Control
           type="text"
+          name="identifier"
           placeholder="Enter Task Name"
-          onChange={() => {}}
+          ref={register({ required: true, validate: validateIdentifier })}
         />
+        {errors.identifier && (
+          <span className="error-message">Invalid Email or Phone Number</span>
+        )}
+        {isIdentifierExistsFlag && (
+          <span className="error-message">Email or Phone Number exists</span>
+        )}
       </Form.Group>
       <Form.Group controlId="signup-password" className="auth-form-input">
         <Form.Label className="auth-form-label">Password</Form.Label>
@@ -33,7 +77,8 @@ export default function SignUpForm() {
           <Form.Control
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter Your Password"
-            onChange={() => {}}
+            name="password"
+            ref={register({ required: true })}
           />
           <InputGroup.Prepend>
             <InputGroup.Text
@@ -57,7 +102,13 @@ export default function SignUpForm() {
           <Form.Control
             type={showRePassword ? 'text' : 'password'}
             placeholder="Enter Your Password again"
-            onChange={() => {}}
+            name="confirmPassword"
+            ref={register({
+              required: true,
+              validate: (value) => {
+                return value === watch('password'); // value is from confirm password and watch will return value from password
+              },
+            })}
           />
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroupPrepend">
@@ -71,10 +122,13 @@ export default function SignUpForm() {
             </InputGroup.Text>
           </InputGroup.Prepend>
         </InputGroup>
+        {errors.confirmPassword && (
+          <p className="error-message">Invalid Password</p>
+        )}
       </Form.Group>
       <Container>
         <Row className="auth-form-action">
-          <Button size="lg" block>
+          <Button size="lg" block type="submit">
             SIGN UP
           </Button>
         </Row>

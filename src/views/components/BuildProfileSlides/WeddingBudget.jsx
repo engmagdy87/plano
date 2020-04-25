@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import DollarImage from '../../../assets/images/dollar.svg';
 import '../../../assets/styles/components/wedding-budget.scss';
+import { Store } from '../../../store/store';
+import types from '../../../store/types';
 
 export default function WeddingBudget({ onClickButton }) {
-  const budgets = ['20,000', '50,000', '100,000', '200,000', '300,000'];
+  const budgets = [
+    { key: '20,000', value: 20000 },
+    { key: '50,000', value: 50000 },
+    { key: '100,000', value: 100000 },
+    { key: '200,000', value: 200000 },
+    { key: '300,000', value: 300000 },
+  ];
 
-  const [activeBudgetItem, setActiveBudgetItem] = useState('');
+  const { dispatch } = useContext(Store);
+  const [activeBudgetItem, setActiveBudgetItem] = useState(0);
 
-  const renderBudgetsList = function() {
+  const handleNext = function () {
+    dispatch({
+      type: types.user.SET_USER_PREP_COST,
+      payload: activeBudgetItem,
+    });
+    onClickButton(6);
+  };
+
+  const renderBudgetsList = function () {
     return budgets.map((budget, index) => (
       <div
         key={index}
         className={`wedding-budget-wrapper__list__item ${
-          activeBudgetItem === budget
+          activeBudgetItem === budget.value
             ? 'wedding-budget-wrapper__list__item--active'
             : ''
         }`}
-        onClick={() => setActiveBudgetItem(budget)}
+        onClick={() => setActiveBudgetItem(budget.value)}
       >
         <p>more than</p>
-        <p>{budget} EGP</p>
+        <p>{budget.key} EGP</p>
       </div>
     ));
   };
@@ -40,7 +57,7 @@ export default function WeddingBudget({ onClickButton }) {
         </Col>
         <Col>
           <div className="wedding-budget-wrapper__list__action">
-            <Button onClick={() => onClickButton(6)}>Next</Button>
+            <Button onClick={handleNext}>Next</Button>
           </div>
         </Col>
       </Row>

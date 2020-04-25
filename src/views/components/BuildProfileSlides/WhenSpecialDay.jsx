@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import CalendarImage from '../../../assets/images/calendar (5).svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../../assets/styles/components/when-special-day.scss';
+import { Store } from '../../../store/store';
+import types from '../../../store/types';
 
 export default function WhenSpecialDay({ onClickButton }) {
-  const [startDate, setStartDate] = useState('');
+  const { state, dispatch } = useContext(Store);
+  const { marriageDate } = state.userPersona;
+
+  const [startDate, setStartDate] = useState(marriageDate || '');
+  const [isDateDetermined, setIsDateDetermined] = useState(
+    marriageDate === null ? true : false
+  );
+  const [error, setError] = useState(false);
+
+  const setNotDeterminedFlag = function (val) {
+    setIsDateDetermined(val.target.checked);
+    if (!isDateDetermined) setStartDate('');
+  };
+
+  const handleNext = function () {
+    if (startDate === '' && !isDateDetermined) setError(true);
+    else {
+      dispatch({
+        type: types.user.SET_USER_MARRIAGE_DATE,
+        payload: startDate !== '' ? startDate : null,
+      });
+      onClickButton(5);
+    }
+  };
   return (
     <div className="when-special-day-wrapper">
       <Row className="when-special-day-wrapper__title">
@@ -26,15 +51,25 @@ export default function WhenSpecialDay({ onClickButton }) {
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={startDate}
-                onChange={date => setStartDate(date)}
+                onChange={(date) => setStartDate(date)}
                 className="bootstrap-border"
                 placeholderText="DD/MM/YYYY"
                 minDate={new Date()}
               />
-              <Form.Check label="It's not determined yet" />
+              <Form.Check
+                label="It's not determined yet"
+                onChange={setNotDeterminedFlag}
+                checked={isDateDetermined}
+              />
+              {error && (
+                <span className="error-message">
+                  Please choose date or check{' '}
+                  <strong>It's not determined yet</strong>
+                </span>
+              )}
             </Form.Group>
             <div className="when-special-day-wrapper__form__form-action">
-              <Button onClick={() => onClickButton(5)}>Next</Button>
+              <Button onClick={handleNext}>Next</Button>
             </div>
           </Form>
         </Col>

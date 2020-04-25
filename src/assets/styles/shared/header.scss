@@ -32,6 +32,7 @@ $header-margin-right: 20px;
   &__left-buttons {
     font-family: 'Montserrat SemiBold';
     margin-bottom: 8px !important;
+    height: 50px;
 
     .nav-link:nth-child(1) {
       button {
@@ -86,9 +87,10 @@ $header-margin-right: 20px;
         }
       }
     }
-    .nav-link:nth-child(3) {
+    .nav-link:nth-child(4) {
       img {
         width: 30px;
+        margin: auto;
       }
     }
   }
@@ -112,6 +114,9 @@ $header-margin-right: 20px;
     &--active {
       padding-left: 30px !important;
       color: $menu-item-active !important;
+    }
+    &--hide {
+      display: none !important;
     }
   }
 }

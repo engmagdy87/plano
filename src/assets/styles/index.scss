@@ -64,3 +64,14 @@ input {
   border-left: none !important;
   border-right: none !important;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+.account-error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 20px;
+}

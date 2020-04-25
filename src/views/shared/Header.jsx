@@ -2,23 +2,27 @@ import React, { useContext } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Store } from '../../store/store';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
+import { getUserCookie } from '../../helpers/CookieHelper';
 import Avatar from '../shared/Avatar';
 import LogoIcon from '../../assets/images/logo.jpeg';
 import EgyptFlagIcon from '../../assets/images/egypt.png';
 import types from '../../store/types';
 import '../../assets/styles/shared/header.scss';
+import { useHistory } from 'react-router-dom';
 export default function Header({ activePath }) {
   const { dispatch } = useContext(Store);
-  const showLogin = function() {
+  const userCookie = getUserCookie();
+  const history = useHistory();
+  const showLogin = function () {
     dispatch({
       type: types.user.SET_IS_USER_AUTH_FORM,
-      payload: { show: true, authType: 'login' }
+      payload: { show: true, authType: 'login' },
     });
   };
-  const showSignUp = function() {
+  const showSignUp = function () {
     dispatch({
       type: types.user.SET_IS_USER_AUTH_FORM,
-      payload: { show: true, authType: 'signup' }
+      payload: { show: true, authType: 'signup' },
     });
   };
   return (
@@ -31,15 +35,17 @@ export default function Header({ activePath }) {
         src={EgyptFlagIcon}
         alt="egypt flag"
       />
-      <Avatar />
+      <Avatar device="mobile" />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto header-wrapper__nav">
           <Nav.Link
-            href="/home"
             className={`header-wrapper__link ${
               activePath === 'home' ? 'header-wrapper__link--active' : ''
             }`}
+            onClick={() => {
+              history.push({ pathname: '/home' });
+            }}
           >
             Wedding Checklist
           </Nav.Link>
@@ -47,14 +53,36 @@ export default function Header({ activePath }) {
             Blog
           </Nav.Link>
         </Nav>
-        <Nav className="mr-sm-5 header-wrapper__left-buttons">
-          <Nav.Link href="#">
-            <Button onClick={showSignUp}>Free Sign Up</Button>
+        <Nav
+          className={`mr-sm-5 header-wrapper__left-buttons ${
+            userCookie !== undefined ? 'd-none d-md-flex' : ''
+          }`}
+        >
+          <Nav.Link>
+            <Button
+              className={`${
+                activePath === 'build-profile' || userCookie !== undefined
+                  ? 'header-wrapper__link--hide'
+                  : ''
+              }`}
+              onClick={showSignUp}
+            >
+              Free Sign Up
+            </Button>
           </Nav.Link>
-          <Nav.Link href="#">
-            <Button variant="link" onClick={showLogin}>
+          <Nav.Link>
+            <Button
+              variant="link"
+              className={`${
+                userCookie !== undefined ? 'header-wrapper__link--hide' : ''
+              }`}
+              onClick={showLogin}
+            >
               Login
             </Button>
+          </Nav.Link>
+          <Nav.Link href="#" style={{ marginTop: '-4px' }}>
+            <Avatar device="desktop" />
           </Nav.Link>
           <Nav.Link href="#" className="d-none d-md-block">
             <img src={EgyptFlagIcon} alt="egypt flag" />
