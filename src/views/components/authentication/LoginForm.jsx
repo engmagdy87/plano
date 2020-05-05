@@ -9,11 +9,11 @@ import { Store } from '../../../store/store';
 import types from '../../../store/types';
 import { setUserCookie } from '../../../helpers/CookieHelper';
 
-export default function LoginForm() {
+export default function LoginForm({ setShowLoading }) {
   const { dispatch } = useContext(Store);
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
-  const [isDataWrong, setIsDataWrong] = useState(false);
+  const [wrongData, setWrongData] = useState({ show: false, text: '' });
   const togglePasswordIcon = function () {
     setShowPassword(!showPassword);
   };
@@ -26,19 +26,33 @@ export default function LoginForm() {
   };
 
   const onSubmit = async (data) => {
-    loginUser(data).then((res) => {
-      if (res.data === null) setIsDataWrong(true);
-      else {
-        setIsDataWrong(false);
-        const data = res.data.login;
-        setUserCookie(data.token, data.user.name);
-        dispatch({
-          type: types.user.SET_IS_USER_AUTH_FORM,
-          payload: { show: false, authType: '' },
+    setShowLoading(true);
+    loginUser(data)
+      .then((res) => {
+        setShowLoading(false);
+        if (res.data === null)
+          setWrongData({
+            show: true,
+            text: 'Invalid Account, Please try again',
+          });
+        else {
+          setWrongData({ show: false, text: '' });
+          const data = res.data.login;
+          setUserCookie(data.token, data.user.name);
+          dispatch({
+            type: types.user.SET_IS_USER_AUTH_FORM,
+            payload: { show: false, authType: '' },
+          });
+          history.push('/sections');
+        }
+      })
+      .catch(() => {
+        setShowLoading(false);
+        setWrongData({
+          show: true,
+          text: 'Unexpected error when login, Please try again!',
         });
-        history.push('/sections');
-      }
-    });
+      });
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -79,10 +93,8 @@ export default function LoginForm() {
           </InputGroup.Prepend>
         </InputGroup>
         <div style={{ marginTop: '5px' }}>
-          {isDataWrong && (
-            <p className="account-error-message">
-              Invalid Account, Please try again
-            </p>
+          {wrongData.show && (
+            <p className="account-error-message">{wrongData.text}</p>
           )}
         </div>
       </Form.Group>

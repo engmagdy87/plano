@@ -2,7 +2,7 @@
   {
     "id": 0,
     "text": "Planning",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Planning",
@@ -43,7 +43,7 @@
   {
     "id": 1,
     "text": "Healthcare",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Healthcare",
@@ -84,7 +84,7 @@
   {
     "id": 2,
     "text": "Venue",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Venue",
@@ -125,7 +125,7 @@
   {
     "id": 3,
     "text": "The dress and the suit",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "The dress and the suit",
@@ -166,7 +166,7 @@
   {
     "id": 4,
     "text": "Photography & Video",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Photography & Video",
@@ -207,7 +207,7 @@
   {
     "id": 5,
     "text": "Entertainment & Decor",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Entertainment & Decor",
@@ -248,7 +248,7 @@
   {
     "id": 6,
     "text": "Caterer",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Caterer",
@@ -289,7 +289,7 @@
   {
     "id": 7,
     "text": "Guests & Stationary",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Guests & Stationary",
@@ -330,7 +330,7 @@
   {
     "id": 8,
     "text": "Beauty",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Beauty",
@@ -371,7 +371,7 @@
   {
     "id": 9,
     "text": "Honeymoon",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Honeymoon",
@@ -412,7 +412,7 @@
   {
     "id": 10,
     "text": "Others",
-    "checklist": [
+    "categories": [
       {
         "text": "Set Wedding Budget",
         "tag": "Others",

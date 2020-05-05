@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import DeleteDialog from '../components/dialogs/DeleteDialog';
 import { formatDate } from '../../helpers/DatesHelper';
 import { Store } from '../../store/store';
 import CustomTooltip from '../shared/CustomTooltip';
@@ -12,14 +13,14 @@ import '../../assets/styles/components/selected-task.scss';
 
 export default function SelectedTask({ selectedTask }) {
   const { dispatch } = useContext(Store);
-
-  const openSideDrawer = function() {
+  const [showDialogFlag, setShowDialogFlag] = useState(false);
+  const openSideDrawer = function () {
     dispatch({
-      type: types.checklist.SET_OPEN_TASK_FORM,
+      type: types.categories.SET_OPEN_TASK_FORM,
       payload: {
         flag: true,
-        operation: 'edit'
-      }
+        operation: 'edit',
+      },
     });
   };
 
@@ -34,9 +35,7 @@ export default function SelectedTask({ selectedTask }) {
           <img
             src={DeleteIcon}
             alt="delete"
-            onClick={() => {
-              console.log('DELETE');
-            }}
+            onClick={() => setShowDialogFlag(true)}
           />
         </CustomTooltip>
         <CustomTooltip operation="Edit">
@@ -47,8 +46,10 @@ export default function SelectedTask({ selectedTask }) {
           />
         </CustomTooltip>
       </div>
-      <h3>{selectedTask.data.text}</h3>
-      <div className="selected-task-wrapper__tag">{selectedTask.data.tag}</div>
+      <h3>{selectedTask.data[0].title}</h3>
+      <div className="selected-task-wrapper__tag">
+        {selectedTask.data[0].category.title}
+      </div>
 
       <div className="selected-task-wrapper__cost">
         <div>
@@ -56,7 +57,7 @@ export default function SelectedTask({ selectedTask }) {
         </div>
         <div>
           <p>Estimated Cost</p>
-          <p>{selectedTask.data.cost} EGP</p>
+          <p>{selectedTask.data[0].cost} EGP</p>
         </div>
       </div>
       <div className="selected-task-wrapper__due-date">
@@ -65,13 +66,19 @@ export default function SelectedTask({ selectedTask }) {
         </div>
         <div>
           <p>Due Date</p>
-          {selectedTask.data.due_date === '' ? (
+          {selectedTask.data[0].dueDate === '' ? (
             'DD/MM/YY'
           ) : (
-            <p>{formatDate(new Date(selectedTask.data.due_date))}</p>
+            <p>{formatDate(new Date(selectedTask.data[0].dueDate))}</p>
           )}
         </div>
       </div>
+      <DeleteDialog
+        showDialogFlag={showDialogFlag}
+        resetShowDialogFlag={setShowDialogFlag}
+        taskId={selectedTask.selectedTaskId}
+        categoryId={selectedTask.selectedCategoryId}
+      />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function TaskDetailsModal() {
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (phoneAndTablet.matches) {
       dispatch({
-        type: types.checklist.RESET_SELECTED_TASK,
+        type: types.categories.RESET_SELECTED_TASK,
       });
     }
   };

@@ -4,12 +4,14 @@ import { Store } from '../../../store/store';
 import SocialMediaAuthentication from '../SocialMediaAuthentication';
 import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
+import Loading from '../../../views/shared/Loading';
 import types from '../../../store/types';
 import '../../../assets/styles/components/authentication-form.scss';
 
 export default function AuthenticationForm() {
   const { state, dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   const [authType, setAuthType] = useState('');
 
@@ -57,7 +59,7 @@ export default function AuthenticationForm() {
               <Row>
                 <Col className="authentication-form-wrapper__span-text">OR</Col>
               </Row>
-              <SignUpForm />
+              <SignUpForm setShowLoading={setShowLoading} />
               <span className="authentication-form-wrapper__terms">
                 By signing up, you agree to our Terms of Use and Privacy Policy.
               </span>
@@ -92,7 +94,7 @@ export default function AuthenticationForm() {
                   </h6>
                 </Col>
               </Row>
-              <LoginForm />
+              <LoginForm setShowLoading={setShowLoading} />
               <span className="authentication-form-wrapper__account">
                 Don't have account ?{' '}
                 <Button variant="link" onClick={changeToLoginOrSignUp}>
@@ -114,6 +116,7 @@ export default function AuthenticationForm() {
       className="authentication-form-wrapper"
     >
       {buildForm()}
+      <Loading showLoadingSpinner={showLoading} smallLoader />
     </Modal>
   );
 }

@@ -1,6 +1,4 @@
 .fade.toast.show {
-  //   background: green !important;
-  border-color: #4dccbb !important;
   top: 70px !important;
   right: 35px !important;
   z-index: 1600 !important;
@@ -15,5 +13,14 @@
         margin-right: 0 !important;
       }
     }
+  }
+}
+
+.toast-color {
+  &--success {
+    border-color: #4dccbb !important;
+  }
+  &--error {
+    border-color: red !important;
   }
 }

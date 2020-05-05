@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Store } from '../../store/store';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
-import { getUserCookie } from '../../helpers/CookieHelper';
+import { getUserCookie, setChecklistCookie } from '../../helpers/CookieHelper';
 import Avatar from '../shared/Avatar';
 import LogoIcon from '../../assets/images/logo.jpeg';
 import EgyptFlagIcon from '../../assets/images/egypt.png';
@@ -25,6 +25,17 @@ export default function Header({ activePath }) {
       payload: { show: true, authType: 'signup' },
     });
   };
+
+  const setChecklistId = function () {
+    if (userCookie !== undefined) {
+      setChecklistCookie(1);
+      dispatch({
+        type: types.checklist.SET_CURRENT_CHECKLIST,
+        payload: 1,
+      });
+      history.push({ pathname: '/home' });
+    } else history.push({ pathname: '/' });
+  };
   return (
     <Navbar collapseOnSelect expand="lg" className="header-wrapper">
       <Navbar.Brand href="/">
@@ -43,11 +54,9 @@ export default function Header({ activePath }) {
             className={`header-wrapper__link ${
               activePath === 'home' ? 'header-wrapper__link--active' : ''
             }`}
-            onClick={() => {
-              history.push({ pathname: '/home' });
-            }}
+            onClick={setChecklistId}
           >
-            Wedding Checklist
+            Wedding categories
           </Nav.Link>
           <Nav.Link href="#" className="header-wrapper__link">
             Blog

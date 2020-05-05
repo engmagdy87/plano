@@ -8,16 +8,24 @@ const user = {
     'SET_IS_USER_AUTH_FORM': 'user/SET_IS_USER_AUTH_FORM'
 }
 
+const categories = {
+    'SET_CATEGORIES_DATA': 'categories/SET_CATEGORIES_DATA',
+    'ADD_TASK': 'categories/ADD_TASK',
+    'EDIT_TASK': 'categories/EDIT_TASK',
+    'DELETE_TASK': 'categories/DELETE_TASK',
+    // 'SET_COMPLETED_FOR_A_TASK': 'categories/SET_COMPLETED_FOR_A_TASK',
+    'SET_SELECTED_TASK': 'categories/SET_SELECTED_TASK',
+    'SET_OPEN_TASK_FORM': 'categories/SET_OPEN_TASK_FORM',
+    'RESET_SELECTED_TASK': 'categories/RESET_SELECTED_TASK',
+    'SET_TOAST_DATA': 'categories/SET_TOAST_DATA'
+}
+
 const checklist = {
-    'SET_CHECKLIST_DATA': 'checklist/SET_CHECKLIST_DATA',
-    // 'SET_COMPLETED_FOR_A_TASK': 'checklist/SET_COMPLETED_FOR_A_TASK',
-    'SET_SELECTED_TASK': 'checklist/SET_SELECTED_TASK',
-    'SET_OPEN_TASK_FORM': 'checklist/SET_OPEN_TASK_FORM',
-    'RESET_SELECTED_TASK': 'checklist/RESET_SELECTED_TASK',
-    'SET_TOAST_DATA': 'checklist/SET_TOAST_DATA'
+    'SET_CURRENT_CHECKLIST': 'checklist/SET_CURRENT_CHECKLIST',
 }
 
 export default {
     user,
+    categories,
     checklist
 }

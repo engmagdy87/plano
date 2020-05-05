@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import Header from '../shared/Header';
@@ -8,14 +8,23 @@ import PartyImage from '../../assets/images/bachelorette-party.svg';
 import TravelImage from '../../assets/images/travel.svg';
 import ShoppingImage from '../../assets/images/shopping-bag (1).svg';
 import '../../assets/styles/containers/sections.scss';
+import { Store } from '../../store/store';
+import { setChecklistCookie } from '../../helpers/CookieHelper';
+import types from '../../store/types';
 
 export default function Sections() {
+  const { dispatch } = useContext(Store);
   const history = useHistory();
-  const redirectToWeddingCeremony = function() {
+  const redirectToWeddingCeremony = function () {
+    setChecklistCookie(1);
+    dispatch({
+      type: types.checklist.SET_CURRENT_CHECKLIST,
+      payload: 1,
+    });
     history.push('/home');
   };
 
-  const renderContent = function() {
+  const renderContent = function () {
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (phoneAndTablet.matches) {
       return (

@@ -4,17 +4,18 @@ import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
 import { registerUser } from '../../helpers/APIsHelper';
 import { setUserCookie } from '../../helpers/CookieHelper';
 import Header from '../shared/Header';
-import WhoAreYou from '../components/BuildProfileSlides/WhoAreYou';
-import WhatIsYourName from '../components/BuildProfileSlides/WhatIsYourName';
-import WhoIsLuckySpouse from '../components/BuildProfileSlides/WhoIsLuckySpouse';
-import WhenSpecialDay from '../components/BuildProfileSlides/WhenSpecialDay';
-import WeddingBudget from '../components/BuildProfileSlides/WeddingBudget';
+import WhoAreYou from '../components/buildProfileSlides/WhoAreYou';
+import WhatIsYourName from '../components/buildProfileSlides/WhatIsYourName';
+import WhoIsLuckySpouse from '../components/buildProfileSlides/WhoIsLuckySpouse';
+import WhenSpecialDay from '../components/buildProfileSlides/WhenSpecialDay';
+import WeddingBudget from '../components/buildProfileSlides/WeddingBudget';
 import Spinner from '../shared/Spinner';
 import '../../assets/styles/containers/build-profile.scss';
 import { Store } from '../../store/store';
+import types from '../../store/types';
 
 export default function BuildProfile() {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const [slideId, setSlideId] = useState(1);
   const [progressValue, setProgressValue] = useState(20);
   const history = useHistory();
@@ -31,16 +32,27 @@ export default function BuildProfile() {
     if (slideId === 6) {
       if (state.userPersona.marriageDate === null)
         delete state.userPersona.marriageDate;
-      registerUser(state.userPersona).then((res) => {
-        const data = res.data.register;
-        setUserCookie(data.token, data.user.name);
-        history.push('/sections');
-        window.onpopstate = function (event) {
-          history.go(1);
-        };
-      });
+      registerUser(state.userPersona)
+        .then((res) => {
+          const data = res.data.register;
+          setUserCookie(data.token, data.user.name);
+          history.push('/sections');
+          window.onpopstate = function (event) {
+            history.go(1);
+          };
+        })
+        .catch(() => {
+          dispatch({
+            type: types.categories.SET_TOAST_DATA,
+            payload: {
+              show: true,
+              text: 'Unexpected error when register user, Please try again!',
+              status: 'error',
+            },
+          });
+        });
     }
-  }, [history, slideId, state.userPersona]);
+  }, [dispatch, history, slideId, state.userPersona]);
 
   const renderSlide = function () {
     switch (slideId) {
@@ -61,7 +73,7 @@ export default function BuildProfile() {
   };
 
   const renderPage = function () {
-    if (slideId === 6) return <Spinner />;
+    if (slideId === 6) return <Spinner text="Your profile is building..." />;
     else
       return (
         <Container className="build-profile-wrapper">

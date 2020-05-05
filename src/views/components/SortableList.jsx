@@ -5,11 +5,11 @@ import SortableItem from './SortableItem';
 const SortableList = SortableContainer(({ item }) => {
   return (
     <ul>
-      {item.checklist.map((task, index) => (
+      {item.tasks.map((task, index) => (
         <SortableItem
-          key={`item-${task.text}`}
+          key={`${item.id}-${task.title}`}
           index={index}
-          data={{ task, taskId: index, checklistId: item.id }}
+          data={{ task, taskId: task.id, categoryId: item.id }}
         />
       ))}
     </ul>

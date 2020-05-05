@@ -1,24 +1,24 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
-import '../../assets/styles/shared/avatar.scss';
 import { Toast } from 'react-bootstrap';
 import '../../assets/styles/shared/toast.scss';
 import types from '../../store/types';
 import { Store } from '../../store/store';
 
-export default function Avatar({ show, text }) {
+export default function CustomToast({ show, text, status }) {
   const { dispatch } = useContext(Store);
   const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     setShowToast(show);
   }, [show]);
-  const closeToast = function() {
+  const closeToast = function () {
     setShowToast(false);
     dispatch({
-      type: types.checklist.SET_TOAST_DATA,
+      type: types.categories.SET_TOAST_DATA,
       payload: {
         show: false,
-        text: ''
-      }
+        text: '',
+        status: '',
+      },
     });
   };
   return (
@@ -32,8 +32,13 @@ export default function Avatar({ show, text }) {
           position: 'absolute',
           top: 0,
           right: 0,
-          zIndex: 120
+          zIndex: 120,
         }}
+        className={`${
+          status === 'success' || status === ''
+            ? 'toast-color--success'
+            : 'toast-color--error'
+        }`}
       >
         <Toast.Header>
           <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />

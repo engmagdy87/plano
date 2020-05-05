@@ -19,9 +19,6 @@ ReactDOM.render(
     <StoreProvider>
         <Router>
             <Switch>
-                <Route exact path="/">
-                    <Landing />
-                </Route>
                 <Route path="/home">
                     <Home />
                 </Route>
@@ -30,6 +27,12 @@ ReactDOM.render(
                 </Route>
                 <Route path="/sections">
                     <Sections />
+                </Route>
+                <Route exact path="/">
+                    <Landing />
+                </Route>
+                <Route exact path="*">
+                    <Landing />
                 </Route>
             </Switch>
         </Router>

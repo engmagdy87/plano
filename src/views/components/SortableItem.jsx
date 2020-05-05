@@ -5,14 +5,14 @@ import types from '../../store/types';
 import '../../assets/styles/components/sortable-item.scss';
 
 const SortableItem = SortableElement(({ data }) => {
-  const { task, taskId, checklistId } = data;
+  const { task, taskId, categoryId } = data;
   const [isTaskClicked, setIsTaskClicked] = useState(false);
   const [isTaskCompleted, setIsTaskCompleted] = useState(false);
 
   const { state, dispatch } = useContext(Store);
   useEffect(() => {
     if (
-      state.selectedTask.selectedChecklistId === checklistId &&
+      state.selectedTask.selectedCategoryId === categoryId &&
       state.selectedTask.selectedTaskId === taskId
     )
       setIsTaskClicked(true);
@@ -27,35 +27,35 @@ const SortableItem = SortableElement(({ data }) => {
         <span>=</span>
         <input
           type="checkbox"
-          id={`${checklistId}${taskId}`}
-          name={`${checklistId}${taskId}`}
+          id={`${categoryId}${taskId}`}
+          name={`${categoryId}${taskId}`}
           onChange={() => {
             dispatch({
-              type: types.checklist.SET_REMOVED_TASK,
+              type: types.categories.SET_REMOVED_TASK,
               payload: {
-                removedChecklistId: checklistId,
+                removedCategoriesId: categoryId,
                 removedTaskId: taskId,
               },
             });
             setIsTaskCompleted(!isTaskCompleted);
           }}
         />
-        <label htmlFor={`${checklistId}${taskId}`}></label>
+        <label htmlFor={`${categoryId}${taskId}`}></label>
         <div
           className={`input-group__text ${
             isTaskCompleted ? 'input-group__stripe-text' : ''
           }`}
           onClick={() => {
             dispatch({
-              type: types.checklist.SET_SELECTED_TASK,
+              type: types.categories.SET_SELECTED_TASK,
               payload: {
-                selectedChecklistId: checklistId,
+                selectedCategoryId: categoryId,
                 selectedTaskId: taskId,
               },
             });
           }}
         >
-          {task.text}
+          {task.title}
         </div>
       </div>
       <hr />

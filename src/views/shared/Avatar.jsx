@@ -2,7 +2,10 @@ import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUserCookie } from '../../helpers/CookieHelper';
 import { getFirstLettersOfString } from '../../helpers/StringsHelper';
-import { removeUserCookie } from '../../helpers/CookieHelper';
+import {
+  removeUserCookie,
+  removeChecklistCookie,
+} from '../../helpers/CookieHelper';
 import '../../assets/styles/shared/avatar.scss';
 import { useState } from 'react';
 export default function Avatar({ device }) {
@@ -16,6 +19,7 @@ export default function Avatar({ device }) {
 
   const logoutUser = function () {
     removeUserCookie();
+    removeChecklistCookie();
     history.push('/');
   };
 

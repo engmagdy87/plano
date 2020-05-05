@@ -1,8 +1,52 @@
 import axios from 'axios';
 import { QUERY, MUTATION } from '../graphql';
+import { getUserCookie } from '../helpers/CookieHelper';
 import GRAPHQL_BASE_URL from '../constants/APIs';
-// const token = getUserCookie();
-// axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+async function fetchCategories(checklistId) {
+    try {
+        const response = await request({
+            operationName: "categories",
+            query: QUERY.CATEGORIES(checklistId),
+        });
+        return response.data
+    } catch (error) {
+        return false;
+    }
+}
+
+async function createTask(data) {
+    const userToken = getUserCookie()
+    try {
+        const response = await request({
+            operationName: "newTask",
+            query: MUTATION.NEW_TASK(),
+            variables: {
+                "data": {
+                    ...data,
+                }
+            }
+        }, userToken.token);
+        return response.data
+    } catch (error) {
+        return false;
+    }
+}
+
+async function updateTask(taskId, data) {
+    const userToken = getUserCookie()
+    const response = await request({
+        operationName: "updateTask",
+        query: MUTATION.UPDATE_TASK(),
+        variables: {
+            "data": {
+                ...data,
+            },
+            taskId
+        }
+    }, userToken.token);
+    return response.data
+}
 
 async function registerUser(data) {
     const response = await request({
@@ -17,6 +61,18 @@ async function registerUser(data) {
     return response.data
 }
 
+async function removeTask(taskId) {
+    const userToken = getUserCookie()
+    const response = await request({
+        operationName: "removeTask",
+        query: MUTATION.REMOVE_TASK(),
+        variables: {
+            taskId
+        }
+    }, userToken.token);
+    return response.data
+}
+
 async function loginUser(data) {
     const response = await request({
         operationName: "login",
@@ -26,21 +82,38 @@ async function loginUser(data) {
 }
 
 async function isIdentifierExists(identifier) {
-    const response = await request({
-        query: QUERY.USER_VALIDATION(identifier),
-    });
-    return response.data.data === null
+    try {
+        const response = await request({
+            query: QUERY.USER_VALIDATION(identifier),
+        });
+        return response.data.data === null
+    } catch (error) {
+        return undefined;
+    }
 }
 
 export {
+    fetchCategories,
+    createTask,
+    updateTask,
     registerUser,
     loginUser,
-    isIdentifierExists
+    isIdentifierExists,
+    removeTask
 }
 
-async function request(data) {
-    const response = await axios.post(GRAPHQL_BASE_URL, {
+async function request(data, token) {
+    let response;
+    if (!token)
+        response = await axios.post(GRAPHQL_BASE_URL, {
+            ...data
+        });
+    else response = await axios.post(GRAPHQL_BASE_URL, {
         ...data
+    }, {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (response.status !== 200 && response.status !== 304)

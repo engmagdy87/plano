@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../assets/styles/shared/spinner.scss';
 
-export default function Spinner() {
+export default function Spinner({ text = '' }) {
   return (
     <div className="spinner-wrapper">
       <div>
         <div className="loader"></div>
-        <p>Your profile is building...</p>
+        <p>{text}</p>
       </div>
     </div>
   );

@@ -8,11 +8,12 @@ import HideLogo from '../../../assets/images/hide.svg';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
 
-export default function SignUpForm() {
+export default function SignUpForm({ setShowLoading }) {
   const history = useHistory();
   const { dispatch } = useContext(Store);
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
+  const [wrongData, setWrongData] = useState({ show: false, text: '' });
   const [isIdentifierExistsFlag, setIsIdentifierExistsFlag] = useState(false);
 
   const togglePasswordIcon = function () {
@@ -33,10 +34,20 @@ export default function SignUpForm() {
 
   const { register, handleSubmit, errors, watch } = useForm();
   const onSubmit = async (data) => {
+    setShowLoading(true);
     const result = await isIdentifierExists(data.identifier);
+    setShowLoading(false);
 
-    if (result) setIsIdentifierExistsFlag(true);
-    else {
+    if (result === undefined)
+      setWrongData({
+        show: true,
+        text: 'Unexpected error when register, Please try again!',
+      });
+    else if (result) {
+      setWrongData({ show: false, text: '' });
+      setIsIdentifierExistsFlag(true);
+    } else {
+      setWrongData({ show: false, text: '' });
       setIsIdentifierExistsFlag(false);
       dispatch({
         type: types.user.SET_USER_SIGN_UP_FORM,
@@ -125,6 +136,11 @@ export default function SignUpForm() {
         {errors.confirmPassword && (
           <p className="error-message">Invalid Password</p>
         )}
+        <div style={{ marginTop: '5px' }}>
+          {wrongData.show && (
+            <p className="account-error-message">{wrongData.text}</p>
+          )}
+        </div>
       </Form.Group>
       <Container>
         <Row className="auth-form-action">
