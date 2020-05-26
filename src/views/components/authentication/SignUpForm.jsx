@@ -89,7 +89,11 @@ export default function SignUpForm({ setShowLoading }) {
             type={showPassword ? 'text' : 'password'}
             placeholder="Enter Your Password"
             name="password"
-            ref={register({ required: true })}
+            ref={register({
+              required: true,
+              minLength: 8,
+              pattern: /^[a-zA-Z0-9]+$/,
+            })}
           />
           <InputGroup.Prepend>
             <InputGroup.Text
@@ -116,6 +120,8 @@ export default function SignUpForm({ setShowLoading }) {
             name="confirmPassword"
             ref={register({
               required: true,
+              minLength: 8,
+              pattern: /^[a-zA-Z0-9]+$/,
               validate: (value) => {
                 return value === watch('password'); // value is from confirm password and watch will return value from password
               },

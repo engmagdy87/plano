@@ -4,17 +4,33 @@ import { getUserCookie } from '../helpers/CookieHelper';
 import GRAPHQL_BASE_URL from '../constants/APIs';
 
 async function fetchCategories(checklistId) {
+    const userToken = getUserCookie()
     try {
         const response = await request({
             operationName: "categories",
             query: QUERY.CATEGORIES(checklistId),
-        });
+        }, userToken.token);
         return response.data
     } catch (error) {
         return false;
     }
 }
 
+async function orderTaskById(data) {
+    const userToken = getUserCookie()
+    try {
+        const response = await request({
+            operationName: "orderTasksById",
+            query: MUTATION.ORDER_TASKS(),
+            variables: {
+                ...data
+            }
+        }, userToken.token);
+        return response.data
+    } catch (error) {
+        return false;
+    }
+}
 async function createTask(data) {
     const userToken = getUserCookie()
     try {
@@ -73,6 +89,30 @@ async function removeTask(taskId) {
     return response.data
 }
 
+async function setTaskDone(taskId) {
+    const userToken = getUserCookie()
+    const response = await request({
+        operationName: "TaskDone",
+        query: MUTATION.TASK_DONE(),
+        variables: {
+            taskId
+        }
+    }, userToken.token);
+    return response.data
+}
+
+async function setTaskUnDone(taskId) {
+    const userToken = getUserCookie()
+    const response = await request({
+        operationName: "TaskUnDone",
+        query: MUTATION.TASK_UNDONE(),
+        variables: {
+            taskId
+        }
+    }, userToken.token);
+    return response.data
+}
+
 async function loginUser(data) {
     const response = await request({
         operationName: "login",
@@ -99,7 +139,10 @@ export {
     registerUser,
     loginUser,
     isIdentifierExists,
-    removeTask
+    removeTask,
+    orderTaskById,
+    setTaskDone,
+    setTaskUnDone
 }
 
 async function request(data, token) {

@@ -4,7 +4,7 @@ import { Store } from '../../store/store';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
 import { getUserCookie, setChecklistCookie } from '../../helpers/CookieHelper';
 import Avatar from '../shared/Avatar';
-import LogoIcon from '../../assets/images/logo.jpeg';
+import LogoIcon from '../../assets/images/logo.png';
 import EgyptFlagIcon from '../../assets/images/egypt.png';
 import types from '../../store/types';
 import '../../assets/styles/shared/header.scss';

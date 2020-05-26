@@ -18,6 +18,7 @@ import TaskDetailsModal from '../components/TaskDetailsModal';
 import Toast from '../shared/Toast';
 import { categoriesAction } from '../../store/actions';
 import { getChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
+import { orderTaskById } from '../../helpers/APIsHelper';
 import '../../assets/styles/containers/home.scss';
 import SideDrawer from '../shared/SideDrawer';
 import types from '../../store/types';
@@ -39,12 +40,22 @@ export default function Home() {
     oldIndex,
     newIndex,
   }) => {
+    const currentOrder = categoriesContent[categoryIdInDataArray].tasks.map(
+      (task) => task.id
+    );
+
     categoriesContent[categoryIdInDataArray].tasks = arrayMove(
       data,
       oldIndex,
       newIndex
     );
     setCategoryContent([...categoriesContent]);
+    const newOrder = categoriesContent[categoryIdInDataArray].tasks.map(
+      (task) => task.id
+    );
+
+    const payload = { categoryId, currentOrder, newOrder };
+    orderTaskById(payload);
   };
 
   const getChecklistId = function () {

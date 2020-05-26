@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 import { Store } from '../../store/store';
+import { setTaskDone, setTaskUnDone } from '../../helpers/APIsHelper';
 import types from '../../store/types';
 import '../../assets/styles/components/sortable-item.scss';
 
 const SortableItem = SortableElement(({ data }) => {
   const { task, taskId, categoryId } = data;
   const [isTaskClicked, setIsTaskClicked] = useState(false);
-  const [isTaskCompleted, setIsTaskCompleted] = useState(false);
+  const [isTaskDone, setIsTaskDone] = useState(data.task.done);
 
   const { state, dispatch } = useContext(Store);
   useEffect(() => {
@@ -19,6 +20,57 @@ const SortableItem = SortableElement(({ data }) => {
     else setIsTaskClicked(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedTask.data]);
+
+  const successSetTaskToDone = (status) => {
+    dispatch({
+      type: types.categories.EDIT_TASK,
+      payload: {
+        currentCategoryId: Number(data.categoryId),
+        taskId,
+        updatedTask: { ...data.task, done: status },
+      },
+    });
+    setIsTaskDone(!isTaskDone);
+    dispatch({
+      type: types.categories.SET_TOAST_DATA,
+      payload: {
+        show: true,
+        text: `Task set to ${status ? 'DONE' : 'UNDONE'} successfully`,
+        status: 'success',
+      },
+    });
+  };
+
+  const failedSetTaskToDone = () => {
+    dispatch({
+      type: types.categories.SET_TOAST_DATA,
+      payload: {
+        show: true,
+        text: 'Unexpected error occurs, Please try again!',
+        status: 'error',
+      },
+    });
+  };
+
+  const toggleTaskDone = (e) => {
+    const taskStatus = e.target.checked;
+    if (taskStatus)
+      setTaskDone(Number(taskId))
+        .then(() => {
+          successSetTaskToDone(taskStatus);
+        })
+        .catch(() => {
+          failedSetTaskToDone();
+        });
+    else
+      setTaskUnDone(Number(taskId))
+        .then(() => {
+          successSetTaskToDone(taskStatus);
+        })
+        .catch(() => {
+          failedSetTaskToDone();
+        });
+  };
   return (
     <li className="sortable-item-wrapper">
       <div
@@ -29,21 +81,13 @@ const SortableItem = SortableElement(({ data }) => {
           type="checkbox"
           id={`${categoryId}${taskId}`}
           name={`${categoryId}${taskId}`}
-          onChange={() => {
-            dispatch({
-              type: types.categories.SET_REMOVED_TASK,
-              payload: {
-                removedCategoriesId: categoryId,
-                removedTaskId: taskId,
-              },
-            });
-            setIsTaskCompleted(!isTaskCompleted);
-          }}
+          onChange={toggleTaskDone}
+          checked={isTaskDone}
         />
         <label htmlFor={`${categoryId}${taskId}`}></label>
         <div
           className={`input-group__text ${
-            isTaskCompleted ? 'input-group__stripe-text' : ''
+            isTaskDone ? 'input-group__stripe-text' : ''
           }`}
           onClick={() => {
             dispatch({

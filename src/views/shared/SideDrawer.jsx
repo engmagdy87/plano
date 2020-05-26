@@ -70,9 +70,19 @@ export default function SideDrawer() {
     setStartDate('');
   };
 
+  const refactorPayload = (payload) => {
+    let newPayload;
+    if (payload.dueDate === '') {
+      const { dueDate, ...rest } = payload;
+      newPayload = { ...rest };
+    } else newPayload = payload;
+
+    return newPayload;
+  };
+
   const addTask = (payload) => {
     setShowLoadingSpinner(true);
-    createTask(payload)
+    createTask(refactorPayload(payload))
       .then(async (res) => {
         setShowLoadingSpinner(false);
         const task = res.data.createTask;
@@ -109,7 +119,7 @@ export default function SideDrawer() {
 
   const editTask = (taskId, payload) => {
     setShowLoadingSpinner(true);
-    updateTask(taskId, payload)
+    updateTask(taskId, refactorPayload(payload))
       .then(async (res) => {
         setShowLoadingSpinner(false);
         const task = res.data.updateTask;
@@ -239,7 +249,7 @@ export default function SideDrawer() {
                 type="text"
                 placeholder="Enter Task Name"
                 name="title"
-                ref={register({ required: true })}
+                ref={register({ required: true, maxLength: 80 })}
               />
               {errors.title && (
                 <span className="error-message">Invalid Task Name</span>
