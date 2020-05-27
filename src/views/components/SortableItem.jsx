@@ -84,7 +84,10 @@ const SortableItem = SortableElement(({ data }) => {
           onChange={toggleTaskDone}
           checked={isTaskDone}
         />
-        <label htmlFor={`${categoryId}${taskId}`}></label>
+        <label
+          htmlFor={`${categoryId}${taskId}`}
+          className={task.overDue ? 'input-group__over-due' : ''}
+        ></label>
         <div
           className={`input-group__text ${
             isTaskDone ? 'input-group__stripe-text' : ''

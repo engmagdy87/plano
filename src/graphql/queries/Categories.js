@@ -15,6 +15,7 @@ const CATEGORIES = (checklistId) => `query categories{
         }
         cost
         dueDate
+        overDue
         status
         done      
         note

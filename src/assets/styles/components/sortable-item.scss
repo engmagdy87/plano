@@ -51,6 +51,11 @@ $top-value: 20%;
         }
       }
     }
+    &__over-due {
+      &:after {
+        border: 1px solid red !important;
+      }
+    }
     input:checked ~ label {
       &:after {
         background-color: #e9ebf2;
