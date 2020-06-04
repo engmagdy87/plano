@@ -20,8 +20,8 @@ export default function AdminControlPanel({ setShowLoadingSpinner }) {
   }, [state.selectedUser]);
 
   useEffect(() => {
-    setShowLoadingSpinner(true);
     async function fetchUsers() {
+      setShowLoadingSpinner(true);
       await panelActions.listAllUsers(dispatch);
       setShowLoadingSpinner(false);
     }
