@@ -1,0 +1,42 @@
+.admin-control-panel-wrapper {
+  height: 100%;
+  width: 100%;
+  .row {
+    height: 95%;
+    width: 100%;
+    margin: 0;
+  }
+  &__content {
+    padding-top: 50px;
+  }
+  &__side-menu {
+    height: 100%;
+    border-right: 1px solid #eee;
+    .nav {
+      margin-top: 100px !important;
+      .nav-item {
+        .active {
+          font-weight: bold !important;
+        }
+      }
+    }
+    &__nav-link {
+      background-color: transparent !important;
+      color: black !important;
+      margin-left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      font-size: 1.4rem;
+      &:focus,
+      &:active {
+        outline: none !important;
+        font-weight: bold !important;
+      }
+    }
+  }
+}
+
+.tab-content,
+.tab-pane {
+  height: 100% !important;
+}

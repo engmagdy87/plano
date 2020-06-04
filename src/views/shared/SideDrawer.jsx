@@ -11,7 +11,7 @@ import types from '../../store/types';
 import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
-import { createTask, updateTask } from '../../helpers/APIsHelper';
+import { categoriesActions } from '../../store/actions';
 import Loading from './Loading';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -48,9 +48,6 @@ export default function SideDrawer() {
     resetForm();
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (!phoneAndTablet.matches) {
-      // dispatch({
-      //   type: types.categories.RESET_SELECTED_TASK,
-      // });
       setSelectedTask({
         category: { title: '' },
         cost: '',
@@ -80,85 +77,33 @@ export default function SideDrawer() {
     return newPayload;
   };
 
-  const addTask = (payload) => {
+  const addTask = async (payload) => {
     setShowLoadingSpinner(true);
-    createTask(refactorPayload(payload))
-      .then(async (res) => {
-        setShowLoadingSpinner(false);
-        const task = res.data.createTask;
-        dispatch({
-          type: types.categories.ADD_TASK,
-          payload: {
-            categoryId: task.category.id,
-            task,
-          },
-        });
-
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Task created successfully',
-            status: 'success',
-          },
-        });
-        resetForm();
-        if (submitOption === 'save') closeTaskDrawer();
-      })
-      .catch(() => {
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Unexpected error when creating task, Please try again!',
-            status: 'error',
-          },
-        });
-      });
+    try {
+      await categoriesActions.createNewTask(dispatch, refactorPayload(payload));
+      setShowLoadingSpinner(false);
+      resetForm();
+      if (submitOption === 'save') closeTaskDrawer();
+    } catch (error) {
+      setShowLoadingSpinner(false);
+    }
   };
 
-  const editTask = (taskId, payload) => {
+  const editTask = async (taskId, payload) => {
     setShowLoadingSpinner(true);
-    updateTask(taskId, refactorPayload(payload))
-      .then(async (res) => {
-        setShowLoadingSpinner(false);
-        const task = res.data.updateTask;
-        dispatch({
-          type: types.categories.EDIT_TASK,
-          payload: {
-            currentCategoryId: payload.categoryId,
-            taskId,
-            updatedTask: task,
-          },
-        });
-        dispatch({
-          type: types.categories.SET_SELECTED_TASK,
-          payload: {
-            selectedCategoryId: payload.categoryId,
-            selectedTaskId: taskId,
-          },
-        });
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Task updated successfully',
-            status: 'success',
-          },
-        });
-        resetForm();
-        closeTaskDrawer();
-      })
-      .catch(() => {
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Unexpected error when updating task, Please try again!',
-            status: 'error',
-          },
-        });
-      });
+    try {
+      await categoriesActions.editTask(
+        dispatch,
+        taskId,
+        payload.categoryId,
+        refactorPayload(payload)
+      );
+      setShowLoadingSpinner(false);
+      resetForm();
+      closeTaskDrawer();
+    } catch (error) {
+      setShowLoadingSpinner(false);
+    }
   };
 
   const onSubmit = async (data) => {

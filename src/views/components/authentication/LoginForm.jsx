@@ -2,13 +2,12 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { loginUser } from '../../../helpers/APIsHelper';
+import { categoriesActions } from '../../../store/actions';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
 import { Store } from '../../../store/store';
-import types from '../../../store/types';
 import { setUserCookie } from '../../../helpers/CookieHelper';
-
+import types from '../../../store/types';
 export default function LoginForm({ setShowLoading }) {
   const { dispatch } = useContext(Store);
   const history = useHistory();
@@ -25,34 +24,33 @@ export default function LoginForm({ setShowLoading }) {
     return emailRegEx.test(value) || mobileRegEx.test(value);
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (persona) => {
     setShowLoading(true);
-    loginUser(data)
-      .then((res) => {
-        setShowLoading(false);
-        if (res.data === null)
-          setWrongData({
-            show: true,
-            text: 'Invalid Account, Please try again',
-          });
-        else {
-          setWrongData({ show: false, text: '' });
-          const data = res.data.login;
-          setUserCookie(data.token, data.user.name);
-          dispatch({
-            type: types.user.SET_IS_USER_AUTH_FORM,
-            payload: { show: false, authType: '' },
-          });
-          history.push('/sections');
-        }
-      })
-      .catch(() => {
-        setShowLoading(false);
+    try {
+      const res = await categoriesActions.userSignIn(persona);
+      setShowLoading(false);
+      if (res.data === null)
         setWrongData({
           show: true,
-          text: 'Unexpected error when login, Please try again!',
+          text: 'Invalid Account, Please try again',
         });
+      else {
+        setWrongData({ show: false, text: '' });
+        const data = res.data.login;
+        setUserCookie(data.token, data.user.name);
+        dispatch({
+          type: types.user.SET_IS_USER_AUTH_FORM,
+          payload: { show: false, authType: '' },
+        });
+        history.push('/sections');
+      }
+    } catch (error) {
+      setShowLoading(false);
+      setWrongData({
+        show: true,
+        text: 'Unexpected error when login, Please try again!',
       });
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +60,7 @@ export default function LoginForm({ setShowLoading }) {
         </Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter Task Name"
+          placeholder="Enter Your Email or Phone number"
           name="identifier"
           ref={register({ required: true, validate: validateIdentifier })}
         />

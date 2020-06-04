@@ -13,7 +13,6 @@ const categories = {
     'ADD_TASK': 'categories/ADD_TASK',
     'EDIT_TASK': 'categories/EDIT_TASK',
     'DELETE_TASK': 'categories/DELETE_TASK',
-    // 'SET_COMPLETED_FOR_A_TASK': 'categories/SET_COMPLETED_FOR_A_TASK',
     'SET_SELECTED_TASK': 'categories/SET_SELECTED_TASK',
     'SET_OPEN_TASK_FORM': 'categories/SET_OPEN_TASK_FORM',
     'RESET_SELECTED_TASK': 'categories/RESET_SELECTED_TASK',
@@ -24,8 +23,17 @@ const checklist = {
     'SET_CURRENT_CHECKLIST': 'checklist/SET_CURRENT_CHECKLIST',
 }
 
+const panel = {
+    'SET_USERS': 'panel/SET_USERS',
+    'SET_ADMINS': 'panel/SET_ADMINS',
+    'SET_TOKEN': 'panel/SET_TOKEN',
+    'SET_SELECTED_USER': 'panel/SET_SELECTED_USER',
+    'DELETE_USER': 'panel/DELETE_USER',
+}
+
 export default {
     user,
     categories,
-    checklist
+    checklist,
+    panel
 }

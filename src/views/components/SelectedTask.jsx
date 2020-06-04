@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import DeleteDialog from '../components/dialogs/DeleteDialog';
+import DeleteTaskDialog from '../components/dialogs/DeleteTaskDialog';
 import { formatDate } from '../../helpers/DatesHelper';
 import { Store } from '../../store/store';
 import CustomTooltip from '../shared/CustomTooltip';
@@ -14,6 +14,7 @@ import '../../assets/styles/components/selected-task.scss';
 export default function SelectedTask({ selectedTask }) {
   const { dispatch } = useContext(Store);
   const [showDialogFlag, setShowDialogFlag] = useState(false);
+
   const openSideDrawer = function () {
     dispatch({
       type: types.categories.SET_OPEN_TASK_FORM,
@@ -73,7 +74,7 @@ export default function SelectedTask({ selectedTask }) {
           )}
         </div>
       </div>
-      <DeleteDialog
+      <DeleteTaskDialog
         showDialogFlag={showDialogFlag}
         resetShowDialogFlag={setShowDialogFlag}
         taskId={selectedTask.selectedTaskId}

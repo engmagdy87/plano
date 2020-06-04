@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
-import { registerUser } from '../../helpers/APIsHelper';
+import { categoriesActions } from '../../store/actions';
 import { setUserCookie } from '../../helpers/CookieHelper';
 import Header from '../shared/Header';
 import WhoAreYou from '../components/buildProfileSlides/WhoAreYou';
@@ -12,7 +12,6 @@ import WeddingBudget from '../components/buildProfileSlides/WeddingBudget';
 import Spinner from '../shared/Spinner';
 import '../../assets/styles/containers/build-profile.scss';
 import { Store } from '../../store/store';
-import types from '../../store/types';
 
 export default function BuildProfile() {
   const { state, dispatch } = useContext(Store);
@@ -29,28 +28,22 @@ export default function BuildProfile() {
   });
 
   useEffect(() => {
+    async function createUser() {
+      const response = await categoriesActions.createNewUser(
+        dispatch,
+        state.userPersona
+      );
+      setUserCookie(response.token, response.user.name);
+      history.push('/sections');
+      window.onpopstate = function () {
+        history.go(1);
+      };
+    }
     if (slideId === 6) {
       if (state.userPersona.marriageDate === null)
         delete state.userPersona.marriageDate;
-      registerUser(state.userPersona)
-        .then((res) => {
-          const data = res.data.register;
-          setUserCookie(data.token, data.user.name);
-          history.push('/sections');
-          window.onpopstate = function (event) {
-            history.go(1);
-          };
-        })
-        .catch(() => {
-          dispatch({
-            type: types.categories.SET_TOAST_DATA,
-            payload: {
-              show: true,
-              text: 'Unexpected error when register user, Please try again!',
-              status: 'error',
-            },
-          });
-        });
+
+      createUser();
     }
   }, [dispatch, history, slideId, state.userPersona]);
 

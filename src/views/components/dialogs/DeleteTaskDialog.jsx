@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { removeTask } from '../../../helpers/APIsHelper';
+import { categoriesActions } from '../../../store/actions';
 import { Store } from '../../../store/store';
-import types from '../../../store/types';
 
-export default function DeleteDialog({
+export default function DeleteTaskDialog({
   showDialogFlag,
   resetShowDialogFlag,
   taskId,
@@ -19,36 +18,10 @@ export default function DeleteDialog({
   useEffect(() => {
     setShow(showDialogFlag);
   }, [showDialogFlag]);
-  const deleteTask = () => {
-    removeTask(Number(taskId))
-      .then(() => {
-        dispatch({
-          type: types.categories.DELETE_TASK,
-          payload: {
-            deletedFromCategoryId: categoryId,
-            deletedTaskId: taskId,
-          },
-        });
-        handleClose();
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Task deleted successfully',
-            status: 'success',
-          },
-        });
-      })
-      .catch(() => {
-        dispatch({
-          type: types.categories.SET_TOAST_DATA,
-          payload: {
-            show: true,
-            text: 'Unexpected error when deleting task, Please try again!',
-            status: 'error',
-          },
-        });
-      });
+  const deleteTask = async () => {
+    await categoriesActions.deleteTask(dispatch, Number(taskId), categoryId);
+
+    handleClose();
   };
   return (
     <>

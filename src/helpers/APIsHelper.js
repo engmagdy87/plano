@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { QUERY, MUTATION } from '../graphql';
-import { getUserCookie } from '../helpers/CookieHelper';
+import { getUserCookie, getAdminCookie } from '../helpers/CookieHelper';
 import GRAPHQL_BASE_URL from '../constants/APIs';
 
 async function fetchCategories(checklistId) {
@@ -89,6 +89,18 @@ async function removeTask(taskId) {
     return response.data
 }
 
+async function deleteUser(userId) {
+    const userToken = getAdminCookie()
+    const response = await request({
+        operationName: "deleteUser",
+        query: MUTATION.DELETE_USER(),
+        variables: {
+            userId
+        }
+    }, userToken.token);
+    return response.data
+}
+
 async function setTaskDone(taskId) {
     const userToken = getUserCookie()
     const response = await request({
@@ -121,6 +133,22 @@ async function loginUser(data) {
     return response.data
 }
 
+async function loginAdmin(data) {
+    const response = await request({
+        operationName: "loginAdmin",
+        query: QUERY.LOGIN_ADMIN(data),
+    });
+    return response.data
+}
+
+async function listUsers() {
+    const adminToken = getAdminCookie()
+    const response = await request({
+        query: QUERY.LIST_USERS(),
+    }, adminToken.token);
+    return response.data
+}
+
 async function isIdentifierExists(identifier) {
     try {
         const response = await request({
@@ -138,11 +166,14 @@ export {
     updateTask,
     registerUser,
     loginUser,
+    loginAdmin,
     isIdentifierExists,
     removeTask,
     orderTaskById,
     setTaskDone,
-    setTaskUnDone
+    setTaskUnDone,
+    listUsers,
+    deleteUser
 }
 
 async function request(data, token) {

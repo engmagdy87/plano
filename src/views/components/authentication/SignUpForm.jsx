@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { isIdentifierExists } from '../../../helpers/APIsHelper';
+import { categoriesActions } from '../../../store/actions';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
@@ -35,7 +35,7 @@ export default function SignUpForm({ setShowLoading }) {
   const { register, handleSubmit, errors, watch } = useForm();
   const onSubmit = async (data) => {
     setShowLoading(true);
-    const result = await isIdentifierExists(data.identifier);
+    const result = await categoriesActions.isUserExists(data.identifier);
     setShowLoading(false);
 
     if (result === undefined)
@@ -72,7 +72,7 @@ export default function SignUpForm({ setShowLoading }) {
         <Form.Control
           type="text"
           name="identifier"
-          placeholder="Enter Task Name"
+          placeholder="Enter Your Email or Phone number"
           ref={register({ required: true, validate: validateIdentifier })}
         />
         {errors.identifier && (

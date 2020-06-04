@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import Header from '../shared/Header';
@@ -9,7 +9,7 @@ import TravelImage from '../../assets/images/travel.svg';
 import ShoppingImage from '../../assets/images/shopping-bag (1).svg';
 import '../../assets/styles/containers/sections.scss';
 import { Store } from '../../store/store';
-import { setChecklistCookie } from '../../helpers/CookieHelper';
+import { setChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
 import types from '../../store/types';
 
 export default function Sections() {
@@ -23,6 +23,12 @@ export default function Sections() {
     });
     history.push('/home');
   };
+
+  useEffect(() => {
+    const token = getUserCookie();
+    if (!token) history.push('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderContent = function () {
     const phoneAndTablet = window.matchMedia('(max-width:992px)');

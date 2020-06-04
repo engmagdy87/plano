@@ -16,9 +16,8 @@ import SortableList from '../components/SortableList';
 import SelectedTask from '../components/SelectedTask';
 import TaskDetailsModal from '../components/TaskDetailsModal';
 import Toast from '../shared/Toast';
-import { categoriesAction } from '../../store/actions';
+import { categoriesActions } from '../../store/actions';
 import { getChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
-import { orderTaskById } from '../../helpers/APIsHelper';
 import '../../assets/styles/containers/home.scss';
 import SideDrawer from '../shared/SideDrawer';
 import types from '../../store/types';
@@ -31,9 +30,9 @@ export default function Home() {
   );
   const [activeMenuItem, setActiveMenuItem] = useState(0);
   const [selectedTask, setSelectedTask] = useState(state.selectedTask);
-  const [toastData, setToastData] = useState(state.selectedTask);
+  const [toastData, setToastData] = useState();
 
-  const onSortEnd = ({
+  const onSortEnd = async ({
     data,
     categoryId,
     categoryIdInDataArray,
@@ -55,7 +54,7 @@ export default function Home() {
     );
 
     const payload = { categoryId, currentOrder, newOrder };
-    orderTaskById(payload);
+    await categoriesActions.orderTasks(payload);
   };
 
   const getChecklistId = function () {
@@ -75,7 +74,7 @@ export default function Home() {
     if (!checklistId && !token) history.push('/');
 
     async function fetchCategories(checklistId) {
-      await categoriesAction.fetchCategoriesData(dispatch, checklistId);
+      await categoriesActions.fetchCategoriesData(dispatch, checklistId);
     }
     fetchCategories(checklistId);
     // eslint-disable-next-line react-hooks/exhaustive-deps

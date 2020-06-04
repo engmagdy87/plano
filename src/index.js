@@ -9,6 +9,7 @@ import { StoreProvider } from './store/store';
 import Landing from './views/containers/Landing';
 import Home from './views/containers/Home';
 import BuildProfile from './views/containers/BuildProfile';
+import AdminPanel from './views/containers/AdminPanel';
 import Sections from './views/containers/Sections';
 import * as serviceWorker from './serviceWorker';
 
@@ -27,6 +28,9 @@ ReactDOM.render(
                 </Route>
                 <Route path="/sections">
                     <Sections />
+                </Route>
+                <Route exact path="/admin">
+                    <AdminPanel />
                 </Route>
                 <Route exact path="/">
                     <Landing />

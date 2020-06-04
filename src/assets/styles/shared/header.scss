@@ -119,6 +119,15 @@ $header-margin-right: 20px;
       display: none !important;
     }
   }
+  &__admin-logout {
+    border-color: #eeeeee !important;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $light-primary !important;
+      color: $dark-text !important;
+    }
+  }
 }
 
 .navbar-toggler {
