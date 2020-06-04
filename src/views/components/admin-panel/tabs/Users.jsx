@@ -14,7 +14,7 @@ export default function Users({ setShowUserDetails }) {
   const [renderedUsers, setRenderedUsers] = useState([]);
   const [windowId, setWindowId] = useState(0);
   const [activeId, setActiveId] = useState(0);
-  const [userId, setUserId] = useState(-1);
+  const [selectedUser, setSelectedUser] = useState(-1);
   const [showDialogFlag, setShowDialogFlag] = useState(false);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Users({ setShowUserDetails }) {
               alt="delete user"
               onClick={() => {
                 setShowDialogFlag(true);
-                setUserId(user.id);
+                setSelectedUser(user);
               }}
             />
           </CustomTooltip>
@@ -109,7 +109,7 @@ export default function Users({ setShowUserDetails }) {
       <DeleteUserDialog
         showDialogFlag={showDialogFlag}
         resetShowDialogFlag={setShowDialogFlag}
-        userId={userId}
+        user={selectedUser}
       />
     </div>
   );

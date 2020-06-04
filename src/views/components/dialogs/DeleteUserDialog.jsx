@@ -6,7 +6,7 @@ import { Store } from '../../../store/store';
 export default function DeleteUserDialog({
   showDialogFlag,
   resetShowDialogFlag,
-  userId,
+  user,
 }) {
   const { dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
@@ -18,8 +18,7 @@ export default function DeleteUserDialog({
     setShow(showDialogFlag);
   }, [showDialogFlag]);
   const deleteUser = async () => {
-    await panelActions.removeUser(dispatch, Number(userId));
-
+    await panelActions.removeUser(dispatch, Number(user.id));
     handleClose();
   };
   return (
@@ -28,7 +27,9 @@ export default function DeleteUserDialog({
         <Modal.Header closeButton>
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete user?</Modal.Body>
+        <Modal.Body>
+          Are you sure you want to delete {user.email || user.phone}?
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="light" onClick={handleClose}>
             Close
