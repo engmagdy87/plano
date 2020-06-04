@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Store } from '../../store/store';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
@@ -8,7 +9,6 @@ import LogoIcon from '../../assets/images/logo.png';
 import EgyptFlagIcon from '../../assets/images/egypt.png';
 import types from '../../store/types';
 import '../../assets/styles/shared/header.scss';
-import { useHistory } from 'react-router-dom';
 export default function Header({ activePath }) {
   const { dispatch } = useContext(Store);
   const userCookie = getUserCookie();

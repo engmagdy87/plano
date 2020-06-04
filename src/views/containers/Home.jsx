@@ -18,9 +18,9 @@ import TaskDetailsModal from '../components/TaskDetailsModal';
 import Toast from '../shared/Toast';
 import { categoriesActions } from '../../store/actions';
 import { getChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
-import '../../assets/styles/containers/home.scss';
 import SideDrawer from '../shared/SideDrawer';
 import types from '../../store/types';
+import '../../assets/styles/containers/home.scss';
 
 export default function Home() {
   const { state, dispatch } = useContext(Store);

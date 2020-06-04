@@ -11,6 +11,10 @@ export default function AdminPanelHeader() {
   const logoutAdmin = () => {
     removeAdminCookie();
     dispatch({
+      type: types.panel.SET_SELECTED_USER,
+      payload: {},
+    });
+    dispatch({
       type: types.panel.SET_TOKEN,
       payload: '',
     });

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getUserCookie } from '../../helpers/CookieHelper';
 import { getFirstLettersOfString } from '../../helpers/StringsHelper';
@@ -7,7 +7,7 @@ import {
   removeChecklistCookie,
 } from '../../helpers/CookieHelper';
 import '../../assets/styles/shared/avatar.scss';
-import { useState } from 'react';
+
 export default function Avatar({ device }) {
   const userCookie = getUserCookie();
   const history = useHistory();

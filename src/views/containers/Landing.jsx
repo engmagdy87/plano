@@ -2,10 +2,9 @@ import React, { Fragment, useContext } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Header from '../shared/Header';
 import heroImage from '../../assets/images/hero.jpeg';
-
-import '../../assets/styles/containers/landing.scss';
 import { Store } from '../../store/store';
 import types from '../../store/types';
+import '../../assets/styles/containers/landing.scss';
 
 export default function Landing() {
   const { dispatch } = useContext(Store);

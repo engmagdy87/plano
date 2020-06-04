@@ -24,7 +24,7 @@ export default function AdminPanel() {
   }, [state.token]);
   return (
     <div className="admin-panel-wrapper">
-      {adminToken === undefined ? (
+      {adminToken === undefined || adminToken === '' ? (
         <AdminLoginForm setShowLoadingSpinner={setShowLoadingSpinner} />
       ) : (
         <AdminControlPanel setShowLoadingSpinner={setShowLoadingSpinner} />

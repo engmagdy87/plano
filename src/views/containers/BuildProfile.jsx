@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
 import { categoriesActions } from '../../store/actions';
 import { setUserCookie } from '../../helpers/CookieHelper';
+import { Store } from '../../store/store';
 import Header from '../shared/Header';
 import WhoAreYou from '../components/buildProfileSlides/WhoAreYou';
 import WhatIsYourName from '../components/buildProfileSlides/WhatIsYourName';
@@ -11,7 +12,6 @@ import WhenSpecialDay from '../components/buildProfileSlides/WhenSpecialDay';
 import WeddingBudget from '../components/buildProfileSlides/WeddingBudget';
 import Spinner from '../shared/Spinner';
 import '../../assets/styles/containers/build-profile.scss';
-import { Store } from '../../store/store';
 
 export default function BuildProfile() {
   const { state, dispatch } = useContext(Store);

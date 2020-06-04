@@ -7,10 +7,10 @@ import ApartmentImage from '../../assets/images/Apartment.svg';
 import PartyImage from '../../assets/images/bachelorette-party.svg';
 import TravelImage from '../../assets/images/travel.svg';
 import ShoppingImage from '../../assets/images/shopping-bag (1).svg';
-import '../../assets/styles/containers/sections.scss';
 import { Store } from '../../store/store';
 import { setChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
 import types from '../../store/types';
+import '../../assets/styles/containers/sections.scss';
 
 export default function Sections() {
   const { dispatch } = useContext(Store);
