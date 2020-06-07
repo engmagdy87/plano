@@ -22,6 +22,9 @@
       margin-right: 10%;
     }
   }
+  &__status {
+    text-transform: capitalize;
+  }
 }
 
 .breadcrumb-item {

@@ -6,13 +6,28 @@ import { useHistory } from 'react-router-dom';
 import { formatDate } from '../../../../helpers/DatesHelper';
 export default function UserDetails({ setShowUserDetails }) {
   const { state } = useContext(Store);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    email: '',
+    phone: '',
+    joined_at: '',
+    last_login_at: '',
+    prepCost: '',
+    marriageDate: '',
+    gender: '',
+    status: '',
+  });
   const history = useHistory();
 
   useEffect(() => {
     if (Object.keys(state.selectedUser).length === 0) history.push('/admin');
     setUser(state.selectedUser);
   }, [history, state.selectedUser]);
+
+  const getSpouseType = (gender) => {
+    if (gender.toLowerCase() === 'male') return 'Groom';
+    if (gender.toLowerCase() === 'female') return 'Bride';
+    return;
+  };
 
   return (
     <div className="admin-panel-user-details-wrapper">
@@ -38,9 +53,9 @@ export default function UserDetails({ setShowUserDetails }) {
           </Col>
         </Row>
         <Row>
-          <Col className="d-flex admin-panel-user-details-wrapper__item">
+          <Col className="d-flex admin-panel-user-details-wrapper__item admin-panel-user-details-wrapper__status">
             <h4>Status</h4>
-            <h4>UNDEFINED</h4>
+            <h4>{user.status}</h4>
           </Col>
           <Col className="d-flex admin-panel-user-details-wrapper__item">
             <h4>Last Login Date</h4>
@@ -54,7 +69,7 @@ export default function UserDetails({ setShowUserDetails }) {
         <Row>
           <Col className="d-flex admin-panel-user-details-wrapper__item">
             <h4>Spouse Type</h4>
-            <h4>{user.spouseName}</h4>
+            <h4>{getSpouseType(user.gender)}</h4>
           </Col>
           <Col className="d-flex admin-panel-user-details-wrapper__item">
             <h4>Estimated Budget</h4>

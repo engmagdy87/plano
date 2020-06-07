@@ -11,8 +11,10 @@ import types from '../../../store/types';
 
 import '../../../assets/styles/components/admin-login-form.scss';
 
-export default function AdminLoginForm({ setShowLoadingSpinner }) {
-  const { dispatch } = useContext(Store);
+export default function AdminLoginForm({
+  setShowLoadingSpinner,
+  setAdminToken,
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [wrongData, setWrongData] = useState({ show: false, text: '' });
   const togglePasswordIcon = function () {
@@ -39,10 +41,7 @@ export default function AdminLoginForm({ setShowLoadingSpinner }) {
         setWrongData({ show: false, text: '' });
         const data = res.data.loginAdmin;
         setAdminCookie(data.token, data.user.name);
-        dispatch({
-          type: types.panel.SET_TOKEN,
-          payload: data.token,
-        });
+        setAdminToken(data.token);
       }
     } catch (error) {
       setShowLoadingSpinner(false);

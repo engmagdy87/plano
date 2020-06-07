@@ -1,16 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Table, Pagination } from 'react-bootstrap';
+import { Table, Pagination, Form } from 'react-bootstrap';
 import { Store } from '../../../../store/store';
 import { formatDate } from '../../../../helpers/DatesHelper';
 import DeleteIcon from '../../../../assets/images/admin-delete.svg';
 import ShowIcon from '../../../../assets/images/admin-eye.svg';
 import types from '../../../../store/types';
-import '../../../../assets/styles/components/admin-control-panel-users.scss';
 import DeleteUserDialog from '../../dialogs/DeleteUserDialog';
 import CustomTooltip from '../../../shared/CustomTooltip';
+import '../../../../assets/styles/components/admin-control-panel-users.scss';
+
 export default function Users({ setShowUserDetails }) {
-  const paginationSize = 10;
   const { state, dispatch } = useContext(Store);
+  const paginationValues = [10, 50, 100, 200];
+  const [paginationSize, setPaginationSize] = useState(paginationValues[0]);
   const [renderedUsers, setRenderedUsers] = useState([]);
   const [windowId, setWindowId] = useState(0);
   const [activeId, setActiveId] = useState(0);
@@ -19,7 +21,7 @@ export default function Users({ setShowUserDetails }) {
 
   useEffect(() => {
     setRenderedUsers(state.users.slice(windowId, windowId + paginationSize));
-  }, [setRenderedUsers, state.users, windowId]);
+  }, [paginationSize, setRenderedUsers, state.users, windowId]);
 
   const redirectToUserDetails = (user) => {
     dispatch({
@@ -32,7 +34,7 @@ export default function Users({ setShowUserDetails }) {
   const renderUsers = () =>
     renderedUsers.map((user, index) => (
       <tr key={index}>
-        <td>UNDEFINED</td>
+        <td>{user.status}</td>
         <td>{user.email || user.phone}</td>
         <td>{user.name}</td>
         <td>
@@ -72,6 +74,7 @@ export default function Users({ setShowUserDetails }) {
   };
 
   const renderPaginationItems = () => {
+    if (Math.ceil(state.users.length / paginationSize) === 1) return;
     const pages = [];
     for (let i = 0; i < Math.ceil(state.users.length / paginationSize); i++) {
       pages.push(
@@ -87,11 +90,29 @@ export default function Users({ setShowUserDetails }) {
     return pages;
   };
 
+  const changeTableSize = (e) => {
+    setPaginationSize(Number(e.target.value));
+  };
+
   return (
     <div className="admin-panel-users-wrapper">
-      <h1>
-        Users <span>({state.users.length})</span>
-      </h1>
+      <div className="admin-panel-users-wrapper__table-control">
+        <h1>
+          Users <span>({state.users.length})</span>
+        </h1>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>Users Per Page</Form.Label>
+          <Form.Control
+            as="select"
+            onChange={changeTableSize}
+            value={paginationSize}
+          >
+            {paginationValues.map((size) => (
+              <option key={size}>{size}</option>
+            ))}
+          </Form.Control>
+        </Form.Group>
+      </div>
       <Table responsive>
         <thead>
           <tr>

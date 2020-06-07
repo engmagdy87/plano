@@ -11,7 +11,7 @@ import '../../assets/styles/containers/admin-panel.scss';
 export default function AdminPanel() {
   const { state } = useContext(Store);
 
-  const [adminToken, setAdminToken] = useState('');
+  const [adminToken, setAdminToken] = useState(getAdminCookie());
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [toastData, setToastData] = useState();
 
@@ -19,15 +19,18 @@ export default function AdminPanel() {
     setToastData(state.toastData);
   }, [state.toastData]);
 
-  useEffect(() => {
-    setAdminToken(getAdminCookie());
-  }, [state.token]);
   return (
     <div className="admin-panel-wrapper">
-      {adminToken === undefined || adminToken === '' ? (
-        <AdminLoginForm setShowLoadingSpinner={setShowLoadingSpinner} />
+      {adminToken === undefined ? (
+        <AdminLoginForm
+          setShowLoadingSpinner={setShowLoadingSpinner}
+          setAdminToken={setAdminToken}
+        />
       ) : (
-        <AdminControlPanel setShowLoadingSpinner={setShowLoadingSpinner} />
+        <AdminControlPanel
+          setShowLoadingSpinner={setShowLoadingSpinner}
+          setAdminToken={setAdminToken}
+        />
       )}
       <Loading smallLoader showLoadingSpinner={showLoadingSpinner} />
       <Toast {...toastData} />

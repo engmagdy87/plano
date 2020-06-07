@@ -26,7 +26,6 @@ const checklist = {
 const panel = {
     'SET_USERS': 'panel/SET_USERS',
     'SET_ADMINS': 'panel/SET_ADMINS',
-    'SET_TOKEN': 'panel/SET_TOKEN',
     'SET_SELECTED_USER': 'panel/SET_SELECTED_USER',
     'DELETE_USER': 'panel/DELETE_USER',
 }

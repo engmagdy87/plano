@@ -11,7 +11,10 @@ import UserDetails from './tabs/UserDetails';
 
 import '../../../assets/styles/components/admin-control-panel.scss';
 
-export default function AdminControlPanel({ setShowLoadingSpinner }) {
+export default function AdminControlPanel({
+  setShowLoadingSpinner,
+  setAdminToken,
+}) {
   const { state, dispatch } = useContext(Store);
   const [showUserDetails, setShowUserDetails] = useState(false);
 
@@ -26,23 +29,12 @@ export default function AdminControlPanel({ setShowLoadingSpinner }) {
       setShowLoadingSpinner(false);
     }
     const token = getAdminCookie();
-    if (!token)
-      dispatch({
-        type: types.panel.SET_TOKEN,
-        payload: '',
-      });
-    else {
-      dispatch({
-        type: types.panel.SET_TOKEN,
-        payload: token,
-      });
-      fetchUsers();
-    }
+    if (token) fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="admin-control-panel-wrapper">
-      <AdminPanelHeader />
+      <AdminPanelHeader setAdminToken={setAdminToken} />
       <Tab.Container defaultActiveKey="users">
         <Row>
           <Col sm={2} className="admin-control-panel-wrapper__side-menu">

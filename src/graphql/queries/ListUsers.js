@@ -10,6 +10,7 @@ const LIST_USERS = () => `query{
       prepCost    
       last_login_at
       joined_at
+      status
     }
   }`;
 

@@ -1,7 +1,6 @@
 const panelState = {
     users: [],
     admins: [],
-    token: '',
     selectedUser: {}
 }
 

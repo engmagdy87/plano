@@ -6,8 +6,6 @@ export default function panelReducer(state, action) {
             return { ...state, users: action.payload };
         case types.panel.SET_ADMINS:
             return { ...state, admins: action.payload };
-        case types.panel.SET_TOKEN:
-            return { ...state, token: action.payload };
         case types.panel.SET_SELECTED_USER:
             return { ...state, selectedUser: action.payload };
         case types.panel.DELETE_USER:

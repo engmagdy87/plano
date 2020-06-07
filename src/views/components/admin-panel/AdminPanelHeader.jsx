@@ -6,7 +6,7 @@ import types from '../../../store/types';
 import LogoIcon from '../../../assets/images/logo.png';
 import '../../../assets/styles/shared/header.scss';
 
-export default function AdminPanelHeader() {
+export default function AdminPanelHeader({ setAdminToken }) {
   const { dispatch } = useContext(Store);
   const logoutAdmin = () => {
     removeAdminCookie();
@@ -14,10 +14,7 @@ export default function AdminPanelHeader() {
       type: types.panel.SET_SELECTED_USER,
       payload: {},
     });
-    dispatch({
-      type: types.panel.SET_TOKEN,
-      payload: '',
-    });
+    setAdminToken(undefined);
   };
 
   return (

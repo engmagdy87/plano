@@ -23,9 +23,6 @@ export default function Settings() {
         <td>{admin.email}</td>
         <td>{admin.password}</td>
         <td>
-          <CustomTooltip operation="Show">
-            <img src={ShowIcon} alt="show admin" />
-          </CustomTooltip>
           <CustomTooltip operation="Delete">
             <img src={DeleteIcon} alt="delete admin" />
           </CustomTooltip>
