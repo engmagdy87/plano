@@ -8,6 +8,7 @@ import {
   Breadcrumb,
 } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Header from '../shared/Header';
 import { Store } from '../../store/store';
 import Spinner from '../shared/Spinner';
@@ -18,11 +19,12 @@ import TaskDetailsModal from '../components/TaskDetailsModal';
 import Toast from '../shared/Toast';
 import { categoriesActions } from '../../store/actions';
 import { getChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
-import SideDrawer from '../shared/SideDrawer';
+import SideDrawer from '../components/SideDrawer';
 import types from '../../store/types';
 import '../../assets/styles/containers/home.scss';
 
 export default function Home() {
+  const { t } = useTranslation(['home']);
   const { state, dispatch } = useContext(Store);
   const history = useHistory();
   const [categoriesContent, setCategoryContent] = useState(
@@ -122,9 +124,9 @@ export default function Home() {
               <span role="img" aria-label="warning">
                 ⚠️
               </span>{' '}
-              Oops! Something went wrong!
+              {t('home:errorLoadingPage')}
             </p>
-            <p>Please try again</p>
+            <p>{t('home:errorLoadingPageAction')}</p>
           </div>
         </div>
       </Fragment>
@@ -151,7 +153,15 @@ export default function Home() {
               md={2}
               className="home-wrapper__content__menu d-sm-none d-md-block"
             >
-              <h4>Tasks Categories</h4>
+              <h4
+                className={`home-wrapper__content__menu__title ${
+                  state.lang === 'en'
+                    ? 'home-wrapper__content__menu__title--en'
+                    : 'home-wrapper__content__menu__title--ar'
+                }`}
+              >
+                {t('home:tasksCategories')}
+              </h4>
               <ul>
                 {categoriesContent.map((category) => (
                   <li
@@ -164,7 +174,9 @@ export default function Home() {
                         .scrollIntoView();
                       setActiveMenuItem(category.id);
                     }}
-                    className={activeMenuItem === category.id ? 'active' : ''}
+                    className={`${
+                      activeMenuItem === category.id ? 'active' : ''
+                    } ${state.lang === 'en' ? 'active--en' : 'active--ar'}`}
                   >
                     {category.title}
                   </li>
@@ -174,20 +186,47 @@ export default function Home() {
             <Col sm={12} md={6} className="home-wrapper__content__tasks">
               <Row className="home-wrapper__content__tasks__header">
                 <Col>
-                  <h4>{categoriesContent[0].checklist.title}</h4>
+                  <h4
+                    className={`home-wrapper__content__tasks__title ${
+                      state.lang === 'en'
+                        ? 'home-wrapper__content__tasks__title--en'
+                        : 'home-wrapper__content__tasks__title--ar'
+                    }`}
+                  >
+                    {categoriesContent[0].checklist.title}
+                  </h4>
                 </Col>
                 <Col>
-                  <Button className="d-block ml-auto" onClick={openTaskDrawer}>
-                    Add Task
+                  <Button
+                    className={`d-block ml-auto home-wrapper__content__tasks__cta ${
+                      state.lang === 'en'
+                        ? 'home-wrapper__content__tasks__cta--en'
+                        : 'home-wrapper__content__tasks__cta--ar'
+                    }`}
+                    onClick={openTaskDrawer}
+                  >
+                    {t('home:addTaskCTA')}
                   </Button>
                 </Col>
               </Row>
               <Row className="home-wrapper__content__tasks__progress">
-                <Col>
-                  <h6>Progress</h6>
+                <Col
+                  className={`home-wrapper__content__tasks__progress-title ${
+                    state.lang === 'en'
+                      ? 'home-wrapper__content__tasks__progress-title--en'
+                      : 'home-wrapper__content__tasks__progress-title--ar'
+                  }`}
+                >
+                  <h6>{t('home:progress')}</h6>
                 </Col>
-                <Col className="text-right">
-                  <h6>0 / 60 Tasks</h6>
+                <Col
+                  className={`text-right home-wrapper__content__tasks__progress-title ${
+                    state.lang === 'en'
+                      ? 'home-wrapper__content__tasks__progress-title--en'
+                      : 'home-wrapper__content__tasks__progress-title--ar'
+                  }`}
+                >
+                  <h6>0 / 60 {t('home:progressTasks')}</h6>
                 </Col>
               </Row>
               <ProgressBar now={0} />
@@ -197,7 +236,14 @@ export default function Home() {
               >
                 {categoriesContent.map((category, index) => (
                   <div key={category.id}>
-                    <h4 id={category.title.replace(/ |&/g, '_')}>
+                    <h4
+                      id={category.title.replace(/ |&/g, '_')}
+                      className={`home-wrapper__content__tasks__details__title ${
+                        state.lang === 'en'
+                          ? 'home-wrapper__content__tasks__details__title--en'
+                          : 'home-wrapper__content__tasks__details__title--ar'
+                      }`}
+                    >
                       {category.title}
                     </h4>
                     <SortableList
@@ -222,7 +268,7 @@ export default function Home() {
             >
               {Object.keys(selectedTask).length === 0 ? (
                 <div className="home-wrapper__content__placeholder">
-                  <h2>Task Details</h2>
+                  <h2>{t('home:taskDetails')}</h2>
                 </div>
               ) : (
                 <SelectedTask selectedTask={selectedTask} />

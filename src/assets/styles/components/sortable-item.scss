@@ -20,7 +20,12 @@ $top-value: 20%;
       margin-left: auto;
       font-size: 14px;
       font-weight: 500;
-      font-family: 'Montserrat Regular';
+      &--ar {
+        font-family: 'Cairo Regular';
+      }
+      &--en {
+        font-family: 'Montserrat Regular';
+      }
       @media (max-width: 992px) {
         width: 85%;
         padding-right: 20px !important;

@@ -3,9 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  p {
+  &__text {
     font-size: 1.3rem;
-    font-family: 'Montserrat SemiBold';
+    &--ar {
+      font-family: 'Cairo SemiBold';
+    }
+    &--en {
+      font-family: 'Montserrat SemiBold';
+    }
   }
 }
 

@@ -27,9 +27,7 @@ export default function DeleteUserDialog({
         <Modal.Header closeButton>
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          Are you sure you want to delete {user.email || user.phone}?
-        </Modal.Body>
+        <Modal.Body>Are you sure you want to delete {user.email}?</Modal.Body>
         <Modal.Footer>
           <Button variant="light" onClick={handleClose}>
             Close

@@ -4,7 +4,6 @@ const REGISTER = () => `mutation register($data:RegisterInput!) {
         id
         email
         name
-        phone
         createdAt
       }
       token

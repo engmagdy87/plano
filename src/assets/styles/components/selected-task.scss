@@ -4,7 +4,7 @@
   display: block !important;
   background-color: transparent;
   padding-top: 30px;
-  div {
+  &__header {
     display: flex;
     justify-content: flex-end;
     @media (max-width: 992px) {
@@ -14,16 +14,22 @@
       margin: 10px;
       cursor: pointer;
     }
-    button {
+    &__button {
       height: 20px !important;
-      padding-top: 1px;
-      padding-bottom: 1px;
-      margin: 10px;
-      font-size: 10px;
+      padding-top: 1px !important;
+      padding-bottom: 1px !important;
+      margin: 10px !important;
+      font-size: 10px !important;
       font-weight: 600 !important;
-      background-color: #fff;
-      color: #94a1c1;
+      background-color: #fff !important;
+      color: #94a1c1 !important;
       border-radius: 3px !important;
+      &--ar {
+        font-family: 'Cairo Bold' !important;
+      }
+      &--en {
+        font-family: 'Montserrat Bold' !important;
+      }
     }
     .btn-outline-dark {
       border-color: #343a40;
@@ -36,12 +42,17 @@
       color: #c7cedf;
     }
   }
-  h3 {
+  &__task-title {
     color: $primary;
-    font-family: 'Montserrat Bold';
     font-size: 18px;
     margin-top: 37px;
     margin-left: 30px;
+    &--ar {
+      font-family: 'Cairo Bold';
+    }
+    &--en {
+      font-family: 'Montserrat Bold';
+    }
     @media (max-width: 992px) {
       font-size: 1.2rem;
     }
@@ -52,9 +63,14 @@
     background-color: #f0ebf4;
     color: #94a1c1;
     width: fit-content;
-    font-family: 'Montserrat SemiBold';
     margin: 15px 0 30px 30px;
     font-size: 12px;
+    &--ar {
+      font-family: 'Cairo SemiBold';
+    }
+    &--en {
+      font-family: 'Montserrat SemiBold';
+    }
     @media (max-width: 992px) {
       padding: 5px;
     }
@@ -66,29 +82,40 @@
     justify-content: flex-start !important;
     width: 50%;
     margin-left: 25px;
-    div:nth-child(1) {
-      display: block;
+    &__img {
+      display: block !important;
       img {
         width: 30px;
         margin-right: 15px;
       }
     }
-    div:nth-child(2) {
-      display: block;
-      p {
+    &__text {
+      display: block !important;
+      &__title {
+        color: $menu-item;
+        font-size: 12px;
+        margin-bottom: 5px;
+        &--ar {
+          font-family: 'Cairo Bold';
+        }
+        &--en {
+          font-family: 'Montserrat Medium';
+        }
         @media (max-width: 992px) {
           font-size: 1rem;
         }
-        &:nth-child(1) {
-          color: $menu-item;
-          font-family: 'Montserrat Medium';
-          font-size: 12px;
-          margin-bottom: 5px;
+      }
+      &__date {
+        color: black;
+        font-size: 14px;
+        &--ar {
+          font-family: 'Cairo SemiBold';
         }
-        &:nth-child(2) {
-          color: black;
+        &--en {
           font-family: 'Montserrat SemiBold';
-          font-size: 14px;
+        }
+        @media (max-width: 992px) {
+          font-size: 1rem;
         }
       }
     }

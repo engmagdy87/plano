@@ -1,0 +1,15 @@
+{
+  "errorLoadingPage": "Oops! Something went wrong!",
+  "errorLoadingPageAction": "Please try again",
+  "tasksCategories": "Tasks Categories",
+  "addTaskCTA": "Add Task",
+  "progress": "Progress",
+  "progressTasks": "Tasks",
+  "taskDetails": "Task Details",
+  "premium": "PREMIUM",
+  "editTask": "Edit",
+  "deleteTask": "Delete",
+  "estimatedCost": "Estimated Cost",
+  "dueDate": "Due Date",
+  "egp": "EGP"
+}

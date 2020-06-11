@@ -5,17 +5,19 @@ import React, {
   useContext,
   useRef,
 } from 'react';
-import '../../assets/styles/shared/side-drawer.scss';
-import { Store } from '../../store/store';
-import types from '../../store/types';
-import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
+import { useTranslation } from 'react-i18next';
+import { Form, Button, Container, Row, Col, InputGroup } from 'react-bootstrap';
+import { Store } from '../../store/store';
 import { useForm } from 'react-hook-form';
 import { categoriesActions } from '../../store/actions';
-import Loading from './Loading';
+import Loading from '../shared/Loading';
+import types from '../../store/types';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../../assets/styles/shared/side-drawer.scss';
 
 export default function SideDrawer() {
+  const { t } = useTranslation(['task']);
   const { state, dispatch } = useContext(Store);
   const [selectedTask, setSelectedTask] = useState({
     category: { id: '-1', title: '' },
@@ -80,7 +82,12 @@ export default function SideDrawer() {
   const addTask = async (payload) => {
     setShowLoadingSpinner(true);
     try {
-      await categoriesActions.createNewTask(dispatch, refactorPayload(payload));
+      await categoriesActions.createNewTask(
+        dispatch,
+        refactorPayload(payload),
+        t('task:taskCreatedSuccessfully'),
+        t('task:somethingWrong')
+      );
       setShowLoadingSpinner(false);
       resetForm();
       if (submitOption === 'save') closeTaskDrawer();
@@ -96,7 +103,9 @@ export default function SideDrawer() {
         dispatch,
         taskId,
         payload.categoryId,
-        refactorPayload(payload)
+        refactorPayload(payload),
+        t('task:taskUpdatedSuccessfully'),
+        t('task:somethingWrong')
       );
       setShowLoadingSpinner(false);
       resetForm();
@@ -158,11 +167,15 @@ export default function SideDrawer() {
         >
           <Row className="side-drawer-wrapper__content__header">
             <Col
-              className="d-flex justify-content-left align-items-center side-drawer-wrapper__content__header-title"
+              className={`d-flex justify-content-left align-items-center side-drawer-wrapper__content__header-title ${
+                state.lang === 'en'
+                  ? 'side-drawer-wrapper__content__header-title--en'
+                  : 'side-drawer-wrapper__content__header-title--ar'
+              }`}
               sm={{ span: 3, offset: 1 }}
               xs={5}
             >
-              {operation} Task
+              {operation === 'edit' ? t('task:edit') : t('task:add')}
             </Col>
             <Col
               className="d-flex justify-content-center align-items-center"
@@ -172,9 +185,13 @@ export default function SideDrawer() {
               <Button
                 variant="outline-dark"
                 disabled
-                className="side-drawer-wrapper__content__header__premium"
+                className={`side-drawer-wrapper__content__header__premium ${
+                  state.lang === 'en'
+                    ? 'side-drawer-wrapper__content__header__premium--en'
+                    : 'side-drawer-wrapper__content__header__premium--ar'
+                }`}
               >
-                PREMIUM
+                {t('task:premium')}
               </Button>
             </Col>
             <Col xs={3} sm={6}>
@@ -189,26 +206,52 @@ export default function SideDrawer() {
           <div className="side-drawer-wrapper__divider"></div>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group controlId="name">
-              <Form.Label className="form-label-name">Name</Form.Label>
+              <Form.Label
+                className={`form-label-name ${
+                  state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
+                }`}
+              >
+                {t('task:name')}
+              </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Task Name"
+                placeholder={t('task:namePlaceholder')}
                 name="title"
                 ref={register({ required: true, maxLength: 80 })}
+                className={`${
+                  state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+                }`}
               />
               {errors.title && (
-                <span className="error-message">Invalid Task Name</span>
+                <span
+                  className={`error-message ${
+                    state.lang === 'en'
+                      ? 'error-message--en'
+                      : 'error-message--ar'
+                  }`}
+                >
+                  {t('task:invalidTaskName')}
+                </span>
               )}
             </Form.Group>
             <Form.Group controlId="category">
-              <Form.Label className="form-label-category">Category</Form.Label>
+              <Form.Label
+                className={`form-label-category ${
+                  state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
+                }`}
+              >
+                {t('task:category')}
+              </Form.Label>
               <Form.Control
                 as="select"
                 name="categoryId"
                 ref={register({ required: true, validate: validateCategory })}
+                className={`${
+                  state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+                }`}
               >
                 <option key="-1" value="-1">
-                  --select category
+                  {t('task:selectCategoryPlaceholder')}
                 </option>
                 {state.categoriesData.map((item) => (
                   <option key={item.id} value={item.id}>
@@ -217,42 +260,83 @@ export default function SideDrawer() {
                 ))}
               </Form.Control>
               {errors.categoryId && (
-                <span className="error-message">Choose Category</span>
+                <span
+                  className={`error-message ${
+                    state.lang === 'en'
+                      ? 'error-message--en'
+                      : 'error-message--ar'
+                  }`}
+                >
+                  {t('task:chooseCategory')}
+                </span>
               )}
             </Form.Group>
             <Form.Group controlId="cost">
-              <Form.Label>Estimated Cost</Form.Label>
+              <Form.Label
+                className={`${
+                  state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
+                }`}
+              >
+                {t('task:estimatedCost')}
+              </Form.Label>
               <InputGroup>
                 <Form.Control
                   type="number"
-                  placeholder="Enter Task Cost"
+                  placeholder={t('task:estimatedCostPlaceholder')}
                   name="cost"
                   ref={register({ required: false })}
+                  className={`${
+                    state.lang === 'en'
+                      ? 'form-control--en'
+                      : 'form-control--ar'
+                  }`}
                 />
                 <InputGroup.Prepend>
-                  <InputGroup.Text id="inputGroupPrepend">EGP</InputGroup.Text>
+                  <InputGroup.Text id="inputGroupPrepend">
+                    {t('task:egp')}
+                  </InputGroup.Text>
                 </InputGroup.Prepend>
               </InputGroup>
             </Form.Group>
             <Form.Group style={{ marginBottom: '8px' }}>
-              <Form.Label>Due Date</Form.Label>
+              <Form.Label
+                className={`${
+                  state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
+                }`}
+              >
+                {t('task:dueDate')}
+              </Form.Label>
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                className="bootstrap-border"
-                placeholderText="Choose Due Date"
+                className={`bootstrap-border ${
+                  state.lang === 'en'
+                    ? 'bootstrap-border--en'
+                    : 'bootstrap-border--ar'
+                }`}
+                placeholderText={t('task:dueDatePlaceholder')}
                 minDate={new Date()}
               />
             </Form.Group>
 
             <Form.Group controlId="note">
-              <Form.Label>Note</Form.Label>
+              <Form.Label
+                className={`${
+                  state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
+                }`}
+              >
+                {t('task:notes')}
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows="3"
                 name="note"
+                placeholder={t('task:notesPlaceholder')}
                 ref={register({ required: false })}
+                className={`${
+                  state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+                }`}
               />
             </Form.Group>
             <Container>
@@ -264,9 +348,13 @@ export default function SideDrawer() {
                     onClick={() => setSubmitOption('saveAndCreate')}
                     className={`${
                       operation === 'edit' ? 'form-action--hide-element' : ''
+                    } ${
+                      state.lang === 'en'
+                        ? 'form-action--en'
+                        : 'form-action--ar'
                     }`}
                   >
-                    Save & create another
+                    {t('task:saveAndCreate')}
                   </Button>
                 </Col>
                 <Col md={5} sm={12}>
@@ -274,8 +362,13 @@ export default function SideDrawer() {
                     variant="outline-primary"
                     type="submit"
                     onClick={() => setSubmitOption('save')}
+                    className={`${
+                      state.lang === 'en'
+                        ? 'form-action--en'
+                        : 'form-action--ar'
+                    }`}
                   >
-                    Save
+                    {t('task:save')}
                   </Button>
                 </Col>
               </Row>

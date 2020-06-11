@@ -24,7 +24,12 @@ $header-height: 56px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
     font-size: 0.9rem;
-    font-family: 'Montserrat Regular';
+    &--ar {
+      font-family: 'Cairo Regular';
+    }
+    &--en {
+      font-family: 'Montserrat Regular';
+    }
     text-align: center;
     transition: all 0.3s ease;
     text-transform: uppercase;

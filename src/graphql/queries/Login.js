@@ -4,7 +4,6 @@ const LOGIN = ({ identifier, password }) => `query login{
       user{
         id
         email
-        phone
         name
       }
     }

@@ -3,8 +3,13 @@
 .authentication-form-wrapper {
   &__span-text {
     text-align: center;
-    font-family: 'Helvetica Neue Medium';
     color: #5c5c69;
+    &--ar {
+      font-family: 'Cairo Bold' !important;
+    }
+    &--en {
+      font-family: 'Helvetica Neue Medium' !important;
+    }
     p {
       margin-bottom: 10px;
       font-size: 16px;
@@ -29,8 +34,8 @@
     color: white;
     display: flex;
     cursor: pointer;
-    font-family: 'Helvetica Neue Medium';
     font-size: 18px;
+    font-family: 'Helvetica Neue Medium' !important;
     @media (max-width: 992px) {
       max-width: 80% !important;
       margin-left: 10%;
@@ -88,22 +93,48 @@
     color: $menu-item;
     text-align: right;
     display: block;
+    &--ar {
+      font-family: 'Cairo Regular';
+    }
+    &--en {
+      font-family: 'Montserrat Regular';
+    }
   }
   &__terms {
     font-size: 10px;
     color: $menu-item;
     text-align: center;
     display: block;
+    &--ar {
+      font-family: 'Cairo Regular';
+    }
+    &--en {
+      font-family: 'Montserrat Regular';
+    }
+  }
+  &__title {
+    &--ar {
+      font-family: 'Cairo Regular';
+    }
+    &--en {
+      font-family: 'Montserrat Regular';
+    }
   }
   &__account {
     font-size: 12px;
     color: $menu-item;
     text-align: center;
     display: block;
+    &--ar {
+      font-family: 'Cairo Bold' !important;
+    }
+    &--en {
+      font-family: 'Helvetica Neue Bold' !important;
+    }
     button {
       color: inherit !important;
-      font-size: 12px;
-      padding: 6px;
+      font-size: 12px !important;
+      padding: 6px !important;
     }
   }
 }
@@ -111,8 +142,13 @@
 .auth-form-label {
   margin: 10px 0 !important;
   color: $menu-item !important;
-  font-family: 'Montserrat Medium' !important;
   font-size: 12px !important;
+  &--ar {
+    font-family: 'Cairo Bold' !important;
+  }
+  &--en {
+    font-family: 'Montserrat Medium' !important;
+  }
 }
 
 .auth-form-input {
@@ -125,14 +161,18 @@
   @media (max-width: 992px) {
     margin-bottom: 80px !important;
   }
-
-  button {
+  &__button {
     font-size: 1rem;
     padding: 6px 30px;
     color: $dark-text !important;
     background-color: $yellow-background !important;
     border-color: $yellow-background !important;
-    font-family: 'Helvetica Neue Bold';
+    &--ar {
+      font-family: 'Cairo Bold' !important;
+    }
+    &--en {
+      font-family: 'Helvetica Neue Bold' !important;
+    }
     &:hover {
       background-color: #f2c249 !important;
       border-color: #f2c249;
@@ -164,4 +204,13 @@
 .modal-header {
   border-bottom: none !important;
   padding: 16px 30px !important;
+}
+
+.form-control {
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Montserrat Regular';
+  }
 }

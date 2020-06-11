@@ -9,30 +9,45 @@
   &__text {
     display: block;
     margin: auto;
-    h1 {
-      font-family: 'Montserrat SemiBold';
+    &__hero {
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
+        font-family: 'Montserrat SemiBold';
+      }
       font-size: 43px;
       line-height: 60px;
     }
-    h4 {
-      font-family: 'Montserrat Regular';
-    }
-    button {
-      color: black !important;
-      font-weight: bolder;
-      border-color: $yellow-background;
-      padding: 14px 37px;
-      &:hover {
-        background-color: $yellow-background !important;
-        border-color: $yellow-background;
+    &__slogan {
+      &--ar {
+        font-family: 'Cairo Regular';
       }
+      &--en {
+        font-family: 'Montserrat Regular';
+      }
+    }
+  }
+  &__sign-up-button {
+    color: black !important;
+    font-weight: bolder !important;
+    border-color: $yellow-background !important;
+    padding: 14px 37px !important;
+    &--ar {
+      font-family: 'Cairo SemiBold' !important;
+    }
+    &--en {
+      font-family: 'Montserrat SemiBold' !important;
+    }
+    &:hover {
+      background-color: $yellow-background !important;
+      border-color: $yellow-background !important;
     }
   }
   &__hero-image {
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: red;
     img {
       width: 100%;
     }

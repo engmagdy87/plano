@@ -22,6 +22,8 @@ export default function userReducer(state, action) {
             return state;
         case types.user.SET_IS_USER_AUTH_FORM:
             return { ...state, userAuthenticationForm: action.payload };
+        case types.user.SET_LANG:
+            return { ...state, lang: action.payload };
         default:
             return state;
     }

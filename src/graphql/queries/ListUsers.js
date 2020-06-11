@@ -3,7 +3,6 @@ const LIST_USERS = () => `query{
       id
       email
       name
-      phone
       spouseName
       gender
       marriageDate

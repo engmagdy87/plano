@@ -3,19 +3,27 @@
 .when-special-day-wrapper {
   &__title {
     margin-top: 8%;
-    div:nth-child(1) {
-      img {
-        width: 50px;
-      }
+    &__hero {
+      width: 50px;
     }
-    div:nth-child(2) {
+    &__text {
       margin-top: 20px;
-      p:nth-child(1) {
-        font-size: 1.3rem;
+    }
+    &__couples {
+      font-size: 1.3rem;
+      &--ar {
+        font-family: 'Cairo Regular';
+      }
+      &--en {
         font-family: 'Montserrat Regular';
       }
-      p:nth-child(2) {
-        font-size: 1.5rem;
+    }
+    &__date {
+      font-size: 1.5rem;
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
         font-family: 'Montserrat SemiBold';
       }
     }
@@ -29,7 +37,12 @@
     }
     &__form-action {
       margin-top: 60px !important;
-      font-family: 'Helvetica Neue Bold';
+      &--ar {
+        font-family: 'Cairo Bold';
+      }
+      &--en {
+        font-family: 'Helvetica Neue Bold';
+      }
       @media (max-width: 992px) {
         margin-top: 40px !important;
         margin-bottom: 80px !important;
@@ -56,7 +69,6 @@
     margin-left: 8px;
     margin-top: 15px;
     color: #94a1c1;
-    font-family: 'Montserrat Regular';
     cursor: pointer;
     @media (max-width: 992px) {
       width: 100% !important;
@@ -81,6 +93,22 @@
       }
     }
   }
+  &__label {
+    &--ar {
+      font-family: 'Cairo Regular';
+    }
+    &--en {
+      font-family: 'Montserrat Regular';
+    }
+  }
+  &__date-label {
+    &--ar {
+      font-family: 'Cairo SemiBold';
+    }
+    &--en {
+      font-family: 'Montserrat Medium';
+    }
+  }
   input:checked ~ label {
     &:after {
       background-color: #e9ebf2;
@@ -100,5 +128,14 @@
       width: 28px;
       height: 28px;
     }
+  }
+}
+
+.bootstrap-border {
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Helvetica Neue Medium';
   }
 }

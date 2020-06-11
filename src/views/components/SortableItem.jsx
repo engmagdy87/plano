@@ -61,6 +61,10 @@ const SortableItem = SortableElement(({ data }) => {
         <div
           className={`input-group__text ${
             isTaskDone ? 'input-group__stripe-text' : ''
+          } ${
+            state.lang === 'en'
+              ? 'input-group__text--en'
+              : 'input-group__text--ar'
           }`}
           onClick={() => {
             dispatch({

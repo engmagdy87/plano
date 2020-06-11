@@ -32,6 +32,14 @@
   font-family: 'Cairo Bold';
   src: url('../fonts/Cairo-Bold.ttf');
 }
+@font-face {
+  font-family: 'Cairo Regular';
+  src: url('../fonts/Cairo-Regular.ttf');
+}
+@font-face {
+  font-family: 'Cairo SemiBold';
+  src: url('../fonts/Cairo-SemiBold.ttf');
+}
 
 body {
   margin: 0 !important;
@@ -68,10 +76,22 @@ input {
 .error-message {
   color: red;
   font-size: 12px;
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Montserrat Regular';
+  }
 }
 
 .account-error-message {
   color: red;
   font-size: 14px;
   margin-top: 20px;
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Montserrat Regular';
+  }
 }

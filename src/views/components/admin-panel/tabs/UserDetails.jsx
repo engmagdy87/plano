@@ -8,7 +8,6 @@ export default function UserDetails({ setShowUserDetails }) {
   const { state } = useContext(Store);
   const [user, setUser] = useState({
     email: '',
-    phone: '',
     joined_at: '',
     last_login_at: '',
     prepCost: '',
@@ -41,7 +40,7 @@ export default function UserDetails({ setShowUserDetails }) {
         <Row>
           <Col className="d-flex admin-panel-user-details-wrapper__item">
             <h4>Account ID</h4>
-            <h4>{user.email || user.phone}</h4>
+            <h4>{user.email}</h4>
           </Col>
           <Col className="d-flex admin-panel-user-details-wrapper__item">
             <h4>Join Date</h4>

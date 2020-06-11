@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Row, Col, Button } from 'react-bootstrap';
 import DollarImage from '../../../assets/images/dollar.svg';
 import '../../../assets/styles/components/wedding-budget.scss';
@@ -14,7 +15,8 @@ export default function WeddingBudget({ onClickButton }) {
     { key: '300,000', value: 300000 },
   ];
 
-  const { dispatch } = useContext(Store);
+  const { t } = useTranslation(['build-profile']);
+  const { state, dispatch } = useContext(Store);
   const [activeBudgetItem, setActiveBudgetItem] = useState(0);
 
   const handleNext = function () {
@@ -36,8 +38,25 @@ export default function WeddingBudget({ onClickButton }) {
         }`}
         onClick={() => setActiveBudgetItem(budget.value)}
       >
-        <p>more than</p>
-        <p>{budget.key} EGP</p>
+        <p
+          className={`wedding-budget-wrapper__list__item__more-than ${
+            state.lang === 'en'
+              ? 'wedding-budget-wrapper__list__item__more-than--en'
+              : 'wedding-budget-wrapper__list__item__more-than--ar'
+          }`}
+        >
+          {t('build-profile:moreThan')}
+        </p>
+        <p
+          className={`wedding-budget-wrapper__list__item__budget
+__budget ${
+            state.lang === 'en'
+              ? 'wedding-budget-wrapper__list__item__budget--en'
+              : 'wedding-budget-wrapper__list__item__budget--ar'
+          }`}
+        >
+          {budget.key} {t('build-profile:egp')}
+        </p>
       </div>
     ));
   };
@@ -45,10 +64,25 @@ export default function WeddingBudget({ onClickButton }) {
     <div className="wedding-budget-wrapper">
       <Row className="wedding-budget-wrapper__title">
         <Col xs={12} className="text-center">
-          <img src={DollarImage} alt="waving hand" />
+          <img
+            className="wedding-budget-wrapper__title__hero"
+            src={DollarImage}
+            alt="waving hand"
+          />
         </Col>
-        <Col xs={12} className="text-center">
-          <span>How much would you spend on wedding perpetration?</span>
+        <Col
+          xs={12}
+          className="text-center wedding-budget-wrapper__title__text"
+        >
+          <span
+            className={`${
+              state.lang === 'en'
+                ? 'wedding-budget-wrapper__title__text--en'
+                : 'wedding-budget-wrapper__title__text--ar'
+            }`}
+          >
+            {t('build-profile:howMuchWouldYouSpendOnWeddingperpetration')}
+          </span>
         </Col>
       </Row>
       <Row className="wedding-budget-wrapper__list">
@@ -57,7 +91,16 @@ export default function WeddingBudget({ onClickButton }) {
         </Col>
         <Col>
           <div className="wedding-budget-wrapper__list__action">
-            <Button onClick={handleNext}>Next</Button>
+            <Button
+              className={`${
+                state.lang === 'en'
+                  ? 'wedding-budget-wrapper__list__action--en'
+                  : 'wedding-budget-wrapper__list__action--ar'
+              }`}
+              onClick={handleNext}
+            >
+              {t('build-profile:next')}
+            </Button>
           </div>
         </Col>
       </Row>

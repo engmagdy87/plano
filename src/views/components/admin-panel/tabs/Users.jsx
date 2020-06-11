@@ -35,7 +35,7 @@ export default function Users({ setShowUserDetails }) {
     renderedUsers.map((user, index) => (
       <tr key={index}>
         <td>{user.status}</td>
-        <td>{user.email || user.phone}</td>
+        <td>{user.email}</td>
         <td>{user.name}</td>
         <td>
           {user.joined_at !== '' ? formatDate(new Date(user.joined_at)) : ''}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal, Button } from 'react-bootstrap';
 import { categoriesActions } from '../../../store/actions';
 import { Store } from '../../../store/store';
@@ -9,6 +10,7 @@ export default function DeleteTaskDialog({
   taskId,
   categoryId,
 }) {
+  const { t } = useTranslation(['task']);
   const { dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
   const handleClose = () => {
@@ -27,15 +29,15 @@ export default function DeleteTaskDialog({
     <>
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Task</Modal.Title>
+          <Modal.Title>{t('task:deleteTitle')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete task?</Modal.Body>
+        <Modal.Body>{t('task:deleteConfirmationQuestion')}</Modal.Body>
         <Modal.Footer>
           <Button variant="light" onClick={handleClose}>
-            Close
+            {t('task:deleteConfirmationNegativeAnswer')}
           </Button>
           <Button variant="danger" onClick={deleteTask}>
-            Delete
+            {t('task:deleteConfirmationPositiveAnswer')}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { categoriesActions } from '../../../store/actions';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
@@ -10,7 +11,8 @@ import types from '../../../store/types';
 
 export default function SignUpForm({ setShowLoading }) {
   const history = useHistory();
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
+  const { t } = useTranslation(['auth']);
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
   const [wrongData, setWrongData] = useState({ show: false, text: '' });
@@ -41,7 +43,7 @@ export default function SignUpForm({ setShowLoading }) {
     if (result === undefined)
       setWrongData({
         show: true,
-        text: 'Unexpected error when register, Please try again!',
+        text: t('auth:unexpectedSignUpError'),
       });
     else if (result) {
       setWrongData({ show: false, text: '' });
@@ -66,34 +68,62 @@ export default function SignUpForm({ setShowLoading }) {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Form.Group controlId="name" className="auth-form-input">
-        <Form.Label className="auth-form-label">
-          Email or Phone number
+        <Form.Label
+          className={`auth-form-label ${
+            state.lang === 'en' ? 'auth-form-label--en' : 'auth-form-label--ar'
+          }`}
+        >
+          {t('auth:identifierLabel')}
         </Form.Label>
         <Form.Control
           type="text"
           name="identifier"
-          placeholder="Enter Your Email or Phone number"
+          placeholder={t('auth:identifierPlaceholder')}
           ref={register({ required: true, validate: validateIdentifier })}
+          className={`${
+            state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+          }`}
         />
         {errors.identifier && (
-          <span className="error-message">Invalid Email or Phone Number</span>
+          <span
+            className={`error-message ${
+              state.lang === 'en' ? 'error-message--en' : 'error-message--ar'
+            }`}
+          >
+            {t('auth:invalidIdentifier')}
+          </span>
         )}
         {isIdentifierExistsFlag && (
-          <span className="error-message">Email or Phone Number exists</span>
+          <span
+            className={`error-message ${
+              state.lang === 'en' ? 'error-message--en' : 'error-message--ar'
+            }`}
+          >
+            {t('auth:existingIdentifier')}
+          </span>
         )}
       </Form.Group>
       <Form.Group controlId="signup-password" className="auth-form-input">
-        <Form.Label className="auth-form-label">Password</Form.Label>
+        <Form.Label
+          className={`auth-form-label ${
+            state.lang === 'en' ? 'auth-form-label--en' : 'auth-form-label--ar'
+          }`}
+        >
+          {t('auth:passwordLabel')}
+        </Form.Label>
         <InputGroup>
           <Form.Control
             type={showPassword ? 'text' : 'password'}
-            placeholder="Enter Your Password"
+            placeholder={t('auth:passwordPlaceholder')}
             name="password"
             ref={register({
               required: true,
               minLength: 8,
               pattern: /^[a-zA-Z0-9]+$/,
             })}
+            className={`${
+              state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+            }`}
           />
           <InputGroup.Prepend>
             <InputGroup.Text
@@ -110,13 +140,25 @@ export default function SignUpForm({ setShowLoading }) {
         </InputGroup>
       </Form.Group>
       <Form.Group controlId="password" className="auth-form-input">
-        <Form.Label className="auth-form-label">
-          <Form.Label className="auth-form-label">Re-type Password</Form.Label>
+        <Form.Label
+          className={`auth-form-label ${
+            state.lang === 'en' ? 'auth-form-label--en' : 'auth-form-label--ar'
+          }`}
+        >
+          <Form.Label
+            className={`auth-form-label ${
+              state.lang === 'en'
+                ? 'auth-form-label--en'
+                : 'auth-form-label--ar'
+            }`}
+          >
+            {t('auth:retypePasswordLabel')}
+          </Form.Label>
         </Form.Label>
         <InputGroup>
           <Form.Control
             type={showRePassword ? 'text' : 'password'}
-            placeholder="Enter Your Password again"
+            placeholder={t('auth:retypePasswordPlaceholder')}
             name="confirmPassword"
             ref={register({
               required: true,
@@ -126,6 +168,9 @@ export default function SignUpForm({ setShowLoading }) {
                 return value === watch('password'); // value is from confirm password and watch will return value from password
               },
             })}
+            className={`${
+              state.lang === 'en' ? 'form-control--en' : 'form-control--ar'
+            }`}
           />
           <InputGroup.Prepend>
             <InputGroup.Text id="inputGroupPrepend">
@@ -140,18 +185,41 @@ export default function SignUpForm({ setShowLoading }) {
           </InputGroup.Prepend>
         </InputGroup>
         {errors.confirmPassword && (
-          <p className="error-message">Invalid Password</p>
+          <p
+            className={`error-message ${
+              state.lang === 'en' ? 'error-message--en' : 'error-message--ar'
+            }`}
+          >
+            {t('auth:invalidPassword')}
+          </p>
         )}
         <div style={{ marginTop: '5px' }}>
           {wrongData.show && (
-            <p className="account-error-message">{wrongData.text}</p>
+            <p
+              className={`account-error-message ${
+                state.lang === 'en'
+                  ? 'account-error-message--en'
+                  : 'account-error-message--ar'
+              }`}
+            >
+              {wrongData.text}
+            </p>
           )}
         </div>
       </Form.Group>
       <Container>
         <Row className="auth-form-action">
-          <Button size="lg" block type="submit">
-            SIGN UP
+          <Button
+            size="lg"
+            block
+            type="submit"
+            className={`auth-form-action__button ${
+              state.lang === 'en'
+                ? 'auth-form-action__button--en'
+                : 'auth-form-action__button--ar'
+            }`}
+          >
+            {t('auth:signUpButton')}
           </Button>
         </Row>
       </Container>

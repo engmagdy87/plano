@@ -15,6 +15,11 @@ const getChecklistCookie = () => {
     return cookies.get("plano-checklist");
 }
 
+const getLanguageCookie = () => {
+    const cookies = new Cookies();
+    return cookies.get("plano-lang");
+}
+
 const setChecklistCookie = (id) => {
     const cookies = new Cookies();
     const expiryDate = new Date();
@@ -28,6 +33,12 @@ const setAdminCookie = (token, name) => {
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + 30);
     cookies.set("plano-admin", { token, name }, { path: "/", expires: expiryDate });
+    return "Cookie Created";
+}
+
+const setLanguageCookie = (lang) => {
+    const cookies = new Cookies();
+    cookies.set("plano-lang", { lang }, { path: "/" });
     return "Cookie Created";
 }
 
@@ -64,4 +75,6 @@ export {
     removeUserCookie,
     removeAdminCookie,
     removeChecklistCookie,
+    getLanguageCookie,
+    setLanguageCookie
 }

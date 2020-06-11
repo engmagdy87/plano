@@ -1,0 +1,15 @@
+{
+  "errorLoadingPage": "عفوا! حدث خطأ ما!",
+  "errorLoadingPageAction": "من فضلك حاول مرة أخرى",
+  "tasksCategories": "فئات المهمات",
+  "addTaskCTA": "أضف مهمة",
+  "progress": "التقدم",
+  "progressTasks": "مهمة",
+  "taskDetails": "تفاصيل المهمة",
+  "premium": "مميز",
+  "editTask": "تعديل",
+  "deleteTask": "حذف",
+  "estimatedCost": "التكلفة المتوقعة",
+  "dueDate": "تاريخ الإستحقاق",
+  "egp": "جنيه مصرى"
+}

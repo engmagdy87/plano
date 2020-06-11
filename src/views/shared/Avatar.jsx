@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { getUserCookie } from '../../helpers/CookieHelper';
 import { getFirstLettersOfString } from '../../helpers/StringsHelper';
 import {
+  getUserCookie,
   removeUserCookie,
   removeChecklistCookie,
 } from '../../helpers/CookieHelper';
@@ -12,6 +13,7 @@ export default function Avatar({ device }) {
   const userCookie = getUserCookie();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
+  const { t } = useTranslation(['header']);
 
   const handleMenuVisibility = function () {
     setShowMenu(!showMenu);
@@ -47,7 +49,7 @@ export default function Avatar({ device }) {
         }`}
         onClick={logoutUser}
       >
-        Logout
+        {t('header:logout')}
       </span>
     </Fragment>
   );

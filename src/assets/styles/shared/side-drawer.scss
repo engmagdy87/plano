@@ -47,10 +47,6 @@
     }
     .row {
       height: 56px !important;
-      div {
-        text-transform: capitalize !important;
-        font-family: 'Montserrat Bold';
-      }
     }
     &__header {
       margin: 10px 0;
@@ -64,13 +60,25 @@
         color: #94a1c1 !important;
         border-color: #94a1c1 !important;
         border-radius: 3px !important;
+        &--ar {
+          font-family: 'Cairo Bold';
+        }
+        &--en {
+          font-family: 'Montserrat Bold';
+        }
       }
     }
     &__header-title {
       font-size: 16px;
       font-weight: 500;
       margin-left: 3% !important;
-      font-family: 'Montserrat Regular' !important;
+      text-transform: capitalize !important;
+      &--ar {
+        font-family: 'Cairo Bold';
+      }
+      &--en {
+        font-family: 'Montserrat Bold';
+      }
       @media (max-width: 992px) {
         margin-left: 0% !important;
       }
@@ -101,16 +109,29 @@
 
 .form-control {
   font-size: 13px !important;
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Montserrat Regular';
+  }
   &:focus {
     box-shadow: none !important;
   }
 }
+
 input.form-control {
   padding-left: 0 !important;
 }
+
 .form-label {
   color: $menu-item !important;
-  font-family: 'Montserrat Medium' !important;
+  &--ar {
+    font-family: 'Cairo Bold';
+  }
+  &--en {
+    font-family: 'Montserrat Medium' !important;
+  }
   font-size: 13px;
   margin: 5px 0 !important;
 }
@@ -141,6 +162,12 @@ input::placeholder {
 
 .form-action {
   margin-top: 60px !important;
+  &--ar {
+    font-family: 'Cairo Bold';
+  }
+  &--en {
+    font-family: 'Montserrat Bold';
+  }
   @media (max-width: 992px) {
     margin-bottom: 80px !important;
   }
@@ -219,5 +246,11 @@ input::placeholder {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  &--ar {
+    font-family: 'Cairo Regular';
+  }
+  &--en {
+    font-family: 'Montserrat Regular';
   }
 }

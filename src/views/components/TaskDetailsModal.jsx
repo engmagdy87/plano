@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { Store } from '../../store/store';
 import SelectedTask from '../components/SelectedTask';
-import '../../assets/styles/components/task-details-modal.scss';
 import types from '../../store/types';
+import '../../assets/styles/components/task-details-modal.scss';
 
 export default function TaskDetailsModal() {
+  const { t } = useTranslation(['task']);
   const { state, dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
 
@@ -28,7 +30,15 @@ export default function TaskDetailsModal() {
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>View Task</Modal.Title>
+        <Modal.Title
+          className={`${
+            state.lang === 'en'
+              ? 'task-details-wrapper__title--en'
+              : 'task-details-wrapper__title--ar'
+          }`}
+        >
+          {t('task:view')}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <SelectedTask selectedTask={state.selectedTask} />

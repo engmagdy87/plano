@@ -13,7 +13,7 @@ import types from '../../store/types';
 import '../../assets/styles/containers/sections.scss';
 
 export default function Sections() {
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const history = useHistory();
   const redirectToWeddingCeremony = function () {
     setChecklistCookie(1);
@@ -30,6 +30,11 @@ export default function Sections() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getCorrespondingCSSClass = (lang) => {
+    if (lang === 'en') return 'sections-wrapper__choice--en';
+    return 'sections-wrapper__choice--ar';
+  };
+
   const renderContent = function () {
     const phoneAndTablet = window.matchMedia('(max-width:992px)');
     if (phoneAndTablet.matches) {
@@ -38,7 +43,9 @@ export default function Sections() {
           <Row>
             <Col className="d-flex justify-content-center align-items-center">
               <div
-                className="sections-wrapper__choice"
+                className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+                  state.lang
+                )}`}
                 onClick={redirectToWeddingCeremony}
               >
                 <img src={WeddingCoupleImage} alt="wedding couple" />
@@ -48,13 +55,21 @@ export default function Sections() {
           </Row>
           <Row>
             <Col xs={6}>
-              <div className="sections-wrapper__choice">
+              <div
+                className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+                  state.lang
+                )}`}
+              >
                 <img src={ApartmentImage} alt="apartment" />
                 <span>apartment</span>
               </div>
             </Col>
             <Col xs={6}>
-              <div className="sections-wrapper__choice">
+              <div
+                className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+                  state.lang
+                )}`}
+              >
                 <img src={PartyImage} alt="party" />
                 <span>Bachelorette</span>
               </div>
@@ -62,13 +77,21 @@ export default function Sections() {
           </Row>
           <Row>
             <Col xs={6}>
-              <div className="sections-wrapper__choice">
+              <div
+                className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+                  state.lang
+                )}`}
+              >
                 <img src={TravelImage} alt="travel" />
                 <span>Packing</span>
               </div>
             </Col>
             <Col xs={6}>
-              <div className="sections-wrapper__choice">
+              <div
+                className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+                  state.lang
+                )}`}
+              >
                 <img src={ShoppingImage} alt="shopping" />
                 <span>Shopping</span>
               </div>
@@ -80,25 +103,43 @@ export default function Sections() {
       return (
         <div className="sections-wrapper">
           <div
-            className="sections-wrapper__choice"
+            className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+              state.lang
+            )}`}
             onClick={redirectToWeddingCeremony}
           >
             <img src={WeddingCoupleImage} alt="wedding couple" />
             <span>Wedding ceremony</span>
           </div>
-          <div className="sections-wrapper__choice">
+          <div
+            className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+              state.lang
+            )}`}
+          >
             <img src={ApartmentImage} alt="apartment" />
             <span>apartment</span>
           </div>
-          <div className="sections-wrapper__choice">
+          <div
+            className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+              state.lang
+            )}`}
+          >
             <img src={PartyImage} alt="party" />
             <span>Bachelorette</span>
           </div>
-          <div className="sections-wrapper__choice">
+          <div
+            className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+              state.lang
+            )}`}
+          >
             <img src={TravelImage} alt="travel" />
             <span>Packing</span>
           </div>
-          <div className="sections-wrapper__choice">
+          <div
+            className={`sections-wrapper__choice ${getCorrespondingCSSClass(
+              state.lang
+            )}`}
+          >
             <img src={ShoppingImage} alt="shopping" />
             <span>Shopping</span>
           </div>

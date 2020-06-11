@@ -5,7 +5,8 @@ const user = {
     'SET_USER_SPOUSE_NAME': 'user/SET_USER_SPOUSE_NAME',
     'SET_USER_MARRIAGE_DATE': 'user/SET_USER_MARRIAGE_DATE',
     'SET_USER_PREP_COST': 'user/SET_USER_PREP_COST',
-    'SET_IS_USER_AUTH_FORM': 'user/SET_IS_USER_AUTH_FORM'
+    'SET_IS_USER_AUTH_FORM': 'user/SET_IS_USER_AUTH_FORM',
+    'SET_LANG': 'user/SET_LANG',
 }
 
 const categories = {

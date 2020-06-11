@@ -15,14 +15,24 @@ $header-height: 56px;
   }
   &__progress {
     height: 50px;
-    span:nth-child(1) {
+    &__title {
       font-size: 18px;
-      font-family: 'Montserrat SemiBold';
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
+        font-family: 'Montserrat SemiBold';
+      }
     }
-    span:nth-child(2) {
+    &__details {
       float: right !important;
       margin-top: 25px;
-      font-family: 'Montserrat Medium';
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
+        font-family: 'Montserrat Medium';
+      }
       color: $menu-item;
     }
   }
@@ -43,12 +53,15 @@ $header-height: 56px;
         outline: none !important;
         box-shadow: none !important;
       }
-      @media (max-width: 992px) {
-        // width: 100% !important;
-      }
     }
     &--hide {
       display: none !important;
+    }
+    &--ar {
+      font-family: 'Cairo Bold';
+    }
+    &--en {
+      font-family: 'Helvetica Neue Bold';
     }
   }
 }

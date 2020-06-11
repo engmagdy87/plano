@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal, Container, Row, Col, Button } from 'react-bootstrap';
 import { Store } from '../../../store/store';
 import SocialMediaAuthentication from '../SocialMediaAuthentication';
@@ -9,6 +10,7 @@ import types from '../../../store/types';
 import '../../../assets/styles/components/authentication-form.scss';
 
 export default function AuthenticationForm() {
+  const { t } = useTranslation(['auth']);
   const { state, dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
@@ -46,27 +48,61 @@ export default function AuthenticationForm() {
       return (
         <div>
           <Modal.Header closeButton>
-            <Modal.Title>Sign Up</Modal.Title>
+            <Modal.Title
+              className={`authentication-form-wrapper__title ${
+                state.lang === 'en'
+                  ? 'authentication-form-wrapper__title--en'
+                  : 'authentication-form-wrapper__title--ar'
+              }`}
+            >
+              {t('auth:signUpTitle')}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className="authentication-form-wrapper">
             <Container>
               <Row>
-                <Col className="authentication-form-wrapper__span-text">
-                  Connect Via
+                <Col
+                  className={`authentication-form-wrapper__span-text ${
+                    state.lang === 'en'
+                      ? 'authentication-form-wrapper__span-text--en'
+                      : 'authentication-form-wrapper__span-text--ar'
+                  }`}
+                >
+                  {t('auth:via')}
                 </Col>
               </Row>
               <SocialMediaAuthentication />
               <Row>
-                <Col className="authentication-form-wrapper__span-text">OR</Col>
+                <Col
+                  className={`authentication-form-wrapper__span-text ${
+                    state.lang === 'en'
+                      ? 'authentication-form-wrapper__span-text--en'
+                      : 'authentication-form-wrapper__span-text--ar'
+                  }`}
+                >
+                  {t('auth:or')}
+                </Col>
               </Row>
               <SignUpForm setShowLoading={setShowLoading} />
-              <span className="authentication-form-wrapper__terms">
-                By signing up, you agree to our Terms of Use and Privacy Policy.
+              <span
+                className={`authentication-form-wrapper__terms ${
+                  state.lang === 'en'
+                    ? 'authentication-form-wrapper__terms--en'
+                    : 'authentication-form-wrapper__terms--ar'
+                }`}
+              >
+                {t('auth:terms')}
               </span>
-              <span className="authentication-form-wrapper__account">
-                Have account ?{' '}
+              <span
+                className={`authentication-form-wrapper__account ${
+                  state.lang === 'en'
+                    ? 'authentication-form-wrapper__account--en'
+                    : 'authentication-form-wrapper__account--ar'
+                }`}
+              >
+                {t('auth:haveAccount')}{' '}
                 <Button variant="link" onClick={changeToLoginOrSignUp}>
-                  Login
+                  {t('auth:haveAccountAnswer')}
                 </Button>
               </span>
             </Container>
@@ -77,28 +113,54 @@ export default function AuthenticationForm() {
       return (
         <div>
           <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title
+              className={`authentication-form-wrapper__title ${
+                state.lang === 'en'
+                  ? 'authentication-form-wrapper__title--en'
+                  : 'authentication-form-wrapper__title--ar'
+              }`}
+            >
+              {t('auth:loginTitle')}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className="authentication-form-wrapper">
             <Container>
               <Row>
-                <Col className="authentication-form-wrapper__span-text">
-                  <p>Connect Via</p>
+                <Col
+                  className={`authentication-form-wrapper__span-text ${
+                    state.lang === 'en'
+                      ? 'authentication-form-wrapper__span-text--en'
+                      : 'authentication-form-wrapper__span-text--ar'
+                  }`}
+                >
+                  <p>{t('auth:via')}</p>
                 </Col>
               </Row>
               <SocialMediaAuthentication />
               <Row>
-                <Col className="authentication-form-wrapper__span-text">
+                <Col
+                  className={`authentication-form-wrapper__span-text ${
+                    state.lang === 'en'
+                      ? 'authentication-form-wrapper__span-text--en'
+                      : 'authentication-form-wrapper__span-text--ar'
+                  }`}
+                >
                   <h6>
-                    <span>OR</span>
+                    <span>{t('auth:or')}</span>
                   </h6>
                 </Col>
               </Row>
               <LoginForm setShowLoading={setShowLoading} />
-              <span className="authentication-form-wrapper__account">
-                Don't have account ?{' '}
+              <span
+                className={`authentication-form-wrapper__account ${
+                  state.lang === 'en'
+                    ? 'authentication-form-wrapper__account--en'
+                    : 'authentication-form-wrapper__account--ar'
+                }`}
+              >
+                {t('auth:doNotHaveAccount')}{' '}
                 <Button variant="link" onClick={changeToLoginOrSignUp}>
-                  sign up
+                  {t('auth:doNotHaveAccountAnswer')}
                 </Button>
               </span>
             </Container>

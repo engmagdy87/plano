@@ -1,4 +1,5 @@
 import types from '../types'
+import userState from '../../store/states/user'
 import {
     loginAdmin,
     listUsers,
@@ -15,6 +16,13 @@ const showToast = (dispatch, text, status) => {
         },
     });
 }
+
+// If app in offline mode (i.e. No Internet), Backend package will not work so i18n will use fallback language so generate message manually 👇
+const generateErrorMessage = (dispatch) => {
+    const message = userState.lang === 'ar' ? "حاول مرة أخرى، حدث خطأ ما" : "Please try again, Something went wrong"
+    showToast(dispatch, message, 'error')
+}
+
 
 const adminSignIn = async (data) => {
     try {
@@ -33,7 +41,7 @@ const listAllUsers = async (dispatch) => {
             payload: response.data.listUsers
         })
     } catch (error) {
-        showToast(dispatch, 'Unexpected error when list users, Please try again!', 'error')
+        generateErrorMessage(dispatch)
         throw error;
     }
 }
@@ -47,7 +55,7 @@ const removeUser = async (dispatch, userId) => {
         });
         showToast(dispatch, 'User deleted successfully', 'success')
     } catch (error) {
-        showToast(dispatch, 'Unexpected error when deleting user, Please try again!', 'error')
+        generateErrorMessage(dispatch)
         throw error;
     }
 }

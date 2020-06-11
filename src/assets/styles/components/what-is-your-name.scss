@@ -3,15 +3,16 @@
 .what-is-your-name-wrapper {
   &__title {
     margin-top: 8%;
-    div:nth-child(1) {
-      img {
-        width: 50px;
-      }
+    &__hero {
+      width: 50px;
     }
-    div:nth-child(2) {
+    &__text {
       margin-top: 20px;
-      span {
-        font-size: 1.5rem;
+      font-size: 1.5rem;
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
         font-family: 'Montserrat SemiBold';
       }
     }
@@ -23,9 +24,31 @@
       width: 100% !important;
       margin-left: 0 !important;
     }
+    &__label {
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
+        font-family: 'Montserrat Medium' !important;
+      }
+    }
+    &__control {
+      &--ar {
+        font-family: 'Cairo SemiBold';
+      }
+      &--en {
+        font-family: 'Helvetica Neue Medium' !important;
+      }
+    }
+
     &__form-action {
       margin-top: 60px !important;
-      font-family: 'Helvetica Neue Bold';
+      &--ar {
+        font-family: 'Cairo Bold';
+      }
+      &--en {
+        font-family: 'Helvetica Neue Bold';
+      }
       @media (max-width: 992px) {
         margin-bottom: 80px !important;
       }

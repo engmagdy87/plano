@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'react-bootstrap';
 import FacebookLogo from '../../assets/images/facebook.png';
 import GoogleLogo from '../../assets/images/google-plus.png';
 
 export default function SocialMediaAuthentication() {
+  const { t } = useTranslation(['auth']);
   return (
     <Row>
       <Col sm={12} md={6}>
@@ -11,7 +13,7 @@ export default function SocialMediaAuthentication() {
           <div>
             <img src={FacebookLogo} alt="facebook logo" />
           </div>
-          <span>Facebook</span>
+          <span>{t('auth:facebook')}</span>
         </div>
       </Col>
       <Col sm={12} md={6}>
@@ -19,7 +21,7 @@ export default function SocialMediaAuthentication() {
           <div>
             <img src={GoogleLogo} alt="google logo" />
           </div>
-          <span>Google</span>
+          <span>{t('auth:google')}</span>
         </div>
       </Col>
     </Row>
