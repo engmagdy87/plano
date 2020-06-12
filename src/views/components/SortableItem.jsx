@@ -46,7 +46,15 @@ const SortableItem = SortableElement(({ data }) => {
       <div
         className={`input-group ${isTaskClicked ? 'input-group__active' : ''}`}
       >
-        <span>=</span>
+        <span
+          className={`input-group__delimiter ${
+            state.lang === 'en'
+              ? 'input-group__delimiter--en'
+              : 'input-group__delimiter--ar'
+          }`}
+        >
+          =
+        </span>
         <input
           type="checkbox"
           id={`${categoryId}${taskId}`}
@@ -56,7 +64,11 @@ const SortableItem = SortableElement(({ data }) => {
         />
         <label
           htmlFor={`${categoryId}${taskId}`}
-          className={task.overDue ? 'input-group__over-due' : ''}
+          className={`${task.overDue ? 'input-group__over-due' : ''} ${
+            state.lang === 'en'
+              ? 'input-group__en-label'
+              : 'input-group__ar-label'
+          }`}
         ></label>
         <div
           className={`input-group__text ${

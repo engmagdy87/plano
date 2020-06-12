@@ -162,7 +162,13 @@ export default function Home() {
               >
                 {t('home:tasksCategories')}
               </h4>
-              <ul>
+              <ul
+                className={`home-wrapper__content__menu__list ${
+                  state.lang === 'en'
+                    ? 'home-wrapper__content__menu__list--en'
+                    : 'home-wrapper__content__menu__list--ar'
+                }`}
+              >
                 {categoriesContent.map((category) => (
                   <li
                     key={category.id}
@@ -220,7 +226,9 @@ export default function Home() {
                   <h6>{t('home:progress')}</h6>
                 </Col>
                 <Col
-                  className={`text-right home-wrapper__content__tasks__progress-title ${
+                  className={`home-wrapper__content__tasks__progress-title ${
+                    state.lang === 'en' ? 'text-right' : 'text-left'
+                  } ${
                     state.lang === 'en'
                       ? 'home-wrapper__content__tasks__progress-title--en'
                       : 'home-wrapper__content__tasks__progress-title--ar'
@@ -229,7 +237,14 @@ export default function Home() {
                   <h6>0 / 60 {t('home:progressTasks')}</h6>
                 </Col>
               </Row>
-              <ProgressBar now={0} />
+              <ProgressBar
+                now={0}
+                className={`${
+                  state.lang === 'en'
+                    ? 'progress--en progress-bar--en'
+                    : 'progress--ar progress-bar--ar'
+                }`}
+              />
               <div
                 id="myContainer"
                 className="home-wrapper__content__tasks__details"
@@ -282,5 +297,9 @@ export default function Home() {
       </Fragment>
     );
   };
-  return <Fragment>{renderContent()}</Fragment>;
+  return (
+    <div style={{ direction: state.lang === 'en' ? 'ltr' : 'rtl' }}>
+      {renderContent()}
+    </div>
+  );
 }

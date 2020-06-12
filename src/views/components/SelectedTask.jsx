@@ -76,9 +76,23 @@ export default function SelectedTask({ selectedTask }) {
         {selectedTask.data[0].category.title}
       </div>
 
-      <div className="selected-task-wrapper__cost">
+      <div
+        className={`selected-task-wrapper__cost ${
+          state.lang === 'en'
+            ? 'selected-task-wrapper__cost--en'
+            : 'selected-task-wrapper__cost--ar'
+        }`}
+      >
         <div className="selected-task-wrapper__cost__img">
-          <img src={MoneyBagIcon} alt="money bag" />
+          <img
+            className={`selected-task-wrapper__cost__img__img-tag ${
+              state.lang === 'en'
+                ? 'selected-task-wrapper__cost__img__img-tag--en'
+                : 'selected-task-wrapper__cost__img__img-tag--ar'
+            }`}
+            src={MoneyBagIcon}
+            alt="money bag"
+          />
         </div>
         <div className="selected-task-wrapper__cost__text">
           <p
@@ -101,9 +115,23 @@ export default function SelectedTask({ selectedTask }) {
           </p>
         </div>
       </div>
-      <div className="selected-task-wrapper__due-date">
+      <div
+        className={`selected-task-wrapper__due-date ${
+          state.lang === 'en'
+            ? 'selected-task-wrapper__due-date--en'
+            : 'selected-task-wrapper__due-date--ar'
+        }`}
+      >
         <div className="selected-task-wrapper__due-date__img">
-          <img src={CalendarIcon} alt="calendar bag" />
+          <img
+            className={`selected-task-wrapper__due-date__img__img-tag ${
+              state.lang === 'en'
+                ? 'selected-task-wrapper__due-date__img__img-tag--en'
+                : 'selected-task-wrapper__due-date__img__img-tag--ar'
+            }`}
+            src={CalendarIcon}
+            alt="calendar bag"
+          />
         </div>
         <div className="selected-task-wrapper__due-date__text">
           <p

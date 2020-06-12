@@ -178,7 +178,7 @@ export default function AuthenticationForm() {
       className="authentication-form-wrapper"
     >
       {buildForm()}
-      <Loading showLoadingSpinner={showLoading} smallLoader />
+      <Loading showLoadingSpinner={showLoading} smallLoader lang={state.lang} />
     </Modal>
   );
 }

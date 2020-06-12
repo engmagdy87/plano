@@ -46,7 +46,12 @@ export default function Header({ activePath }) {
     } else history.push({ pathname: '/' });
   };
   return (
-    <Navbar collapseOnSelect expand="lg" className="header-wrapper">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      className="header-wrapper"
+      style={{ direction: state.lang === 'en' ? 'ltr' : 'rtl' }}
+    >
       <Navbar.Brand href="/">
         <img src={LogoIcon} alt="plano logo" className="header-wrapper__logo" />
       </Navbar.Brand>
@@ -60,7 +65,11 @@ export default function Header({ activePath }) {
       <Avatar device="mobile" />
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto header-wrapper__nav">
+        <Nav
+          className={`header-wrapper__nav ${
+            state.lang === 'en' ? 'mr-auto' : 'ml-auto'
+          }`}
+        >
           <Nav.Link
             className={`header-wrapper__link ${
               activePath === 'home' ? 'header-wrapper__link--active' : ''

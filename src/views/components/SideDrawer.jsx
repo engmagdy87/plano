@@ -149,6 +149,21 @@ export default function SideDrawer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.taskForm]);
 
+  const getCorrespondingCSSClasses = (lang, flag) => {
+    if (lang === 'en')
+      return `side-drawer-wrapper__content--en ${
+        flag
+          ? 'side-drawer-wrapper__content--en--open'
+          : 'side-drawer-wrapper__content--en--close'
+      }`;
+    else
+      return `side-drawer-wrapper__content--ar ${
+        flag
+          ? 'side-drawer-wrapper__content--ar--open'
+          : 'side-drawer-wrapper__content--ar--close'
+      }`;
+  };
+
   const { flag, operation } = state.taskForm;
   return (
     <Fragment>
@@ -159,11 +174,7 @@ export default function SideDrawer() {
       >
         <div
           ref={sideDrawerWrapper}
-          className={`side-drawer-wrapper__content ${
-            flag
-              ? 'side-drawer-wrapper__content--open'
-              : 'side-drawer-wrapper__content--close'
-          }`}
+          className={getCorrespondingCSSClasses(state.lang, flag)}
         >
           <Row className="side-drawer-wrapper__content__header">
             <Col
@@ -196,7 +207,11 @@ export default function SideDrawer() {
             </Col>
             <Col xs={3} sm={6}>
               <span
-                className="side-drawer-wrapper__close-button"
+                className={`side-drawer-wrapper__close-button ${
+                  state.lang === 'en'
+                    ? 'side-drawer-wrapper__close-button--en'
+                    : 'side-drawer-wrapper__close-button--ar'
+                }`}
                 onClick={closeTaskDrawer}
               >
                 &times;
@@ -205,7 +220,12 @@ export default function SideDrawer() {
           </Row>
           <div className="side-drawer-wrapper__divider"></div>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Form.Group controlId="name">
+            <Form.Group
+              controlId="name"
+              className={`${
+                state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+              }`}
+            >
               <Form.Label
                 className={`form-label-name ${
                   state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
@@ -234,7 +254,12 @@ export default function SideDrawer() {
                 </span>
               )}
             </Form.Group>
-            <Form.Group controlId="category">
+            <Form.Group
+              controlId="category"
+              className={`${
+                state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+              }`}
+            >
               <Form.Label
                 className={`form-label-category ${
                   state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
@@ -271,7 +296,12 @@ export default function SideDrawer() {
                 </span>
               )}
             </Form.Group>
-            <Form.Group controlId="cost">
+            <Form.Group
+              controlId="cost"
+              className={`${
+                state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+              }`}
+            >
               <Form.Label
                 className={`${
                   state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
@@ -279,7 +309,11 @@ export default function SideDrawer() {
               >
                 {t('task:estimatedCost')}
               </Form.Label>
-              <InputGroup>
+              <InputGroup
+                className={`${
+                  state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+                }`}
+              >
                 <Form.Control
                   type="number"
                   placeholder={t('task:estimatedCostPlaceholder')}
@@ -292,13 +326,25 @@ export default function SideDrawer() {
                   }`}
                 />
                 <InputGroup.Prepend>
-                  <InputGroup.Text id="inputGroupPrepend">
+                  <InputGroup.Text
+                    id="inputGroupPrepend"
+                    className={`${
+                      state.lang === 'en'
+                        ? 'input-group-text--en'
+                        : 'input-group-text--ar'
+                    }`}
+                  >
                     {t('task:egp')}
                   </InputGroup.Text>
                 </InputGroup.Prepend>
               </InputGroup>
             </Form.Group>
-            <Form.Group style={{ marginBottom: '8px' }}>
+            <Form.Group
+              style={{ marginBottom: '8px' }}
+              className={`${
+                state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+              }`}
+            >
               <Form.Label
                 className={`${
                   state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
@@ -320,7 +366,12 @@ export default function SideDrawer() {
               />
             </Form.Group>
 
-            <Form.Group controlId="note">
+            <Form.Group
+              controlId="note"
+              className={`${
+                state.lang === 'en' ? 'form-group--en' : 'form-group--ar'
+              }`}
+            >
               <Form.Label
                 className={`${
                   state.lang === 'en' ? 'form-label--en' : 'form-label--ar'
@@ -375,7 +426,7 @@ export default function SideDrawer() {
             </Container>
           </Form>
         </div>
-        <Loading showLoadingSpinner={showLoadingSpinner} />
+        <Loading showLoadingSpinner={showLoadingSpinner} lang={state.lang} />
       </Container>
     </Fragment>
   );

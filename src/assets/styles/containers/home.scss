@@ -19,16 +19,27 @@ $header-height: 56px;
         margin-bottom: 25px;
         font-size: 12px;
         color: #94a1c1;
-        margin-left: 40px;
         &--ar {
           font-family: 'Cairo Bold';
+          margin-right: 40px;
+          margin-left: 0;
+          text-align: right;
         }
         &--en {
+          margin-left: 40px;
+          margin-right: 0;
           font-family: 'Montserrat Bold';
+          text-align: left;
         }
       }
-      ul {
-        list-style-type: none;
+      &__list {
+        list-style-type: none !important;
+        &--en {
+          text-align: left;
+        }
+        &--ar {
+          text-align: right;
+        }
       }
       li {
         cursor: pointer;
@@ -50,8 +61,9 @@ $header-height: 56px;
     &__tasks {
       padding-right: 0 !important;
       padding-left: 0 !important;
-      border-left: 1px solid rgba($color: $menu-item, $alpha: 0.5);
       position: relative;
+      border-left: 1px solid rgba($color: $menu-item, $alpha: 0.5);
+      border-right: 1px solid rgba($color: $menu-item, $alpha: 0.5);
       @media (max-width: 992px) {
         padding: 0 20px !important;
       }
@@ -71,6 +83,7 @@ $header-height: 56px;
         color: $dark-text;
         &--ar {
           font-family: 'Cairo Bold';
+          text-align: right;
         }
         &--en {
           font-family: 'Montserrat Medium';
@@ -83,9 +96,11 @@ $header-height: 56px;
       &__cta {
         &--ar {
           font-family: 'Cairo SemiBold';
+          float: left;
         }
         &--en {
           font-family: 'Montserrat SemiBold';
+          float: right;
         }
         font-size: 14px !important;
         font-weight: bold !important;
@@ -107,9 +122,11 @@ $header-height: 56px;
         color: $menu-item;
         &--ar {
           font-family: 'Cairo Regular';
+          text-align: right;
         }
         &--en {
           font-family: 'Montserrat Regular';
+          text-align: left;
         }
         font-size: 14px;
       }
@@ -123,7 +140,12 @@ $header-height: 56px;
       .progress,
       .progress-bar {
         width: calc(100% - 90px);
-        margin-left: 40px;
+        &--ar {
+          margin-right: 50px;
+        }
+        &--en {
+          margin-left: 40px;
+        }
         @media (max-width: 992px) {
           width: 98%;
           margin-left: 1%;
@@ -149,9 +171,11 @@ $header-height: 56px;
           color: $primary;
           &--ar {
             font-family: 'Cairo Regular';
+            text-align: right;
           }
           &--en {
             font-family: 'Montserrat Regular';
+            text-align: left;
           }
           font-size: 16px;
           margin-top: 10px;
@@ -172,7 +196,6 @@ $header-height: 56px;
     }
     &__operations {
       background-color: #fff;
-      border-left: 1px solid #dbe1f1;
       @media (max-width: 992px) {
         display: none;
       }

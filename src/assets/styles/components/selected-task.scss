@@ -46,12 +46,15 @@
     color: $primary;
     font-size: 18px;
     margin-top: 37px;
-    margin-left: 30px;
     &--ar {
       font-family: 'Cairo Bold';
+      text-align: right;
+      margin-right: 30px;
     }
     &--en {
       font-family: 'Montserrat Bold';
+      text-align: left;
+      margin-left: 30px;
     }
     @media (max-width: 992px) {
       font-size: 1.2rem;
@@ -63,13 +66,14 @@
     background-color: #f0ebf4;
     color: #94a1c1;
     width: fit-content;
-    margin: 15px 0 30px 30px;
     font-size: 12px;
     &--ar {
       font-family: 'Cairo SemiBold';
+      margin: 15px 30px 30px 0;
     }
     &--en {
       font-family: 'Montserrat SemiBold';
+      margin: 15px 0 30px 30px;
     }
     @media (max-width: 992px) {
       padding: 5px;
@@ -81,12 +85,23 @@
     display: flex;
     justify-content: flex-start !important;
     width: 50%;
-    margin-left: 25px;
+    &--ar {
+      margin-right: 25px;
+    }
+    &--en {
+      margin-left: 25px;
+    }
     &__img {
       display: block !important;
-      img {
+      &__img-tag {
         width: 30px;
-        margin-right: 15px;
+        margin-top: 8px;
+        &--ar {
+          margin-left: 15px;
+        }
+        &--en {
+          margin-right: 15px;
+        }
       }
     }
     &__text {

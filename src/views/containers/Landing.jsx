@@ -15,7 +15,7 @@ export default function Landing() {
     });
   };
   return (
-    <Fragment>
+    <div style={{ direction: state.lang === 'en' ? 'ltr' : 'rtl' }}>
       <Header activePath />
       <Container className="landing-wrapper">
         <Row className="landing-wrapper__content">
@@ -55,6 +55,6 @@ export default function Landing() {
           </Col>
         </Row>
       </Container>
-    </Fragment>
+    </div>
   );
 }

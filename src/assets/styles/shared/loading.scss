@@ -9,6 +9,13 @@
   &--large-loader {
     height: 100vh;
     width: 40vw !important;
+    float: left;
+    &--en {
+      margin-right: 0;
+    }
+    &--ar {
+      margin-right: 60vw;
+    }
   }
   @media (max-width: 992px) {
     width: 100vw !important;

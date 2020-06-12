@@ -32,7 +32,11 @@ export default function AdminPanel() {
           setAdminToken={setAdminToken}
         />
       )}
-      <Loading smallLoader showLoadingSpinner={showLoadingSpinner} />
+      <Loading
+        smallLoader
+        showLoadingSpinner={showLoadingSpinner}
+        lang={state.lang}
+      />
       <Toast {...toastData} />
     </div>
   );

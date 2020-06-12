@@ -11,7 +11,7 @@ export default function DeleteTaskDialog({
   categoryId,
 }) {
   const { t } = useTranslation(['task']);
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
@@ -27,7 +27,12 @@ export default function DeleteTaskDialog({
   };
   return (
     <>
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        style={{ direction: state.lang === 'en' ? 'ltr' : 'rtl' }}
+      >
         <Modal.Header closeButton>
           <Modal.Title>{t('task:deleteTitle')}</Modal.Title>
         </Modal.Header>
