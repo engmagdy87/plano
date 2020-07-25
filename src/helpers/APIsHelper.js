@@ -149,6 +149,14 @@ async function listUsers() {
     return response.data
 }
 
+async function listAdmins() {
+    const adminToken = getAdminCookie()
+    const response = await request({
+        query: QUERY.LIST_ADMINS(),
+    }, adminToken.token);
+    return response.data
+}
+
 async function isIdentifierExists(identifier) {
     try {
         const response = await request({
@@ -173,7 +181,8 @@ export {
     setTaskDone,
     setTaskUnDone,
     listUsers,
-    deleteUser
+    deleteUser,
+    listAdmins
 }
 
 async function request(data, token) {

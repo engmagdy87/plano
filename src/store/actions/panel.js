@@ -3,6 +3,7 @@ import userState from '../../store/states/user'
 import {
     loginAdmin,
     listUsers,
+    listAdmins,
     deleteUser
 } from "../../helpers/APIsHelper"
 
@@ -46,6 +47,19 @@ const listAllUsers = async (dispatch) => {
     }
 }
 
+const listAllAdmins = async (dispatch) => {
+    try {
+        const response = await listAdmins()
+        dispatch({
+            type: types.panel.SET_ADMINS,
+            payload: response.data.listAdmins
+        })
+    } catch (error) {
+        generateErrorMessage(dispatch)
+        throw error;
+    }
+}
+
 const removeUser = async (dispatch, userId) => {
     try {
         await deleteUser(userId)
@@ -60,4 +74,4 @@ const removeUser = async (dispatch, userId) => {
     }
 }
 
-export default { adminSignIn, listAllUsers, removeUser }
+export default { adminSignIn, listAllUsers, listAllAdmins, removeUser }

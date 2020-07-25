@@ -3,7 +3,7 @@ import { Tab, Nav, Row, Col } from 'react-bootstrap';
 import AdminPanelHeader from './AdminPanelHeader';
 import { Store } from '../../../store/store';
 import { panelActions } from '../../../store/actions';
-import types from '../../../store/types';
+// import types from '../../../store/types';
 import { getAdminCookie } from '../../../helpers/CookieHelper';
 import Users from './tabs/Users';
 import Settings from './tabs/Settings';
@@ -69,7 +69,7 @@ export default function AdminControlPanel({
                 )}
               </Tab.Pane>
               <Tab.Pane eventKey="settings">
-                <Settings />
+                <Settings setShowLoadingSpinner={setShowLoadingSpinner} />
               </Tab.Pane>
             </Tab.Content>
           </Col>
