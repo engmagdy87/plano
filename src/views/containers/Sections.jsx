@@ -8,7 +8,10 @@ import PartyImage from '../../assets/images/bachelorette-party.svg';
 import TravelImage from '../../assets/images/travel.svg';
 import ShoppingImage from '../../assets/images/shopping-bag (1).svg';
 import { Store } from '../../store/store';
-import { setChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
+import {
+  setChecklistCookie,
+  getUserTokenCookie,
+} from '../../helpers/CookieHelper';
 import types from '../../store/types';
 import '../../assets/styles/containers/sections.scss';
 
@@ -25,7 +28,7 @@ export default function Sections() {
   };
 
   useEffect(() => {
-    const token = getUserCookie();
+    const token = getUserTokenCookie();
     if (!token) history.push('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -2,12 +2,13 @@ import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { categoriesActions } from '../../../store/actions';
+import { userActions } from '../../../store/actions';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
+import { setUserTokenCookie } from '../../../helpers/CookieHelper';
 
 export default function SignUpForm({ setShowLoading }) {
   const history = useHistory();
@@ -37,7 +38,7 @@ export default function SignUpForm({ setShowLoading }) {
   const { register, handleSubmit, errors, watch } = useForm();
   const onSubmit = async (data) => {
     setShowLoading(true);
-    const result = await categoriesActions.isUserExists(data.identifier);
+    const result = await userActions.isUserExists(data.identifier);
     setShowLoading(false);
 
     if (result === undefined)
@@ -51,17 +52,19 @@ export default function SignUpForm({ setShowLoading }) {
     } else {
       setWrongData({ show: false, text: '' });
       setIsIdentifierExistsFlag(false);
-      dispatch({
-        type: types.user.SET_USER_SIGN_UP_FORM,
-        payload: {
-          ...data,
-        },
-      });
-      dispatch({
-        type: types.user.SET_IS_USER_AUTH_FORM,
-        payload: { show: false, authType: '' },
-      });
-      history.push('/build-profile');
+      const result = await userActions.createNewUser(dispatch, data);
+      if (!result.isErrorExists) {
+        setUserTokenCookie(result.data.token);
+        dispatch({
+          type: types.user.SET_IS_USER_AUTH_FORM,
+          payload: { show: false, authType: '' },
+        });
+        history.push('/build-profile');
+      } else
+        setWrongData({
+          show: true,
+          text: t('auth:existingIdentifier'),
+        });
     }
   };
 

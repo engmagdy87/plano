@@ -17,7 +17,7 @@ export default function WhatIsYourName({ onClickButton }) {
       type: types.user.SET_USER_NAME,
       payload: data.name,
     });
-    onClickButton(3);
+    onClickButton(3, { name: data.name });
   };
 
   return (

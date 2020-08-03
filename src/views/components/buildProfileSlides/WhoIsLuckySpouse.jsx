@@ -17,7 +17,7 @@ export default function WhoIsLuckySpouse({ onClickButton, userGender }) {
       type: types.user.SET_USER_SPOUSE_NAME,
       payload: data.spouseName,
     });
-    onClickButton(4);
+    onClickButton(4, { spouseName: data.spouseName });
   };
   return (
     <div className="lucky-spouse-wrapper">

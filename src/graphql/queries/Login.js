@@ -5,6 +5,10 @@ const LOGIN = ({ identifier, password }) => `query login{
         id
         email
         name
+        spouseName
+        gender
+        marriageDate
+        prepCost 
       }
     }
   }`;

@@ -24,7 +24,7 @@ export default function WeddingBudget({ onClickButton }) {
       type: types.user.SET_USER_PREP_COST,
       payload: activeBudgetItem,
     });
-    onClickButton(6);
+    onClickButton(6, { prepCost: activeBudgetItem });
   };
 
   const renderBudgetsList = function () {

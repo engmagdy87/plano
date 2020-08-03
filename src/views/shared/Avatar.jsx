@@ -1,17 +1,24 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { getFirstLettersOfString } from '../../helpers/StringsHelper';
 import {
-  getUserCookie,
-  removeUserCookie,
+  getUserDataCookie,
+  removeUserDataCookie,
+  removeUserTokenCookie,
   removeChecklistCookie,
 } from '../../helpers/CookieHelper';
+import { Store } from '../../store/store';
+import types from '../../store/types';
+import { isUserAuthenticated } from '../../helpers/UserAuthentication';
+import * as USER from '../../constants/UserAuthentication';
 import '../../assets/styles/shared/avatar.scss';
 
 export default function Avatar({ device }) {
-  const userCookie = getUserCookie();
+  const { state, dispatch } = useContext(Store);
   const history = useHistory();
+  const userData = getUserDataCookie();
+  const [username, setUserName] = useState('');
   const [showMenu, setShowMenu] = useState(false);
   const { t } = useTranslation(['header']);
 
@@ -20,10 +27,31 @@ export default function Avatar({ device }) {
   };
 
   const logoutUser = function () {
-    removeUserCookie();
+    removeUserDataCookie();
+    removeUserTokenCookie();
     removeChecklistCookie();
+    dispatch({
+      type: types.user.SET_USER_SIGN_UP_FORM,
+      payload: {
+        identifier: '',
+        password: '',
+        confirmPassword: '',
+        gender: '',
+        marriageDate: '',
+        name: '',
+        spouseName: '',
+        prepCost: 0,
+      },
+    });
     history.push('/');
   };
+
+  useEffect(() => {
+    let name = '';
+    if (state.userPersona.name !== '') name = state.userPersona.name;
+    else if (userData !== undefined) name = userData.name;
+    setUserName(name);
+  }, [state.userPersona, userData]);
 
   return (
     <Fragment>
@@ -31,7 +59,10 @@ export default function Avatar({ device }) {
         role="button"
         tabIndex="0"
         className={`avatar-wrapper mr-3 ${
-          userCookie === undefined ? 'avatar-wrapper--hide' : ''
+          isUserAuthenticated() === USER.NOT_AUTHENTICATED ||
+          isUserAuthenticated() === USER.PARTIAL_AUTHENTICATED
+            ? 'avatar-wrapper--hide'
+            : ''
         } ${
           device === 'mobile'
             ? 'avatar-wrapper--mobile'
@@ -39,9 +70,7 @@ export default function Avatar({ device }) {
         }`}
         onClick={handleMenuVisibility}
       >
-        {userCookie === undefined
-          ? ''
-          : getFirstLettersOfString(userCookie.name)}
+        {getFirstLettersOfString(username)}
       </div>
       <span
         className={`avatar-wrapper__menu ${

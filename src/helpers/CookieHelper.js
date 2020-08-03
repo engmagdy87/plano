@@ -1,8 +1,13 @@
 import Cookies from "universal-cookie";
 
-const getUserCookie = () => {
+const getUserTokenCookie = () => {
     const cookies = new Cookies();
-    return cookies.get("plano-user");
+    return cookies.get("plano-user-token");
+}
+
+const getUserDataCookie = () => {
+    const cookies = new Cookies();
+    return cookies.get("plano-user-data");
 }
 
 const getAdminCookie = () => {
@@ -47,17 +52,30 @@ const removeAdminCookie = () => {
     cookies.remove("plano-admin");
 }
 
-const setUserCookie = (token, name) => {
+const setUserTokenCookie = (data) => {
     const cookies = new Cookies();
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + 7);
-    cookies.set("plano-user", { token, name }, { path: "/", expires: expiryDate });
+    cookies.set("plano-user-token", data, { path: "/", expires: expiryDate });
     return "Cookie Created";
 }
 
-const removeUserCookie = () => {
+const setUserDataCookie = (data) => {
     const cookies = new Cookies();
-    cookies.remove("plano-user");
+    const expiryDate = new Date();
+    expiryDate.setDate(expiryDate.getDate() + 7);
+    cookies.set("plano-user-data", { ...data }, { path: "/", expires: expiryDate });
+    return "Cookie Created";
+}
+
+const removeUserTokenCookie = () => {
+    const cookies = new Cookies();
+    cookies.remove("plano-user-token");
+}
+
+const removeUserDataCookie = () => {
+    const cookies = new Cookies();
+    cookies.remove("plano-user-data");
 }
 
 const removeChecklistCookie = () => {
@@ -66,13 +84,16 @@ const removeChecklistCookie = () => {
 }
 
 export {
-    getUserCookie,
+    getUserTokenCookie,
+    getUserDataCookie,
     getAdminCookie,
     getChecklistCookie,
-    setUserCookie,
+    setUserTokenCookie,
+    setUserDataCookie,
     setAdminCookie,
     setChecklistCookie,
-    removeUserCookie,
+    removeUserTokenCookie,
+    removeUserDataCookie,
     removeAdminCookie,
     removeChecklistCookie,
     getLanguageCookie,

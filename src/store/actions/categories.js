@@ -4,9 +4,6 @@ import {
     fetchCategories,
     createTask,
     updateTask,
-    registerUser,
-    loginUser,
-    isIdentifierExists,
     removeTask,
     orderTaskById,
     setTaskDone,
@@ -110,34 +107,6 @@ const deleteTask = async (dispatch, taskId, categoryId) => {
     }
 }
 
-const createNewUser = async (dispatch, userPersona) => {
-    try {
-        const response = await registerUser(userPersona)
-        return response.data.register;
-    } catch (error) {
-        generateErrorMessage(dispatch)
-        throw error;
-    }
-}
-
-const userSignIn = async (data) => {
-    try {
-        const response = await loginUser(data)
-        return response;
-    } catch (error) {
-        throw error;
-    }
-}
-
-const isUserExists = async (data) => {
-    try {
-        const response = await isIdentifierExists(data)
-        return response;
-    } catch (error) {
-        throw error;
-    }
-}
-
 const setDoneForTask = async (dispatch, taskId, categoryId, updatedTask) => {
     try {
         await setTaskDone(taskId)
@@ -174,4 +143,4 @@ const setUnDoneForTask = async (dispatch, taskId, categoryId, updatedTask) => {
     }
 }
 
-export default { fetchCategoriesData, orderTasks, createNewTask, editTask, createNewUser, userSignIn, isUserExists, deleteTask, setDoneForTask, setUnDoneForTask }
+export default { fetchCategoriesData, orderTasks, createNewTask, editTask, deleteTask, setDoneForTask, setUnDoneForTask }

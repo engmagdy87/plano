@@ -2,9 +2,19 @@ import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { Container, Row, Col, ProgressBar, Button } from 'react-bootstrap';
-import { categoriesActions } from '../../store/actions';
-import { setUserCookie } from '../../helpers/CookieHelper';
+import { userActions } from '../../store/actions';
+import {
+  setUserDataCookie,
+  getUserDataCookie,
+} from '../../helpers/CookieHelper';
+import {
+  isUserAuthenticated,
+  startStepForUserCompleteProfile,
+} from '../../helpers/UserAuthentication';
+import getRegistrationStep from '../../helpers/RegistrationStepIdentifier';
+import * as USER from '../../constants/UserAuthentication';
 import { Store } from '../../store/store';
+import types from '../../store/types';
 import Header from '../shared/Header';
 import WhoAreYou from '../components/buildProfileSlides/WhoAreYou';
 import WhatIsYourName from '../components/buildProfileSlides/WhatIsYourName';
@@ -17,38 +27,65 @@ import '../../assets/styles/containers/build-profile.scss';
 export default function BuildProfile() {
   const { t } = useTranslation(['build-profile']);
   const { state, dispatch } = useContext(Store);
+  const userData = getUserDataCookie();
   const [slideId, setSlideId] = useState(1);
+  const [data, setData] = useState(null);
   const [progressValue, setProgressValue] = useState(20);
   const [userGender, setUserGender] = useState('');
   const history = useHistory();
-  const onClickButton = function (id) {
+  const onClickButton = async function (id, data) {
+    let result;
+    if (data !== undefined) {
+      result = await userActions.setupUserSteps(dispatch, data);
+      setData(result);
+    }
+
     setSlideId(id);
     setProgressValue(id * 20);
   };
 
   useEffect(() => {
-    if (state.userPersona.identifier === '') history.push('/');
-  });
+    if (slideId === 6) {
+      setTimeout(() => {
+        setSlideId(7);
+      }, 3000);
+    }
+    if (slideId === 7) {
+      dispatch({
+        type: types.user.SET_USER_SIGN_UP_FORM,
+        payload: {
+          ...data,
+        },
+      });
 
-  useEffect(() => {
-    async function createUser() {
-      const response = await categoriesActions.createNewUser(
-        dispatch,
-        state.userPersona
-      );
-      setUserCookie(response.token, response.user.name);
+      setUserDataCookie(data);
       history.push('/sections');
       window.onpopstate = function () {
         history.go(1);
       };
     }
-    if (slideId === 6) {
-      if (state.userPersona.marriageDate === null)
-        delete state.userPersona.marriageDate;
+  }, [data, dispatch, history, slideId]);
 
-      createUser();
+  useEffect(() => {
+    if (isUserAuthenticated() === USER.NOT_AUTHENTICATED) history.push('/');
+    else if (isUserAuthenticated() === USER.AUTHENTICATED)
+      history.push('/home');
+    else if (isUserAuthenticated() === USER.PARTIAL_AUTHENTICATED) {
+      dispatch({
+        type: types.user.SET_USER_SIGN_UP_FORM,
+        payload: {
+          ...userData,
+        },
+      });
+
+      const orderedNullSteps = getRegistrationStep(userData);
+
+      setSlideId(
+        orderedNullSteps.length !== 0 ? Number.parseInt(orderedNullSteps[0]) : 1
+      );
     }
-  }, [dispatch, history, slideId, state.userPersona]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderSlide = function () {
     switch (slideId) {

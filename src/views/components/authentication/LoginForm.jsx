@@ -3,11 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { categoriesActions } from '../../../store/actions';
+import { userActions } from '../../../store/actions';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
 import { Store } from '../../../store/store';
-import { setUserCookie } from '../../../helpers/CookieHelper';
+import {
+  setUserTokenCookie,
+  setUserDataCookie,
+} from '../../../helpers/CookieHelper';
+import { startStepForUserCompleteProfile } from '../../../helpers/UserAuthentication';
 import types from '../../../store/types';
 export default function LoginForm({ setShowLoading }) {
   const { state, dispatch } = useContext(Store);
@@ -29,7 +33,7 @@ export default function LoginForm({ setShowLoading }) {
   const onSubmit = async (persona) => {
     setShowLoading(true);
     try {
-      const res = await categoriesActions.userSignIn(persona);
+      const res = await userActions.userSignIn(persona);
       setShowLoading(false);
       if (res.data === null)
         setWrongData({
@@ -39,12 +43,22 @@ export default function LoginForm({ setShowLoading }) {
       else {
         setWrongData({ show: false, text: '' });
         const data = res.data.login;
-        setUserCookie(data.token, data.user.name);
+        setUserTokenCookie(data.token);
+        setUserDataCookie(data.user);
         dispatch({
           type: types.user.SET_IS_USER_AUTH_FORM,
           payload: { show: false, authType: '' },
         });
-        history.push('/sections');
+        dispatch({
+          type: types.user.SET_USER_SIGN_UP_FORM,
+          payload: {
+            ...data.user,
+          },
+        });
+        const nullKeys = startStepForUserCompleteProfile(data.user);
+
+        if (nullKeys.length !== 0) history.push('/build-profile');
+        else history.push('/sections');
       }
     } catch (error) {
       setShowLoading(false);

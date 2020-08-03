@@ -18,9 +18,8 @@ export default function WhoAreYou({ onClickButton, setGender }) {
       payload: gender,
     });
     setGender(gender);
-    onClickButton(2);
+    onClickButton(2, { gender });
   };
-
   return (
     <div className="who-are-you-wrapper">
       <Row className="who-are-you-wrapper__title">

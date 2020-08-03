@@ -5,7 +5,9 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import Language from './Language';
 import { Store } from '../../store/store';
 import AuthenticationForm from '../components/authentication/AuthenticationForm';
-import { getUserCookie, setChecklistCookie } from '../../helpers/CookieHelper';
+import { setChecklistCookie } from '../../helpers/CookieHelper';
+import { isUserAuthenticated } from '../../helpers/UserAuthentication';
+import * as USER from '../../constants/UserAuthentication';
 import Avatar from '../shared/Avatar';
 import LogoIcon from '../../assets/images/logo.png';
 import types from '../../store/types';
@@ -15,7 +17,6 @@ import '../../assets/styles/shared/header.scss';
 export default function Header({ activePath }) {
   const { t, i18n } = useTranslation(['header']);
   const { state, dispatch } = useContext(Store);
-  const userCookie = getUserCookie();
   const history = useHistory();
 
   const changeLanguage = (lang) => {
@@ -36,7 +37,7 @@ export default function Header({ activePath }) {
   };
 
   const setChecklistId = function () {
-    if (userCookie !== undefined) {
+    if (isUserAuthenticated() === USER.AUTHENTICATED) {
       setChecklistCookie(1);
       dispatch({
         type: types.checklist.SET_CURRENT_CHECKLIST,
@@ -95,7 +96,9 @@ export default function Header({ activePath }) {
         </Nav>
         <Nav
           className={`mr-sm-5 header-wrapper__left-buttons ${
-            userCookie !== undefined ? 'd-none d-md-flex' : ''
+            isUserAuthenticated() === USER.NOT_AUTHENTICATED
+              ? 'd-none d-md-flex'
+              : ''
           } ${
             state.lang === 'en'
               ? 'header-wrapper__left-buttons--en'
@@ -105,7 +108,8 @@ export default function Header({ activePath }) {
           <Nav.Link>
             <Button
               className={`${
-                activePath === 'build-profile' || userCookie !== undefined
+                activePath === 'build-profile' ||
+                isUserAuthenticated() === USER.AUTHENTICATED
                   ? 'header-wrapper__link--hide'
                   : ''
               } ${
@@ -122,7 +126,10 @@ export default function Header({ activePath }) {
             <Button
               variant="link"
               className={`${
-                userCookie !== undefined ? 'header-wrapper__link--hide' : ''
+                activePath === 'build-profile' ||
+                isUserAuthenticated() === USER.AUTHENTICATED
+                  ? 'header-wrapper__link--hide'
+                  : ''
               } ${
                 state.lang === 'en'
                   ? 'header-wrapper__link--en'

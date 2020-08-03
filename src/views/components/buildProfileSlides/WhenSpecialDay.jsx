@@ -31,7 +31,7 @@ export default function WhenSpecialDay({ onClickButton }) {
         type: types.user.SET_USER_MARRIAGE_DATE,
         payload: startDate !== '' ? startDate : null,
       });
-      onClickButton(5);
+      onClickButton(5, { marriageDate: startDate !== '' ? startDate : null });
     }
   };
   return (

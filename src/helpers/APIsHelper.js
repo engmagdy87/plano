@@ -1,15 +1,28 @@
 import axios from 'axios';
 import { QUERY, MUTATION } from '../graphql';
-import { getUserCookie, getAdminCookie } from '../helpers/CookieHelper';
+import { getUserTokenCookie, getAdminCookie } from '../helpers/CookieHelper';
 import GRAPHQL_BASE_URL from '../constants/APIs';
 
 async function fetchCategories(checklistId) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     try {
         const response = await request({
             operationName: "categories",
             query: QUERY.CATEGORIES(checklistId),
-        }, userToken.token);
+        }, userToken);
+        return response.data
+    } catch (error) {
+        return false;
+    }
+}
+
+async function fetchChecklists(ownerId) {
+    const userToken = getUserTokenCookie()
+    try {
+        const response = await request({
+            operationName: "categories",
+            query: QUERY.CHECKLISTS(ownerId),
+        }, userToken);
         return response.data
     } catch (error) {
         return false;
@@ -17,7 +30,7 @@ async function fetchCategories(checklistId) {
 }
 
 async function orderTaskById(data) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     try {
         const response = await request({
             operationName: "orderTasksById",
@@ -25,14 +38,14 @@ async function orderTaskById(data) {
             variables: {
                 ...data
             }
-        }, userToken.token);
+        }, userToken);
         return response.data
     } catch (error) {
         return false;
     }
 }
 async function createTask(data) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     try {
         const response = await request({
             operationName: "newTask",
@@ -42,7 +55,7 @@ async function createTask(data) {
                     ...data,
                 }
             }
-        }, userToken.token);
+        }, userToken);
         return response.data
     } catch (error) {
         return false;
@@ -50,7 +63,7 @@ async function createTask(data) {
 }
 
 async function updateTask(taskId, data) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     const response = await request({
         operationName: "updateTask",
         query: MUTATION.UPDATE_TASK(),
@@ -60,7 +73,7 @@ async function updateTask(taskId, data) {
             },
             taskId
         }
-    }, userToken.token);
+    }, userToken);
     return response.data
 }
 
@@ -77,15 +90,29 @@ async function registerUser(data) {
     return response.data
 }
 
+async function setupUser(data) {
+    const userToken = getUserTokenCookie()
+    const response = await request({
+        operationName: "setupUser",
+        query: MUTATION.SETUP_USER(),
+        variables: {
+            "data": {
+                ...data,
+            }
+        }
+    }, userToken);
+    return response.data
+}
+
 async function removeTask(taskId) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     const response = await request({
         operationName: "removeTask",
         query: MUTATION.REMOVE_TASK(),
         variables: {
             taskId
         }
-    }, userToken.token);
+    }, userToken);
     return response.data
 }
 
@@ -97,31 +124,31 @@ async function deleteUser(userId) {
         variables: {
             userId
         }
-    }, userToken.token);
+    }, userToken);
     return response.data
 }
 
 async function setTaskDone(taskId) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     const response = await request({
         operationName: "TaskDone",
         query: MUTATION.TASK_DONE(),
         variables: {
             taskId
         }
-    }, userToken.token);
+    }, userToken);
     return response.data
 }
 
 async function setTaskUnDone(taskId) {
-    const userToken = getUserCookie()
+    const userToken = getUserTokenCookie()
     const response = await request({
         operationName: "TaskUnDone",
         query: MUTATION.TASK_UNDONE(),
         variables: {
             taskId
         }
-    }, userToken.token);
+    }, userToken);
     return response.data
 }
 
@@ -170,18 +197,20 @@ async function isIdentifierExists(identifier) {
 
 export {
     fetchCategories,
+    fetchChecklists,
     createTask,
     updateTask,
     registerUser,
+    setupUser,
     loginUser,
+    listUsers,
+    deleteUser,
     loginAdmin,
     isIdentifierExists,
     removeTask,
     orderTaskById,
     setTaskDone,
     setTaskUnDone,
-    listUsers,
-    deleteUser,
     listAdmins
 }
 

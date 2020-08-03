@@ -18,7 +18,9 @@ import SelectedTask from '../components/SelectedTask';
 import TaskDetailsModal from '../components/TaskDetailsModal';
 import Toast from '../shared/Toast';
 import { categoriesActions } from '../../store/actions';
-import { getChecklistCookie, getUserCookie } from '../../helpers/CookieHelper';
+import { getChecklistCookie } from '../../helpers/CookieHelper';
+import { isUserAuthenticated } from '../../helpers/UserAuthentication';
+import * as USER from '../../constants/UserAuthentication';
 import SideDrawer from '../components/SideDrawer';
 import types from '../../store/types';
 import '../../assets/styles/containers/home.scss';
@@ -69,16 +71,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const checklistId = getChecklistId();
-    const token = getUserCookie();
-
-    if (!checklistId && token) history.push('/sections');
-    if (!checklistId && !token) history.push('/');
-
     async function fetchCategories(checklistId) {
       await categoriesActions.fetchCategoriesData(dispatch, checklistId);
     }
-    fetchCategories(checklistId);
+    const checklistId = getChecklistId();
+
+    if (!checklistId && isUserAuthenticated() === USER.AUTHENTICATED) {
+      history.push('/sections');
+    } else if (
+      !checklistId &&
+      isUserAuthenticated() === USER.PARTIAL_AUTHENTICATED
+    )
+      history.push('/build-profile');
+    else if (isUserAuthenticated() === USER.NOT_AUTHENTICATED)
+      history.push('/');
+    else fetchCategories(checklistId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
