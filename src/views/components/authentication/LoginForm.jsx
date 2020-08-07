@@ -13,6 +13,7 @@ import {
 } from '../../../helpers/CookieHelper';
 import { startStepForUserCompleteProfile } from '../../../helpers/UserAuthentication';
 import types from '../../../store/types';
+
 export default function LoginForm({ setShowLoading }) {
   const { state, dispatch } = useContext(Store);
   const { t } = useTranslation(['auth']);
@@ -28,6 +29,14 @@ export default function LoginForm({ setShowLoading }) {
     const emailRegEx = /^([a-zA-Z0-9])(([a-zA-Z0-9])*([\._\+-])*([a-zA-Z0-9]))*@(([a-zA-Z0-9\-])+(\.))+([a-zA-Z]{2,4})+$/;
     const mobileRegEx = /^\d{11}$/;
     return emailRegEx.test(value) || mobileRegEx.test(value);
+  };
+
+  const redirectTo = () => {
+    dispatch({
+      type: types.user.SET_IS_USER_AUTH_FORM,
+      payload: { show: false, authType: '' },
+    });
+    history.push('/forgot');
   };
 
   const onSubmit = async (persona) => {
@@ -148,6 +157,7 @@ export default function LoginForm({ setShowLoading }) {
             ? 'authentication-form-wrapper__forgot-password--en'
             : 'authentication-form-wrapper__forgot-password--ar'
         }`}
+        onClick={redirectTo}
       >
         {t('auth:forgotPassword')}
       </span>

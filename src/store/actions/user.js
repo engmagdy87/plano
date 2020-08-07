@@ -5,6 +5,8 @@ import {
     setupUser,
     loginUser,
     isIdentifierExists,
+    sendForgotPasswordRequest,
+    setNewPasswordRequest
 } from "../../helpers/APIsHelper"
 
 
@@ -55,6 +57,24 @@ const userSignIn = async (data) => {
     }
 }
 
+const sendForgotPassword = async (data) => {
+    try {
+        const response = await sendForgotPasswordRequest(data)
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
+const setNewPassword = async (data) => {
+    try {
+        const response = await setNewPasswordRequest(data)
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const isUserExists = async (data) => {
     try {
         const response = await isIdentifierExists(data)
@@ -65,4 +85,4 @@ const isUserExists = async (data) => {
 }
 
 
-export default { createNewUser, userSignIn, isUserExists, setupUserSteps }
+export default { createNewUser, userSignIn, isUserExists, setupUserSteps, sendForgotPassword, setNewPassword }

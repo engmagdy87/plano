@@ -11,6 +11,8 @@ import Home from './views/containers/Home';
 import BuildProfile from './views/containers/BuildProfile';
 import AdminPanel from './views/containers/AdminPanel';
 import Sections from './views/containers/Sections';
+import ForgotPassword from './views/containers/ForgotPassword';
+import ResetPassword from './views/containers/ResetPassword';
 import * as serviceWorker from './serviceWorker';
 import './helpers/i18n';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,6 +31,12 @@ ReactDOM.render(
                     </Route>
                     <Route path="/sections">
                         <Sections />
+                    </Route>
+                    <Route path="/forgot">
+                        <ForgotPassword />
+                    </Route>
+                    <Route path="/reset/:hash">
+                        <ResetPassword />
                     </Route>
                     <Route exact path="/admin">
                         <AdminPanel />

@@ -160,6 +160,28 @@ async function loginUser(data) {
     return response.data
 }
 
+async function sendForgotPasswordRequest(data) {
+    const response = await request({
+        operationName: "forgetPassword",
+        query: MUTATION.FORGET_PASSWORD(),
+        variables: {
+            ...data
+        }
+    });
+    return response.data
+}
+
+async function setNewPasswordRequest(data) {
+    const response = await request({
+        operationName: "resetPassword",
+        query: MUTATION.RESET_PASSWORD(),
+        variables: {
+            ...data
+        }
+    });
+    return response.data
+}
+
 async function loginAdmin(data) {
     const response = await request({
         operationName: "loginAdmin",
@@ -211,7 +233,9 @@ export {
     orderTaskById,
     setTaskDone,
     setTaskUnDone,
-    listAdmins
+    listAdmins,
+    sendForgotPasswordRequest,
+    setNewPasswordRequest
 }
 
 async function request(data, token) {

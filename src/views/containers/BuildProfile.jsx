@@ -7,10 +7,7 @@ import {
   setUserDataCookie,
   getUserDataCookie,
 } from '../../helpers/CookieHelper';
-import {
-  isUserAuthenticated,
-  startStepForUserCompleteProfile,
-} from '../../helpers/UserAuthentication';
+import { isUserAuthenticated } from '../../helpers/UserAuthentication';
 import getRegistrationStep from '../../helpers/RegistrationStepIdentifier';
 import * as USER from '../../constants/UserAuthentication';
 import { Store } from '../../store/store';

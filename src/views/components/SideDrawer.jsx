@@ -426,7 +426,11 @@ export default function SideDrawer() {
             </Container>
           </Form>
         </div>
-        <Loading showLoadingSpinner={showLoadingSpinner} lang={state.lang} />
+        <Loading
+          loader="large"
+          showLoadingSpinner={showLoadingSpinner}
+          lang={state.lang}
+        />
       </Container>
     </Fragment>
   );

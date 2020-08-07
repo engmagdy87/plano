@@ -7,5 +7,7 @@ import TASK_DONE from './TaskDone';
 import TASK_UNDONE from './TaskUnDone';
 import DELETE_USER from './DeleteUser';
 import SETUP_USER from './SetupUser';
+import FORGET_PASSWORD from './ForgetPassword';
+import RESET_PASSWORD from './ResetPassword';
 
-export default { REGISTER, NEW_TASK, UPDATE_TASK, REMOVE_TASK, ORDER_TASKS, TASK_DONE, TASK_UNDONE, DELETE_USER, SETUP_USER };
+export default { REGISTER, NEW_TASK, UPDATE_TASK, REMOVE_TASK, ORDER_TASKS, TASK_DONE, TASK_UNDONE, DELETE_USER, SETUP_USER, FORGET_PASSWORD, RESET_PASSWORD };

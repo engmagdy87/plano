@@ -33,7 +33,7 @@ export default function AdminPanel() {
         />
       )}
       <Loading
-        smallLoader
+        loader="small"
         showLoadingSpinner={showLoadingSpinner}
         lang={state.lang}
       />

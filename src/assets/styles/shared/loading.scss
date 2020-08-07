@@ -17,6 +17,10 @@
       margin-right: 60vw;
     }
   }
+  &--full-screen-loader {
+    height: 100vh;
+    width: 100vw !important;
+  }
   @media (max-width: 992px) {
     width: 100vw !important;
   }
