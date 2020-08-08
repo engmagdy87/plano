@@ -6,7 +6,8 @@ import {
     loginUser,
     isIdentifierExists,
     sendForgotPasswordRequest,
-    setNewPasswordRequest
+    setNewPasswordRequest,
+    loginUserWithFacebook
 } from "../../helpers/APIsHelper"
 
 
@@ -57,6 +58,16 @@ const userSignIn = async (data) => {
     }
 }
 
+const userSignInWithFacebook = async (dispatch, data) => {
+    try {
+        const response = await loginUserWithFacebook(data)
+        return response;
+    } catch (error) {
+        generateErrorMessage(dispatch)
+        throw error;
+    }
+}
+
 const sendForgotPassword = async (data) => {
     try {
         const response = await sendForgotPasswordRequest(data)
@@ -85,4 +96,4 @@ const isUserExists = async (data) => {
 }
 
 
-export default { createNewUser, userSignIn, isUserExists, setupUserSteps, sendForgotPassword, setNewPassword }
+export default { createNewUser, userSignIn, isUserExists, setupUserSteps, sendForgotPassword, setNewPassword, userSignInWithFacebook }

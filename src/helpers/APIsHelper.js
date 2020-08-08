@@ -160,6 +160,17 @@ async function loginUser(data) {
     return response.data
 }
 
+async function loginUserWithFacebook(data) {
+    const response = await request({
+        operationName: "facebookAuth",
+        query: MUTATION.LOGIN_WITH_FACEBOOK(),
+        variables: {
+            ...data
+        }
+    });
+    return response.data
+}
+
 async function sendForgotPasswordRequest(data) {
     const response = await request({
         operationName: "forgetPassword",
@@ -235,7 +246,8 @@ export {
     setTaskUnDone,
     listAdmins,
     sendForgotPasswordRequest,
-    setNewPasswordRequest
+    setNewPasswordRequest,
+    loginUserWithFacebook
 }
 
 async function request(data, token) {

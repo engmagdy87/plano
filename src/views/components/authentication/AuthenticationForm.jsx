@@ -71,7 +71,7 @@ export default function AuthenticationForm() {
                   {t('auth:via')}
                 </Col>
               </Row>
-              <SocialMediaAuthentication />
+              <SocialMediaAuthentication setShowLoading={setShowLoading} />
               <Row>
                 <Col
                   className={`authentication-form-wrapper__span-text ${
@@ -136,7 +136,7 @@ export default function AuthenticationForm() {
                   <p>{t('auth:via')}</p>
                 </Col>
               </Row>
-              <SocialMediaAuthentication />
+              <SocialMediaAuthentication setShowLoading={setShowLoading} />
               <Row>
                 <Col
                   className={`authentication-form-wrapper__span-text ${
