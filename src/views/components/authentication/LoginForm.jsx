@@ -64,7 +64,10 @@ export default function LoginForm({ setShowLoading }) {
             ...data.user,
           },
         });
-        const nullKeys = startStepForUserCompleteProfile(data.user);
+        const nullKeys = startStepForUserCompleteProfile(data.user, [
+          'facebookId',
+          'googleId',
+        ]);
 
         if (nullKeys.length !== 0) history.push('/build-profile');
         else history.push('/sections');

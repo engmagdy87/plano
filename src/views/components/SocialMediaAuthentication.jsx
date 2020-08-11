@@ -41,7 +41,10 @@ export default function SocialMediaAuthentication({ setShowLoading }) {
           ...data.user,
         },
       });
-      const nullKeys = startStepForUserCompleteProfile(data.user);
+      const nullKeys = startStepForUserCompleteProfile(data.user, [
+        'facebookId',
+        'googleId',
+      ]);
 
       if (nullKeys.length !== 0) history.push('/build-profile');
       else history.push('/sections');
@@ -84,12 +87,12 @@ export default function SocialMediaAuthentication({ setShowLoading }) {
           <span>{t('auth:google')}</span>
         </div>
       </Col>
-      <GoogleLogin
+      {/* <GoogleLogin
         clientId="" //CLIENTID NOT CREATED YET
         buttonText="LOGIN WITH GOOGLE"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
-      />
+      /> */}
     </Row>
   );
 }

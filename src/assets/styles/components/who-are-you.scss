@@ -38,6 +38,7 @@ $header-height: 56px;
     text-align: center;
     transition: all 0.2s ease;
     font-size: 1rem;
+    margin-top: 50px;
     &--ar {
       font-family: 'Cairo Regular';
     }
@@ -45,7 +46,7 @@ $header-height: 56px;
       font-family: 'Montserrat Regular';
     }
     &--active {
-      box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+      border: 1px solid $dark-violet;
     }
     &:hover {
       box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);

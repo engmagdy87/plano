@@ -90,6 +90,32 @@ async function registerUser(data) {
     return response.data
 }
 
+async function updateUserProfile(data) {
+    const userToken = getUserTokenCookie()
+    const response = await request({
+        operationName: "updateProfile",
+        query: MUTATION.UPDATE_PROFILE(),
+        variables: {
+            "data": {
+                ...data,
+            }
+        }
+    }, userToken);
+    return response.data
+}
+
+async function changeUserPassword(data) {
+    const userToken = getUserTokenCookie()
+    const response = await request({
+        operationName: "changePassword",
+        query: MUTATION.CHANGE_PASSWORD(),
+        variables: {
+            ...data,
+        }
+    }, userToken);
+    return response.data
+}
+
 async function setupUser(data) {
     const userToken = getUserTokenCookie()
     const response = await request({
@@ -247,7 +273,9 @@ export {
     listAdmins,
     sendForgotPasswordRequest,
     setNewPasswordRequest,
-    loginUserWithFacebook
+    loginUserWithFacebook,
+    updateUserProfile,
+    changeUserPassword
 }
 
 async function request(data, token) {

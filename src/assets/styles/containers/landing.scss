@@ -31,7 +31,7 @@
   &__sign-up-button {
     color: black !important;
     font-weight: bolder !important;
-    border-color: $yellow-background !important;
+    border-color: $dark-violet !important;
     padding: 14px 37px !important;
     &--ar {
       font-family: 'Cairo SemiBold' !important;
@@ -40,8 +40,9 @@
       font-family: 'Montserrat SemiBold' !important;
     }
     &:hover {
-      background-color: $yellow-background !important;
-      border-color: $yellow-background !important;
+      background-color: $dark-violet !important;
+      border-color: $dark-violet !important;
+      color: white !important;
     }
   }
   &__hero-image {

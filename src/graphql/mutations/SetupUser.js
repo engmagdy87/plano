@@ -7,6 +7,8 @@ const SETUP_USER = () => `mutation setupUser($data:SetupUserInput!) {
       gender
       marriageDate
       prepCost 
+      facebookId
+      googleId
     }
   }`;
 

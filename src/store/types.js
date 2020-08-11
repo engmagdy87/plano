@@ -7,6 +7,8 @@ const user = {
     'SET_USER_PREP_COST': 'user/SET_USER_PREP_COST',
     'SET_IS_USER_AUTH_FORM': 'user/SET_IS_USER_AUTH_FORM',
     'SET_LANG': 'user/SET_LANG',
+    'SET_SHOW_CHANGE_PASSWORD_MODAL': 'user/SET_SHOW_CHANGE_PASSWORD_MODAL',
+    'SET_SHOW_RELOGIN_MODAL': 'user/SET_SHOW_RELOGIN_MODAL',
 }
 
 const categories = {

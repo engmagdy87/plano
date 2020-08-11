@@ -43,7 +43,7 @@ export default function WhoAreYou({ onClickButton, setGender }) {
         </Col>
       </Row>
       <Row className="who-are-you-wrapper__choices">
-        <Col xs={6}>
+        <Col xs={{ span: 3, offset: 3 }}>
           <div
             className={`who-are-you-wrapper__choice ${
               state.userPersona.gender === 'Female'
@@ -60,7 +60,7 @@ export default function WhoAreYou({ onClickButton, setGender }) {
             <span>{t('build-profile:bride')}</span>
           </div>
         </Col>
-        <Col xs={6}>
+        <Col xs={3}>
           <div
             className={`who-are-you-wrapper__choice ${
               state.userPersona.gender === 'Male'

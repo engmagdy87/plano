@@ -73,7 +73,7 @@
         }
       }
       &--active {
-        box-shadow: 0 0 6px 0 #ae95c4;
+        border: 1px solid $dark-violet;
       }
     }
     &__action {

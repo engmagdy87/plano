@@ -16,7 +16,9 @@ const userState = {
         prepCost: 0,
     },
     userAuthenticationForm: { show: false, authType: '' },
-    lang: currentLanguage
+    lang: currentLanguage,
+    isChangePasswordModalShown: false,
+    isReloginModalShown: false,
 }
 
 export default userState

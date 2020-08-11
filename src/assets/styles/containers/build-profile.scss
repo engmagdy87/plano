@@ -15,6 +15,7 @@ $header-height: 56px;
   }
   &__progress {
     height: 50px;
+    text-align: center;
     &__title {
       font-size: 18px;
       &--ar {
@@ -40,12 +41,13 @@ $header-height: 56px;
     &--show {
       font-size: 1rem !important;
       font-weight: 500;
-      padding: 10px 30px !important;
+      padding: 10px 20px !important;
       color: #94a1c1 !important;
-      border-color: transparent !important;
+      border-color: #94a1c1 !important;
       position: absolute;
       bottom: 5%;
       left: 5%;
+      // width: 20px !important;
       &:hover,
       &:focus,
       &:active {

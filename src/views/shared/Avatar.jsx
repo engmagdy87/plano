@@ -30,6 +30,7 @@ export default function Avatar({ device }) {
     removeUserDataCookie();
     removeUserTokenCookie();
     removeChecklistCookie();
+    setShowMenu(!showMenu);
     dispatch({
       type: types.user.SET_USER_SIGN_UP_FORM,
       payload: {
@@ -44,6 +45,11 @@ export default function Avatar({ device }) {
       },
     });
     history.push('/');
+  };
+
+  const redirectToProfile = () => {
+    setShowMenu(!showMenu);
+    history.push('/profile');
   };
 
   useEffect(() => {
@@ -72,14 +78,18 @@ export default function Avatar({ device }) {
       >
         {getFirstLettersOfString(username)}
       </div>
-      <span
+      <ul
         className={`avatar-wrapper__menu ${
           showMenu ? 'avatar-wrapper__menu--show' : 'avatar-wrapper__menu--hide'
         }`}
-        onClick={logoutUser}
       >
-        {t('header:logout')}
-      </span>
+        <li className="avatar-wrapper__menu__item" onClick={redirectToProfile}>
+          {t('header:profile')}
+        </li>
+        <li className="avatar-wrapper__menu__item" onClick={logoutUser}>
+          {t('header:logout')}
+        </li>
+      </ul>
     </Fragment>
   );
 }

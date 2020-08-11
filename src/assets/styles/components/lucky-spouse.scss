@@ -53,14 +53,18 @@
       }
       button {
         float: right;
-        color: black !important;
-        border-color: $yellow-background !important;
-        background-color: $yellow-background !important;
+        color: white !important;
+        border-color: $dark-violet !important;
+        background-color: $dark-violet !important;
         padding: 10px 30px;
         font-size: 1rem;
+        img {
+          margin-left: 5px;
+          margin-bottom: 3px;
+        }
         &:hover {
-          background-color: $yellow-background !important;
-          border-color: $yellow-background;
+          background-color: $dark-violet !important;
+          border-color: $dark-violet;
         }
       }
     }

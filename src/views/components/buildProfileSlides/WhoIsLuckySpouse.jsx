@@ -6,6 +6,7 @@ import '../../../assets/styles/components/lucky-spouse.scss';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
 import { useForm } from 'react-hook-form';
+import RightArrowIcon from '../../../assets/images/right-arrow.svg';
 
 export default function WhoIsLuckySpouse({ onClickButton, userGender }) {
   const { t } = useTranslation(['build-profile']);
@@ -87,7 +88,10 @@ export default function WhoIsLuckySpouse({ onClickButton, userGender }) {
                   : 'lucky-spouse-wrapper__form__form-action--ar'
               }`}
             >
-              <Button type="submit">{t('build-profile:next')}</Button>
+              <Button type="submit">
+                {t('build-profile:next')}{' '}
+                <img src={RightArrowIcon} alt="back" />
+              </Button>
             </div>
           </Form>
         </Col>

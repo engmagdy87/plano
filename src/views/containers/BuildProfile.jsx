@@ -19,6 +19,7 @@ import WhoIsLuckySpouse from '../components/buildProfileSlides/WhoIsLuckySpouse'
 import WhenSpecialDay from '../components/buildProfileSlides/WhenSpecialDay';
 import WeddingBudget from '../components/buildProfileSlides/WeddingBudget';
 import Spinner from '../shared/Spinner';
+import LeftArrowIcon from '../../assets/images/left-arrow.svg';
 import '../../assets/styles/containers/build-profile.scss';
 
 export default function BuildProfile() {
@@ -129,9 +130,10 @@ export default function BuildProfile() {
                     : 'build-profile-wrapper__progress__title--ar'
                 }`}
               >
+                {t('build-profile:step')} {slideId} {t('build-profile:of')} 5{' '}
                 {t('build-profile:buildYourProfile')}
               </span>
-              <span
+              {/* <span
                 className={`build-profile-wrapper__progress__details ${
                   state.lang === 'en'
                     ? 'build-profile-wrapper__progress__details--en'
@@ -139,9 +141,9 @@ export default function BuildProfile() {
                 }`}
               >
                 {progressValue}%
-              </span>
+              </span> */}
             </Col>
-            <Col xs={12}>
+            <Col xs={{ span: 6, offset: 3 }}>
               <ProgressBar now={progressValue} />
             </Col>
           </Row>
@@ -160,7 +162,7 @@ export default function BuildProfile() {
                     : 'build-profile-wrapper__back-button--ar'
                 }`}
           >
-            {t('build-profile:back')}
+            <img src={LeftArrowIcon} alt="back" />
           </Button>
         </Container>
       );

@@ -41,20 +41,20 @@ $header-margin-right: 20px;
 
     .nav-link:nth-child(1) {
       button {
-        color: $dark-text;
-        background-color: $yellow-background;
-        border-color: $yellow-background;
+        color: white;
+        background-color: $dark-violet;
+        border-color: $dark-violet;
         font-size: 13px;
         padding-right: 15px;
         padding-left: 15px;
         &:hover,
         &:focus,
         &:active {
-          background-color: $yellow-background !important;
-          border-color: $yellow-background !important;
+          background-color: $dark-violet !important;
+          border-color: $dark-violet !important;
           outline: none !important;
           box-shadow: none !important;
-          color: $dark-text;
+          color: white;
         }
         @media (max-width: 992px) {
           background-color: transparent !important;
@@ -67,7 +67,7 @@ $header-margin-right: 20px;
             border-color: transparent !important;
             outline: none !important;
             box-shadow: none !important;
-            color: $dark-text;
+            color: white;
           }
         }
       }
@@ -134,7 +134,7 @@ $header-margin-right: 20px;
     &:hover,
     &:focus,
     &:active {
-      background-color: $light-primary !important;
+      background-color: $lighter-primary !important;
       color: $dark-text !important;
     }
   }

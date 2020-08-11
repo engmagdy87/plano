@@ -2,12 +2,14 @@ import types from '../types'
 import userState from '../../store/states/user'
 import {
     registerUser,
+    updateUserProfile,
     setupUser,
     loginUser,
     isIdentifierExists,
     sendForgotPasswordRequest,
     setNewPasswordRequest,
-    loginUserWithFacebook
+    loginUserWithFacebook,
+    changeUserPassword
 } from "../../helpers/APIsHelper"
 
 
@@ -33,6 +35,28 @@ const createNewUser = async (dispatch, userPersona) => {
         const response = await registerUser(userPersona)
         if (response.errors) return { isErrorExists: true, data: response.errors[0].message }
         return { isErrorExists: false, data: response.data.register };
+    } catch (error) {
+        generateErrorMessage(dispatch)
+        throw error;
+    }
+}
+
+const updateUser = async (dispatch, userPersona) => {
+    try {
+        const response = await updateUserProfile(userPersona)
+        if (response.errors) return { isErrorExists: true, data: response.errors[0].message }
+        return { isErrorExists: false, data: response.data.updateProfile };
+    } catch (error) {
+        generateErrorMessage(dispatch)
+        throw error;
+    }
+}
+
+const changePassword = async (dispatch, userPersona) => {
+    try {
+        const response = await changeUserPassword(userPersona)
+        if (response.errors) return { isErrorExists: true, data: response.errors[0].message }
+        return { isErrorExists: false, data: response.data.updateProfile };
     } catch (error) {
         generateErrorMessage(dispatch)
         throw error;
@@ -96,4 +120,4 @@ const isUserExists = async (data) => {
 }
 
 
-export default { createNewUser, userSignIn, isUserExists, setupUserSteps, sendForgotPassword, setNewPassword, userSignInWithFacebook }
+export default { createNewUser, userSignIn, isUserExists, setupUserSteps, sendForgotPassword, setNewPassword, userSignInWithFacebook, updateUser, changePassword }

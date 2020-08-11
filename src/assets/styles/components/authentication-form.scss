@@ -3,16 +3,18 @@
 .authentication-form-wrapper {
   &__span-text {
     text-align: center;
-    color: #5c5c69;
+    color: #94a1c1;
+    margin-bottom: 10px;
+    font-size: 14px;
     &--ar {
       font-family: 'Cairo Bold' !important;
     }
     &--en {
-      font-family: 'Helvetica Neue Medium' !important;
+      font-family: 'Montserrat Medium' !important;
     }
     p {
-      margin-bottom: 10px;
-      font-size: 16px;
+      font-size: 14px;
+      margin: 0;
     }
     h6 {
       width: 100%;
@@ -32,6 +34,7 @@
     max-width: 200px !important;
     height: 40px;
     color: white;
+    margin: 5px 0;
     display: flex;
     cursor: pointer;
     font-size: 18px;
@@ -195,6 +198,10 @@
 
 .modal-content {
   max-width: 380px !important;
+}
+
+.modal.show .modal-dialog {
+  justify-content: center !important;
 }
 
 .modal-title.h4 {

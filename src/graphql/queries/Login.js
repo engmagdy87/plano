@@ -9,6 +9,8 @@ const LOGIN = ({ identifier, password }) => `query login{
         gender
         marriageDate
         prepCost 
+        facebookId
+        googleId
       }
     }
   }`;

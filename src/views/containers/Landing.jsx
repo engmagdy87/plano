@@ -1,10 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Header from '../shared/Header';
-import heroImage from '../../assets/images/hero.jpeg';
+import heroImage from '../../assets/images/hero.svg';
 import { Store } from '../../store/store';
 import types from '../../store/types';
-import { getUserTokenCookie } from '../../helpers/CookieHelper';
+import {
+  getUserTokenCookie,
+  getUserDataCookie,
+} from '../../helpers/CookieHelper';
 import '../../assets/styles/containers/landing.scss';
 import { useHistory } from 'react-router-dom';
 
@@ -14,7 +17,7 @@ export default function Landing() {
 
   useEffect(() => {
     const userTokenInCookie = getUserTokenCookie();
-    const userDataInCookie = getUserTokenCookie();
+    const userDataInCookie = getUserDataCookie();
 
     if (userTokenInCookie !== undefined && userDataInCookie === undefined)
       history.push('/build-profile');
@@ -27,7 +30,12 @@ export default function Landing() {
     });
   };
   return (
-    <div style={{ direction: state.lang === 'en' ? 'ltr' : 'rtl' }}>
+    <div
+      style={{
+        direction: state.lang === 'en' ? 'ltr' : 'rtl',
+        backgroundColor: '#f7f1fa',
+      }}
+    >
       <Header activePath />
       <Container className="landing-wrapper">
         <Row className="landing-wrapper__content">

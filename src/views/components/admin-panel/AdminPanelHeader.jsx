@@ -3,7 +3,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import { removeAdminCookie } from '../../../helpers/CookieHelper';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
-import LogoIcon from '../../../assets/images/logo.png';
+import LogoIcon from '../../../assets/images/logo.svg';
 import '../../../assets/styles/shared/header.scss';
 
 export default function AdminPanelHeader({ setAdminToken }) {

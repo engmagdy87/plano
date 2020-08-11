@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../../../assets/styles/components/when-special-day.scss';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
-
+import RightArrowIcon from '../../../assets/images/right-arrow.svg';
 export default function WhenSpecialDay({ onClickButton }) {
   const { t } = useTranslation(['build-profile']);
   const { state, dispatch } = useContext(Store);
@@ -125,7 +125,10 @@ export default function WhenSpecialDay({ onClickButton }) {
                   : 'when-special-day-wrapper__form__form-action--ar'
               }`}
             >
-              <Button onClick={handleNext}>{t('build-profile:next')}</Button>
+              <Button onClick={handleNext}>
+                {t('build-profile:next')}{' '}
+                <img src={RightArrowIcon} alt="back" />
+              </Button>
             </div>
           </Form>
         </Col>

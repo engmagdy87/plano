@@ -60,6 +60,7 @@ export default function AuthenticationForm() {
           </Modal.Header>
           <Modal.Body className="authentication-form-wrapper">
             <Container>
+              <SignUpForm setShowLoading={setShowLoading} />
               <Row>
                 <Col
                   className={`authentication-form-wrapper__span-text ${
@@ -72,19 +73,7 @@ export default function AuthenticationForm() {
                 </Col>
               </Row>
               <SocialMediaAuthentication setShowLoading={setShowLoading} />
-              <Row>
-                <Col
-                  className={`authentication-form-wrapper__span-text ${
-                    state.lang === 'en'
-                      ? 'authentication-form-wrapper__span-text--en'
-                      : 'authentication-form-wrapper__span-text--ar'
-                  }`}
-                >
-                  {t('auth:or')}
-                </Col>
-              </Row>
-              <SignUpForm setShowLoading={setShowLoading} />
-              <span
+              {/* <span
                 className={`authentication-form-wrapper__terms ${
                   state.lang === 'en'
                     ? 'authentication-form-wrapper__terms--en'
@@ -92,7 +81,7 @@ export default function AuthenticationForm() {
                 }`}
               >
                 {t('auth:terms')}
-              </span>
+              </span> */}
               <span
                 className={`authentication-form-wrapper__account ${
                   state.lang === 'en'
@@ -125,6 +114,7 @@ export default function AuthenticationForm() {
           </Modal.Header>
           <Modal.Body className="authentication-form-wrapper">
             <Container>
+              <LoginForm setShowLoading={setShowLoading} />
               <Row>
                 <Col
                   className={`authentication-form-wrapper__span-text ${
@@ -137,20 +127,6 @@ export default function AuthenticationForm() {
                 </Col>
               </Row>
               <SocialMediaAuthentication setShowLoading={setShowLoading} />
-              <Row>
-                <Col
-                  className={`authentication-form-wrapper__span-text ${
-                    state.lang === 'en'
-                      ? 'authentication-form-wrapper__span-text--en'
-                      : 'authentication-form-wrapper__span-text--ar'
-                  }`}
-                >
-                  <h6>
-                    <span>{t('auth:or')}</span>
-                  </h6>
-                </Col>
-              </Row>
-              <LoginForm setShowLoading={setShowLoading} />
               <span
                 className={`authentication-form-wrapper__account ${
                   state.lang === 'en'

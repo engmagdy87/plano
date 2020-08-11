@@ -1,13 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Row, Form, InputGroup, Container, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { panelActions } from '../../../store/actions';
-import { Store } from '../../../store/store';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.svg';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
 import { setAdminCookie } from '../../../helpers/CookieHelper';
-import types from '../../../store/types';
 
 import '../../../assets/styles/components/admin-login-form.scss';
 

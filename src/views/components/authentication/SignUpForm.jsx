@@ -31,8 +31,9 @@ export default function SignUpForm({ setShowLoading }) {
     setIsIdentifierExistsFlag(false);
 
     const emailRegEx = /^([a-zA-Z0-9])(([a-zA-Z0-9])*([\._\+-])*([a-zA-Z0-9]))*@(([a-zA-Z0-9\-])+(\.))+([a-zA-Z]{2,4})+$/;
-    const mobileRegEx = /^\d{11}$/;
-    return emailRegEx.test(value) || mobileRegEx.test(value);
+    // const mobileRegEx = /^\d{11}$/;
+    // return emailRegEx.test(value) || mobileRegEx.test(value);
+    return emailRegEx.test(value);
   };
 
   const { register, handleSubmit, errors, watch } = useForm();

@@ -36,7 +36,10 @@ export default function WeddingBudget({ onClickButton }) {
             ? 'wedding-budget-wrapper__list__item--active'
             : ''
         }`}
-        onClick={() => setActiveBudgetItem(budget.value)}
+        onClick={() => {
+          setActiveBudgetItem(budget.value);
+          handleNext();
+        }}
       >
         <p
           className={`wedding-budget-wrapper__list__item__more-than ${
@@ -89,7 +92,7 @@ __budget ${
         <Col className="wedding-budget-wrapper__list__content">
           {renderBudgetsList()}
         </Col>
-        <Col>
+        {/* <Col>
           <div className="wedding-budget-wrapper__list__action">
             <Button
               className={`${
@@ -102,7 +105,7 @@ __budget ${
               {t('build-profile:next')}
             </Button>
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </div>
   );

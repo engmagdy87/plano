@@ -8,6 +8,7 @@ import {
 import { StoreProvider } from './store/store';
 import Landing from './views/containers/Landing';
 import Home from './views/containers/Home';
+import Profile from './views/containers/Profile';
 import BuildProfile from './views/containers/BuildProfile';
 import AdminPanel from './views/containers/AdminPanel';
 import Sections from './views/containers/Sections';
@@ -25,6 +26,9 @@ ReactDOM.render(
                 <Switch>
                     <Route path="/home">
                         <Home />
+                    </Route>
+                    <Route path="/profile">
+                        <Profile />
                     </Route>
                     <Route path="/build-profile">
                         <BuildProfile />

@@ -9,6 +9,8 @@ const LOGIN_WITH_FACEBOOK = () => `mutation facebookAuth($email:String!,$faceboo
         gender
         marriageDate
         prepCost 
+        facebookId
+        googleId
       }
     }
   }`;

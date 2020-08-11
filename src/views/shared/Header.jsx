@@ -9,7 +9,7 @@ import { setChecklistCookie } from '../../helpers/CookieHelper';
 import { isUserAuthenticated } from '../../helpers/UserAuthentication';
 import * as USER from '../../constants/UserAuthentication';
 import Avatar from '../shared/Avatar';
-import LogoIcon from '../../assets/images/logo.png';
+import LogoIcon from '../../assets/images/logo.svg';
 import types from '../../store/types';
 import EgyptFlagIcon from '../../assets/images/egypt.png';
 import UKFlagIcon from '../../assets/images/uk.png';
@@ -35,7 +35,6 @@ export default function Header({ activePath }) {
       payload: { show: true, authType: 'signup' },
     });
   };
-
   const setChecklistId = function () {
     if (isUserAuthenticated() === USER.AUTHENTICATED) {
       setChecklistCookie(1);
