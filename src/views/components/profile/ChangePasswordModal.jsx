@@ -11,6 +11,11 @@ import {
 import { Store } from '../../../store/store';
 import { useForm } from 'react-hook-form';
 import { userActions } from '../../../store/actions';
+import {
+  removeUserDataCookie,
+  removeUserTokenCookie,
+  removeChecklistCookie,
+} from '../../../helpers/CookieHelper';
 import types from '../../../store/types';
 import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
@@ -58,6 +63,23 @@ export default function ChangePasswordModal({ setShowLoadingSpinner }) {
         type: types.user.SET_SHOW_RELOGIN_MODAL,
         payload: true,
       });
+      removeUserDataCookie();
+      removeUserTokenCookie();
+      removeChecklistCookie();
+      dispatch({
+        type: types.user.SET_USER_SIGN_UP_FORM,
+        payload: {
+          identifier: '',
+          password: '',
+          confirmPassword: '',
+          gender: '',
+          marriageDate: '',
+          name: '',
+          spouseName: '',
+          prepCost: 0,
+        },
+      });
+
       handleClose();
     } else
       dispatch({

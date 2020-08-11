@@ -4,38 +4,13 @@ import { Modal, Container, Row, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
-import {
-  removeUserDataCookie,
-  removeUserTokenCookie,
-  removeChecklistCookie,
-} from '../../../helpers/CookieHelper';
 import '../../../assets/styles/components/authentication-form.scss';
 
 export default function ReloginModal() {
   const { t } = useTranslation(['auth']);
   const { state, dispatch } = useContext(Store);
   const history = useHistory();
-  const logoutUser = function () {
-    removeUserDataCookie();
-    removeUserTokenCookie();
-    removeChecklistCookie();
-    dispatch({
-      type: types.user.SET_USER_SIGN_UP_FORM,
-      payload: {
-        identifier: '',
-        password: '',
-        confirmPassword: '',
-        gender: '',
-        marriageDate: '',
-        name: '',
-        spouseName: '',
-        prepCost: 0,
-      },
-    });
-    dispatch({
-      type: types.user.SET_SHOW_RELOGIN_MODAL,
-      payload: false,
-    });
+  const redirectUser = function () {
     dispatch({
       type: types.categories.SET_TOAST_DATA,
       payload: {
@@ -43,6 +18,10 @@ export default function ReloginModal() {
         text: '',
         status: '',
       },
+    });
+    dispatch({
+      type: types.user.SET_SHOW_RELOGIN_MODAL,
+      payload: false,
     });
     history.push('/');
   };
@@ -70,7 +49,7 @@ export default function ReloginModal() {
             <Button
               size="lg"
               block
-              onClick={logoutUser}
+              onClick={redirectUser}
               className={`auth-form-action__button ${
                 state.lang === 'en'
                   ? 'auth-form-action__button--en'
