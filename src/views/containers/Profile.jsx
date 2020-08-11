@@ -110,6 +110,7 @@ export default function Landing() {
       const result = await userActions.updateUser(dispatch, payload);
       if (!result.isErrorExists) {
         setUserDataCookie(result.data);
+        setIsEditMode(false);
         dispatch({
           type: types.categories.SET_TOAST_DATA,
           payload: {
