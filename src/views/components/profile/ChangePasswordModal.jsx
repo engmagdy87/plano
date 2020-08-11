@@ -16,7 +16,7 @@ import ShowLogo from '../../../assets/images/show.svg';
 import HideLogo from '../../../assets/images/hide.svg';
 import '../../../assets/styles/components/authentication-form.scss';
 
-export default function ChangePassword({ setShowLoadingSpinner }) {
+export default function ChangePasswordModal({ setShowLoadingSpinner }) {
   const { t } = useTranslation(['auth']);
   const { state, dispatch } = useContext(Store);
 

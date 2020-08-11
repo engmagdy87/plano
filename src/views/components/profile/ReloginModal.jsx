@@ -11,7 +11,7 @@ import {
 } from '../../../helpers/CookieHelper';
 import '../../../assets/styles/components/authentication-form.scss';
 
-export default function Relogin() {
+export default function ReloginModal() {
   const { t } = useTranslation(['auth']);
   const { state, dispatch } = useContext(Store);
   const history = useHistory();
@@ -50,9 +50,10 @@ export default function Relogin() {
     <Modal
       show={state.isReloginModalShown}
       centered
+      backdrop="static"
       className="authentication-form-wrapper"
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title
           className={`${
             state.lang === 'en'

@@ -13,8 +13,8 @@ import {
   setUserDataCookie,
 } from '../../helpers/CookieHelper';
 import { userActions } from '../../store/actions';
-import ChangePassword from '../components/profile/ChangePassword';
-import Relogin from '../components/profile/Relogin';
+import ChangePasswordModal from '../components/profile/ChangePasswordModal';
+import ReloginModal from '../components/profile/ReloginModal';
 import Loading from '../shared/Loading';
 import Toast from '../shared/Toast';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -436,8 +436,8 @@ export default function Landing() {
           </div>
         </div>
       </Form>
-      <ChangePassword setShowLoadingSpinner={setShowLoadingSpinner} />
-      <Relogin />
+      <ChangePasswordModal setShowLoadingSpinner={setShowLoadingSpinner} />
+      <ReloginModal />
       <Loading
         loader="full-screen"
         showLoadingSpinner={showLoadingSpinner}
