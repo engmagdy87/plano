@@ -63,10 +63,11 @@ export default function Avatar({ device }) {
     <Fragment>
       <div
         role="button"
-        tabIndex="0"
         className={`avatar-wrapper mr-3 ${
           isUserAuthenticated() === USER.NOT_AUTHENTICATED ||
-          isUserAuthenticated() === USER.PARTIAL_AUTHENTICATED
+          isUserAuthenticated() === USER.PARTIAL_AUTHENTICATED ||
+          username === undefined ||
+          username === ''
             ? 'avatar-wrapper--hide'
             : ''
         } ${

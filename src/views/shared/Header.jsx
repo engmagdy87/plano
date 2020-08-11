@@ -77,6 +77,8 @@ export default function Header({ activePath }) {
               state.lang === 'en'
                 ? 'header-wrapper__link--en'
                 : 'header-wrapper__link--ar'
+            } ${
+              activePath === 'build-profile' ? 'header-wrapper__link--hide' : ''
             }`}
             onClick={setChecklistId}
           >
@@ -88,6 +90,8 @@ export default function Header({ activePath }) {
               state.lang === 'en'
                 ? 'header-wrapper__link--en'
                 : 'header-wrapper__link--ar'
+            } ${
+              activePath === 'build-profile' ? 'header-wrapper__link--hide' : ''
             }`}
           >
             {t('header:blog')}

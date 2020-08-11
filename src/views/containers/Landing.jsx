@@ -1,27 +1,13 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Header from '../shared/Header';
 import heroImage from '../../assets/images/hero.svg';
 import { Store } from '../../store/store';
 import types from '../../store/types';
-import {
-  getUserTokenCookie,
-  getUserDataCookie,
-} from '../../helpers/CookieHelper';
 import '../../assets/styles/containers/landing.scss';
-import { useHistory } from 'react-router-dom';
 
 export default function Landing() {
   const { state, dispatch } = useContext(Store);
-  const history = useHistory();
-
-  useEffect(() => {
-    const userTokenInCookie = getUserTokenCookie();
-    const userDataInCookie = getUserDataCookie();
-
-    if (userTokenInCookie !== undefined && userDataInCookie === undefined)
-      history.push('/build-profile');
-  }, [history]);
 
   const showSignUp = function () {
     dispatch({

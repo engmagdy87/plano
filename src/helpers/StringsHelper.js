@@ -1,6 +1,6 @@
 const getFirstLettersOfString = (text) => {
-    if (!text) return
-    const words = text.split(" ")
+    if (!text || text === '') return
+    const words = text.trim().split(" ")
     let letters = ""
     words.forEach(word => {
         letters += word[0]
