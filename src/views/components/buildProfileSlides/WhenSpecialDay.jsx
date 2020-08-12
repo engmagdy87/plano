@@ -8,6 +8,7 @@ import '../../../assets/styles/components/when-special-day.scss';
 import { Store } from '../../../store/store';
 import types from '../../../store/types';
 import RightArrowIcon from '../../../assets/images/right-arrow.svg';
+
 export default function WhenSpecialDay({ onClickButton }) {
   const { t } = useTranslation(['build-profile']);
   const { state, dispatch } = useContext(Store);
@@ -15,7 +16,7 @@ export default function WhenSpecialDay({ onClickButton }) {
 
   const [startDate, setStartDate] = useState(marriageDate || '');
   const [isDateDetermined, setIsDateDetermined] = useState(
-    marriageDate === null ? true : false
+    marriageDate === null || marriageDate === '' ? false : true
   );
   const [error, setError] = useState(false);
 
@@ -84,7 +85,10 @@ export default function WhenSpecialDay({ onClickButton }) {
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                onChange={(date) => {
+                  setStartDate(date);
+                  setIsDateDetermined(true);
+                }}
                 className={`bootstrap-border ${
                   state.lang === 'en'
                     ? 'bootstrap-border--en'
@@ -101,7 +105,6 @@ export default function WhenSpecialDay({ onClickButton }) {
                 }`}
                 label={t('build-profile:itIsNotDeterminedYet')}
                 onChange={setNotDeterminedFlag}
-                checked={isDateDetermined}
               />
               {error && (
                 <span
